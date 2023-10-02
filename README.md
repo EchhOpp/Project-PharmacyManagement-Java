@@ -4,10 +4,9 @@ This project for education.
 ## General information
 - Lecturer: Mrs. Trần Thị Anh Thi.
 - Students:
-    1. Dương Thái Bảo (Leader) - Student code: 21037621.
+    1. Nguyễn Thành Luân (Time Keeper) - Student code: 21123021
     2. Nguyễn Lê Nhật Huy (Reporter) - Student code: 21128101.
-    3. Nguyễn Thành Luân (Time Keeper) - Student code: 21123021
-    4. Chu Công Quý (Recorder) - Student code: 21099211
+    3. 
 - Team's name: Nhóm 6 - Họ nhà Báo
 - Summary purpose about project: For education.
 ## The technologies, applications, libraries used whole project
