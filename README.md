@@ -2,12 +2,12 @@
 ## About this project
 This project for education.
 ## General information
-- Lecturer: Mrs. Trần Thị Anh Thi.
+- Lecturer: Mr. .
 - Students:
     1. Nguyễn Thành Luân (Leader) - Student code: 21123021.
-    2. .
-    3. 
-- Team's name: Nhóm 6 - Họ nhà Báo
+    2. Phạm Hữu Phúc - Student code: 21032381
+    3. Trần Tấn Đạt - Student code: 21004435
+- Team's name: Nhóm 18 - Sức khỏe việt
 - Summary purpose about project: For education.
 ## The technologies, applications, libraries used whole project
 1. Java Language
