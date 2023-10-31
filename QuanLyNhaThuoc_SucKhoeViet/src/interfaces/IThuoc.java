@@ -1,5 +1,9 @@
 package interfaces;
 
-public interface IThuoc {
+import java.util.ArrayList;
 
+import entities.Thuoc;
+
+public interface IThuoc {
+	public ArrayList<Thuoc> layTatCaTTThuoc();
 }
