@@ -16,7 +16,7 @@ This project for education.
 4. Eclipse IDE
 5. Visual Studio Code
 6. Visual Paradigm for UML
-7. Figma
+7. Trello
 8. Google Meet
 9. Git
 ## The rules apply for student team
