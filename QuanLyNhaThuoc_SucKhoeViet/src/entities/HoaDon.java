@@ -12,6 +12,16 @@ public class HoaDon {
 	private float mienGiam;
 	private List<ChiTietHoaDon> danhSachChiTietHoaDon;
 	
+	public HoaDon(String maHoaDon, Date ngayLapHoaDon, String theBaoHiem, float mienGiam,
+			List<ChiTietHoaDon> danhSachChiTietHoaDon) {
+		super();
+		this.maHoaDon = maHoaDon;
+		this.ngayLapHoaDon = ngayLapHoaDon;
+		this.theBaoHiem = theBaoHiem;
+		this.mienGiam = mienGiam;
+		this.danhSachChiTietHoaDon = danhSachChiTietHoaDon;
+	}
+	
 	public String getMaHoaDon() {
 		return maHoaDon;
 	}
@@ -66,5 +76,11 @@ public class HoaDon {
 				+ ", mienGiam=" + mienGiam + ", danhSachChiTietHoaDon=" + danhSachChiTietHoaDon + "]";
 	}
 	
-	
+	// Add danh sách các chi tiết hóa đơn
+	public boolean themChiTietHoaDon(ChiTietHoaDon chiTietHoaDon) {
+		if(danhSachChiTietHoaDon.contains(chiTietHoaDon))
+			return false;
+		danhSachChiTietHoaDon.add(chiTietHoaDon);	
+		return true;
+	}
 }
