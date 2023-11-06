@@ -1,23 +1,20 @@
 package entities;
 
+import java.util.Arrays;
 import java.util.Date;
 
 public class TaiKhoan {
-	private String tenDangNhap;
 	private String matKhau;
-	public TaiKhoan(String tenDangNhap, String matKhau) {
+	private byte[] hinhAnh;
+	private String trangThai;
+	public TaiKhoan(String matKhau, byte[] hinhAnh, String trangThai) {
 		super();
-		this.tenDangNhap = tenDangNhap;
 		this.matKhau = matKhau;
+		this.hinhAnh = hinhAnh;
+		this.trangThai = trangThai;
 	}
 	public TaiKhoan() {
-		this("ten dang nhap","mat khau");
-	}
-	public String getTenDangNhap() {
-		return tenDangNhap;
-	}
-	public void setTenDangNhap(String tenDangNhap) {
-		this.tenDangNhap = tenDangNhap;
+		this("", new byte[] {}, "");
 	}
 	public String getMatKhau() {
 		return matKhau;
@@ -25,9 +22,22 @@ public class TaiKhoan {
 	public void setMatKhau(String matKhau) {
 		this.matKhau = matKhau;
 	}
+	public byte[] getHinhAnh() {
+		return hinhAnh;
+	}
+	public void setHinhAnh(byte[] hinhAnh) {
+		this.hinhAnh = hinhAnh;
+	}
+	public String getTrangThai() {
+		return trangThai;
+	}
+	public void setTrangThai(String trangThai) {
+		this.trangThai = trangThai;
+	}
 	@Override
 	public String toString() {
-		return "TaiKhoan [tenDangNhap=" + tenDangNhap + ", matKhau=" + matKhau + "]";
+		return "TaiKhoan [matKhau=" + matKhau + ", hinhAnh=" + Arrays.toString(hinhAnh) + ", trangThai=" + trangThai
+				+ "]";
 	}
 	
 }
