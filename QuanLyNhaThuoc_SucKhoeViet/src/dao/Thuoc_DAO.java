@@ -13,4 +13,14 @@ public class Thuoc_DAO implements IThuoc{
 		return null;
 	}
 
+    @Override
+    public boolean themThuoc() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Thuoc layThuocTheoIDThuoc() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }
