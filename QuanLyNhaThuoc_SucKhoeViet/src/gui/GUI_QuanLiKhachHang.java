@@ -13,6 +13,9 @@ public class GUI_QuanLiKhachHang extends javax.swing.JPanel {
     /**
      * Creates new form GUI_QuanLiKhachHang
      */
+	public static void main(String args[]) {
+		new GUI_QuanLiKhachHang().setVisible(true);
+	}
     public GUI_QuanLiKhachHang() {
         initComponents();
     }
@@ -155,7 +158,7 @@ public class GUI_QuanLiKhachHang extends javax.swing.JPanel {
                                             .addComponent(txtNDK, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(txtBH)))))
                             .addComponent(txtDC, javax.swing.GroupLayout.PREFERRED_SIZE, 708, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(64, Short.MAX_VALUE))))
+                        .addContainerGap(247, Short.MAX_VALUE))))
         );
         lblCMNDLayout.setVerticalGroup(
             lblCMNDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,8 +216,13 @@ public class GUI_QuanLiKhachHang extends javax.swing.JPanel {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Chọn Các Tác Vụ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18), new java.awt.Color(0, 204, 204))); // NOI18N
 
+        lblTim.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblTim.setForeground(new java.awt.Color(0, 204, 204));
         lblTim.setText("Mã Khách hàng cần tìm:");
 
+        btnTim.setBackground(new java.awt.Color(0, 204, 204));
+        btnTim.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnTim.setForeground(new java.awt.Color(255, 255, 255));
         btnTim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Search.png"))); // NOI18N
         btnTim.setText("Tìm");
         btnTim.addActionListener(new java.awt.event.ActionListener() {
@@ -223,6 +231,9 @@ public class GUI_QuanLiKhachHang extends javax.swing.JPanel {
             }
         });
 
+        btnThem.setBackground(new java.awt.Color(0, 204, 204));
+        btnThem.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnThem.setForeground(new java.awt.Color(255, 255, 255));
         btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Add.png"))); // NOI18N
         btnThem.setText("Thêm");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
@@ -231,15 +242,27 @@ public class GUI_QuanLiKhachHang extends javax.swing.JPanel {
             }
         });
 
+        btnXoa.setBackground(new java.awt.Color(0, 204, 204));
+        btnXoa.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnXoa.setForeground(new java.awt.Color(255, 255, 255));
         btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Remove.png"))); // NOI18N
         btnXoa.setText("Xóa");
 
+        btnXoaT.setBackground(new java.awt.Color(0, 204, 204));
+        btnXoaT.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnXoaT.setForeground(new java.awt.Color(255, 255, 255));
         btnXoaT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/RemoveChar.png"))); // NOI18N
         btnXoaT.setText("Xóa Trắng");
 
+        btnSua.setBackground(new java.awt.Color(0, 204, 204));
+        btnSua.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnSua.setForeground(new java.awt.Color(255, 255, 255));
         btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Change.png"))); // NOI18N
         btnSua.setText("Chỉnh sửa");
 
+        btnLuu.setBackground(new java.awt.Color(0, 204, 204));
+        btnLuu.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnLuu.setForeground(new java.awt.Color(255, 255, 255));
         btnLuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Save.png"))); // NOI18N
         btnLuu.setText("Lưu");
         btnLuu.addActionListener(new java.awt.event.ActionListener() {
@@ -261,7 +284,7 @@ public class GUI_QuanLiKhachHang extends javax.swing.JPanel {
                         .addComponent(txtTim, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnTim)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 244, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 413, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
