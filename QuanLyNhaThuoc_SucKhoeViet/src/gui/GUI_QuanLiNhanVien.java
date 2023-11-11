@@ -153,7 +153,7 @@ public class GUI_QuanLiNhanVien extends javax.swing.JPanel {
                                 .addComponent(radNu))
                             .addComponent(txtDT, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cbTT, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(305, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,6 +199,8 @@ public class GUI_QuanLiNhanVien extends javax.swing.JPanel {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Chọn Tác Vụ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(255, 0, 0))); // NOI18N
         jPanel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
+        lblTim.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblTim.setForeground(new java.awt.Color(255, 51, 0));
         lblTim.setText("Mã nhân viên cần tìm:");
 
         txtTim.addActionListener(new java.awt.event.ActionListener() {
@@ -207,6 +209,9 @@ public class GUI_QuanLiNhanVien extends javax.swing.JPanel {
             }
         });
 
+        btnTim.setBackground(new java.awt.Color(255, 0, 0));
+        btnTim.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnTim.setForeground(new java.awt.Color(255, 255, 255));
         btnTim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Search.png"))); // NOI18N
         btnTim.setText("Tìm");
         btnTim.addActionListener(new java.awt.event.ActionListener() {
@@ -215,6 +220,9 @@ public class GUI_QuanLiNhanVien extends javax.swing.JPanel {
             }
         });
 
+        btnThem.setBackground(new java.awt.Color(255, 51, 0));
+        btnThem.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnThem.setForeground(new java.awt.Color(255, 255, 255));
         btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Add.png"))); // NOI18N
         btnThem.setText("Thêm");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
@@ -223,15 +231,27 @@ public class GUI_QuanLiNhanVien extends javax.swing.JPanel {
             }
         });
 
+        btnXoa.setBackground(new java.awt.Color(255, 51, 0));
+        btnXoa.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnXoa.setForeground(new java.awt.Color(255, 255, 255));
         btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Remove.png"))); // NOI18N
         btnXoa.setText("Xóa");
 
+        btnXoaT.setBackground(new java.awt.Color(255, 51, 0));
+        btnXoaT.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnXoaT.setForeground(new java.awt.Color(255, 255, 255));
         btnXoaT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/RemoveChar.png"))); // NOI18N
         btnXoaT.setText("Xóa Trắng");
 
+        btnLuu.setBackground(new java.awt.Color(255, 51, 0));
+        btnLuu.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnLuu.setForeground(new java.awt.Color(242, 242, 242));
         btnLuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Save.png"))); // NOI18N
         btnLuu.setText("Lưu");
 
+        btnSua.setBackground(new java.awt.Color(255, 51, 0));
+        btnSua.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnSua.setForeground(new java.awt.Color(255, 255, 255));
         btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Change.png"))); // NOI18N
         btnSua.setText("Sửa");
 
@@ -257,7 +277,7 @@ public class GUI_QuanLiNhanVien extends javax.swing.JPanel {
                 .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnLuu)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(216, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
