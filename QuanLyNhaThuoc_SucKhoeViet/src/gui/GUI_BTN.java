@@ -1,24 +1,20 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package gui;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 /**
  *
  * @author NguyenThanhLuan
  */
-public class TrangChu extends javax.swing.JFrame {
+public class GUI_BTN extends javax.swing.JPanel {
 
     /**
-     * Creates new form TrangChu
+     * Creates new form GUI_BTN
      */
-    public TrangChu() {
+    public GUI_BTN() {
         initComponents();
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     /**
@@ -30,7 +26,7 @@ public class TrangChu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        PnlChuyenHuong = new javax.swing.JPanel();
+        pnlBTN = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(20, 0), new java.awt.Dimension(20, 0), new java.awt.Dimension(20, 32767));
@@ -50,7 +46,7 @@ public class TrangChu extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
+        btnNhapThuoc = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
@@ -74,34 +70,20 @@ public class TrangChu extends javax.swing.JFrame {
         jButton24 = new javax.swing.JButton();
         jButton25 = new javax.swing.JButton();
         jButton26 = new javax.swing.JButton();
-        jPanel5 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(20, 0), new java.awt.Dimension(20, 0), new java.awt.Dimension(20, 32767));
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
-        jMenu6 = new javax.swing.JMenu();
-        jMenu7 = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new java.awt.BorderLayout());
 
-        PnlChuyenHuong.setLayout(new java.awt.BorderLayout());
+        pnlBTN.setLayout(new java.awt.BorderLayout());
 
         jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 51, 102));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo/icon-pharmacy.png"))); // NOI18N
         jLabel1.setText("Sức khỏe Việt");
         jPanel1.add(jLabel1);
         jPanel1.add(filler2);
 
-        PnlChuyenHuong.add(jPanel1, java.awt.BorderLayout.PAGE_START);
+        pnlBTN.add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
         jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.LINE_AXIS));
 
@@ -116,7 +98,7 @@ public class TrangChu extends javax.swing.JFrame {
         jPanel7.setPreferredSize(new java.awt.Dimension(200, 200));
         jPanel7.setLayout(new java.awt.BorderLayout());
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/nhanvien/pexels-cottonbro-studio-5867737 1.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/nhanvien/avatar1.png"))); // NOI18N
         jPanel7.add(jLabel2, java.awt.BorderLayout.CENTER);
 
         jPanel3.add(jPanel7, java.awt.BorderLayout.NORTH);
@@ -137,7 +119,7 @@ public class TrangChu extends javax.swing.JFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel3)
-                .addContainerGap(156, Short.MAX_VALUE))
+                .addContainerGap(165, Short.MAX_VALUE))
         );
 
         jPanel3.add(jPanel8, java.awt.BorderLayout.CENTER);
@@ -188,10 +170,15 @@ public class TrangChu extends javax.swing.JFrame {
         jLabel6.setText("Quản lí thuốc");
         jPanel9.add(jLabel6);
 
-        jButton7.setBackground(new java.awt.Color(248, 250, 251));
-        jButton7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton7.setText("Nhập thuốc");
-        jPanel9.add(jButton7);
+        btnNhapThuoc.setBackground(new java.awt.Color(248, 250, 251));
+        btnNhapThuoc.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnNhapThuoc.setText("Nhập thuốc");
+        btnNhapThuoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNhapThuocActionPerformed(evt);
+            }
+        });
+        jPanel9.add(btnNhapThuoc);
 
         jButton8.setBackground(new java.awt.Color(248, 250, 251));
         jButton8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -313,127 +300,23 @@ public class TrangChu extends javax.swing.JFrame {
 
         jPanel2.add(jPanel4);
 
-        PnlChuyenHuong.add(jPanel2, java.awt.BorderLayout.CENTER);
+        pnlBTN.add(jPanel2, java.awt.BorderLayout.CENTER);
 
-        getContentPane().add(PnlChuyenHuong, java.awt.BorderLayout.CENTER);
-
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("")));
-        jPanel5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 10, 5));
-
-        jButton1.setBackground(new java.awt.Color(15, 145, 239));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo/icon-logout.png"))); // NOI18N
-        jButton1.setText("Đăng xuất");
-        jButton1.setPreferredSize(new java.awt.Dimension(160, 40));
-        jPanel5.add(jButton1);
-
-        jButton2.setBackground(new java.awt.Color(15, 145, 239));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo/icon-thoat.png"))); // NOI18N
-        jButton2.setText("Thoát");
-        jButton2.setPreferredSize(new java.awt.Dimension(160, 40));
-        jPanel5.add(jButton2);
-        jPanel5.add(filler1);
-
-        getContentPane().add(jPanel5, java.awt.BorderLayout.SOUTH);
-
-        jMenuBar1.setBackground(new java.awt.Color(204, 255, 255));
-        jMenuBar1.setMargin(new java.awt.Insets(0, 8, 0, 8));
-        jMenuBar1.setPreferredSize(new java.awt.Dimension(70, 45));
-
-        jMenu1.setForeground(new java.awt.Color(15, 145, 239));
-        jMenu1.setText("Trang chủ");
-        jMenu1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jMenu1.setMargin(new java.awt.Insets(3, 10, 3, 10));
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setForeground(new java.awt.Color(15, 145, 239));
-        jMenu2.setText("Hóa đơn");
-        jMenu2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jMenu2.setMargin(new java.awt.Insets(3, 10, 3, 10));
-        jMenuBar1.add(jMenu2);
-
-        jMenu3.setForeground(new java.awt.Color(15, 145, 239));
-        jMenu3.setText("Sản phẩm");
-        jMenu3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jMenu3.setMargin(new java.awt.Insets(3, 10, 3, 10));
-        jMenuBar1.add(jMenu3);
-
-        jMenu4.setForeground(new java.awt.Color(15, 145, 239));
-        jMenu4.setText("Khách hàng");
-        jMenu4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jMenu4.setMargin(new java.awt.Insets(3, 10, 3, 10));
-        jMenuBar1.add(jMenu4);
-
-        jMenu5.setForeground(new java.awt.Color(15, 145, 239));
-        jMenu5.setText("Nhân viên");
-        jMenu5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jMenu5.setMargin(new java.awt.Insets(3, 10, 3, 10));
-        jMenuBar1.add(jMenu5);
-
-        jMenu6.setForeground(new java.awt.Color(15, 145, 239));
-        jMenu6.setText("Nhà cung cấp");
-        jMenu6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jMenu6.setMargin(new java.awt.Insets(3, 10, 3, 10));
-        jMenuBar1.add(jMenu6);
-
-        jMenu7.setForeground(new java.awt.Color(15, 145, 239));
-        jMenu7.setText("Thống kê");
-        jMenu7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jMenu7.setMargin(new java.awt.Insets(3, 10, 3, 10));
-        jMenuBar1.add(jMenu7);
-
-        setJMenuBar(jMenuBar1);
-
-        pack();
+        add(pnlBTN, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnNhapThuocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhapThuocActionPerformed
+    	
+    }//GEN-LAST:event_btnNhapThuocActionPerformed
 
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton22ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TrangChu().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel PnlChuyenHuong;
-    private javax.swing.Box.Filler filler1;
+    private javax.swing.JButton btnNhapThuoc;
     private javax.swing.Box.Filler filler2;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
@@ -444,7 +327,6 @@ public class TrangChu extends javax.swing.JFrame {
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton22;
@@ -456,7 +338,6 @@ public class TrangChu extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
@@ -469,22 +350,14 @@ public class TrangChu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenu jMenu7;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JPanel pnlBTN;
     // End of variables declaration//GEN-END:variables
 }
