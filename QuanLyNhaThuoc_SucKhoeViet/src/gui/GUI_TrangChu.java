@@ -16,6 +16,8 @@ public class GUI_TrangChu extends javax.swing.JFrame {
 	private GUI_NhapThuoc gui_NhapThuoc;
 	private GUI_BTN gui_BTN;
 	private GUI_TaoHoaDon guiTaoHoaDon;
+    private GUI_QuanLiKhachHang gui_QuanLiKhachHang;
+    private GUI_TimKiemHoaDon gui_TimKiemHoaDon;
     /**
      * Creates new form GUI_TrangChu
      */
@@ -25,6 +27,8 @@ public class GUI_TrangChu extends javax.swing.JFrame {
         this.PnlChuyenHuong.add(gui_BTN);
         gui_NhapThuoc = new GUI_NhapThuoc();
         guiTaoHoaDon =  new GUI_TaoHoaDon();
+        gui_QuanLiKhachHang = new GUI_QuanLiKhachHang();
+        gui_TimKiemHoaDon = new GUI_TimKiemHoaDon();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
@@ -55,10 +59,6 @@ public class GUI_TrangChu extends javax.swing.JFrame {
         menuXemDSNhapThuoc = new javax.swing.JMenuItem();
         menuXoaTTNhapThuoc = new javax.swing.JMenuItem();
         menuKH = new javax.swing.JMenu();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
         menuNV = new javax.swing.JMenu();
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
@@ -209,19 +209,11 @@ public class GUI_TrangChu extends javax.swing.JFrame {
         menuKH.setText("Khách hàng");
         menuKH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         menuKH.setMargin(new java.awt.Insets(3, 10, 3, 10));
-
-        jMenuItem9.setText("jMenuItem9");
-        menuKH.add(jMenuItem9);
-
-        jMenuItem8.setText("jMenuItem8");
-        menuKH.add(jMenuItem8);
-
-        jMenuItem10.setText("jMenuItem10");
-        menuKH.add(jMenuItem10);
-
-        jMenuItem11.setText("jMenuItem11");
-        menuKH.add(jMenuItem11);
-
+        menuKH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuKHActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(menuKH);
 
         menuNV.setForeground(new java.awt.Color(15, 145, 239));
@@ -354,8 +346,12 @@ public class GUI_TrangChu extends javax.swing.JFrame {
     }//GEN-LAST:event_menuXoaTTNhapThuocActionPerformed
 
     private void menuXemDSHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuXemDSHDActionPerformed
-        // TODO add your handling code here:
+        this.thayDoiPanelChinh(gui_TimKiemHoaDon, menuHD);
     }//GEN-LAST:event_menuXemDSHDActionPerformed
+
+    private void menuKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuKHActionPerformed
+        this.thayDoiPanelChinh(gui_QuanLiKhachHang, menuKH);
+    }//GEN-LAST:event_menuKHActionPerformed
 
 
     /**
@@ -369,8 +365,6 @@ public class GUI_TrangChu extends javax.swing.JFrame {
     private javax.swing.JButton btnThoat;
     private javax.swing.Box.Filler filler1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
@@ -383,8 +377,6 @@ public class GUI_TrangChu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem22;
     private javax.swing.JMenuItem jMenuItem23;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JMenu menuHD;
     private javax.swing.JMenu menuKH;
