@@ -8,12 +8,12 @@ package gui;
  *
  * @author NguyenThanhLuan
  */
-public class GUI_TimKiemHoaDon extends javax.swing.JPanel {
+public class GUI_TimKiemThuoc extends javax.swing.JPanel {
 
     /**
      * Creates new form GUI_TimKiemThuoc
      */
-    public GUI_TimKiemHoaDon() {
+    public GUI_TimKiemThuoc() {
         initComponents();
     }
 
@@ -40,15 +40,19 @@ public class GUI_TimKiemHoaDon extends javax.swing.JPanel {
         jTextField1 = new javax.swing.JTextField();
         jPanel12 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        filler5 = new javax.swing.Box.Filler(new java.awt.Dimension(8, 0), new java.awt.Dimension(8, 0), new java.awt.Dimension(8, 32767));
         jTextField2 = new javax.swing.JTextField();
-        filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 32767));
+        filler4 = new javax.swing.Box.Filler(new java.awt.Dimension(40, 0), new java.awt.Dimension(40, 0), new java.awt.Dimension(40, 32767));
         jLabel5 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        filler4 = new javax.swing.Box.Filler(new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 32767));
+        filler7 = new javax.swing.Box.Filler(new java.awt.Dimension(8, 0), new java.awt.Dimension(8, 0), new java.awt.Dimension(8, 32767));
+        jComboBox1 = new javax.swing.JComboBox<>();
+        filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(40, 0), new java.awt.Dimension(40, 0), new java.awt.Dimension(40, 32767));
         jLabel6 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        filler5 = new javax.swing.Box.Filler(new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 32767));
+        filler8 = new javax.swing.Box.Filler(new java.awt.Dimension(8, 0), new java.awt.Dimension(8, 0), new java.awt.Dimension(8, 32767));
+        jComboBox2 = new javax.swing.JComboBox<>();
+        filler9 = new javax.swing.Box.Filler(new java.awt.Dimension(40, 0), new java.awt.Dimension(40, 0), new java.awt.Dimension(40, 32767));
         jLabel7 = new javax.swing.JLabel();
+        filler10 = new javax.swing.Box.Filler(new java.awt.Dimension(8, 0), new java.awt.Dimension(8, 0), new java.awt.Dimension(8, 32767));
         jTextField4 = new javax.swing.JTextField();
         filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 32767));
         jButton1 = new javax.swing.JButton();
@@ -78,7 +82,7 @@ public class GUI_TimKiemHoaDon extends javax.swing.JPanel {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(15, 102, 165));
-        jLabel2.setText("TÌM KIẾM HÓA ĐƠN");
+        jLabel2.setText("DANH SÁCH THUỐC");
         jPanel6.add(jLabel2);
 
         jPanel4.add(jPanel6);
@@ -105,23 +109,35 @@ public class GUI_TimKiemHoaDon extends javax.swing.JPanel {
         jPanel12.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 30, 8, 8));
         jPanel12.setLayout(new javax.swing.BoxLayout(jPanel12, javax.swing.BoxLayout.LINE_AXIS));
 
-        jLabel4.setText("Mã hóa đơn: ");
+        jLabel4.setText("Mã thuốc: ");
         jPanel12.add(jLabel4);
+        jPanel12.add(filler5);
         jPanel12.add(jTextField2);
-        jPanel12.add(filler3);
-
-        jLabel5.setText("Ngày lập :");
-        jPanel12.add(jLabel5);
-        jPanel12.add(jDateChooser1);
         jPanel12.add(filler4);
 
-        jLabel6.setText("Mã khách hàng :");
-        jPanel12.add(jLabel6);
-        jPanel12.add(jTextField3);
-        jPanel12.add(filler5);
+        jLabel5.setText("Loại thuốc:");
+        jPanel12.add(jLabel5);
+        jPanel12.add(filler7);
 
-        jLabel7.setText("Mã nhân viên :");
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setMinimumSize(new java.awt.Dimension(220, 22));
+        jComboBox1.setPreferredSize(new java.awt.Dimension(220, 22));
+        jPanel12.add(jComboBox1);
+        jPanel12.add(filler3);
+
+        jLabel6.setText("Xuất xứ: ");
+        jPanel12.add(jLabel6);
+        jPanel12.add(filler8);
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setMinimumSize(new java.awt.Dimension(220, 22));
+        jComboBox2.setPreferredSize(new java.awt.Dimension(220, 22));
+        jPanel12.add(jComboBox2);
+        jPanel12.add(filler9);
+
+        jLabel7.setText("Tên nhà cung cấp: ");
         jPanel12.add(jLabel7);
+        jPanel12.add(filler10);
         jPanel12.add(jTextField4);
         jPanel12.add(filler2);
 
@@ -171,14 +187,19 @@ public class GUI_TimKiemHoaDon extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ALL;
     private javax.swing.Box.Filler filler1;
+    private javax.swing.Box.Filler filler10;
     private javax.swing.Box.Filler filler2;
     private javax.swing.Box.Filler filler3;
     private javax.swing.Box.Filler filler4;
     private javax.swing.Box.Filler filler5;
     private javax.swing.Box.Filler filler6;
+    private javax.swing.Box.Filler filler7;
+    private javax.swing.Box.Filler filler8;
+    private javax.swing.Box.Filler filler9;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -200,7 +221,6 @@ public class GUI_TimKiemHoaDon extends javax.swing.JPanel {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }

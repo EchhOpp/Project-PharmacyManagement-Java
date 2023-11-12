@@ -27,13 +27,13 @@ public class GUI_NhapThuoc extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jPanel7 = new javax.swing.JPanel();
+        jPanel38 = new javax.swing.JPanel();
+        jPanel39 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        jPanel24 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 32767));
         jTextField1 = new javax.swing.JTextField();
@@ -115,42 +115,40 @@ public class GUI_NhapThuoc extends javax.swing.JPanel {
 
         jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.PAGE_AXIS));
 
-        jPanel3.setLayout(new java.awt.GridLayout(1, 3));
+        jPanel38.setLayout(new java.awt.GridLayout());
 
-        jPanel7.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/nhanvien/pngegg.png"))); // NOI18N
+        jPanel39.add(jLabel1);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 204, 255));
-        jLabel1.setText(" ");
-        jPanel7.add(jLabel1);
+        jPanel38.add(jPanel39);
 
-        jPanel3.add(jPanel7);
+        jPanel6.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 30, 30));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 204, 255));
-        jLabel2.setText("Nhập thuốc");
+        jLabel2.setForeground(new java.awt.Color(15, 102, 165));
+        jLabel2.setText("TÌM KIẾM HÓA ĐƠN");
         jPanel6.add(jLabel2);
 
-        jPanel3.add(jPanel6);
+        jPanel38.add(jPanel6);
 
-        jPanel5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 10));
+        jPanel5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 30, 30));
 
-        jPanel24.setLayout(new javax.swing.BoxLayout(jPanel24, javax.swing.BoxLayout.LINE_AXIS));
+        jPanel7.setLayout(new javax.swing.BoxLayout(jPanel7, javax.swing.BoxLayout.LINE_AXIS));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         jLabel3.setText("Ngày hiện tại");
-        jPanel24.add(jLabel3);
-        jPanel24.add(filler1);
+        jPanel7.add(jLabel3);
+        jPanel7.add(filler1);
 
-        jTextField1.setMinimumSize(new java.awt.Dimension(120, 22));
-        jTextField1.setPreferredSize(new java.awt.Dimension(120, 22));
-        jPanel24.add(jTextField1);
+        jTextField1.setMinimumSize(new java.awt.Dimension(180, 22));
+        jTextField1.setPreferredSize(new java.awt.Dimension(180, 22));
+        jPanel7.add(jTextField1);
 
-        jPanel5.add(jPanel24);
+        jPanel5.add(jPanel7);
 
-        jPanel3.add(jPanel5);
+        jPanel38.add(jPanel5);
 
-        jPanel1.add(jPanel3);
+        jPanel1.add(jPanel38);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 8, 1, 8));
         jPanel4.setMaximumSize(new java.awt.Dimension(33217, 300));
@@ -381,9 +379,9 @@ public class GUI_NhapThuoc extends javax.swing.JPanel {
 
         jPanel32.add(jPanel33);
 
-        jPanel35.setLayout(new java.awt.GridLayout());
+        jPanel35.setLayout(new java.awt.GridLayout(1, 0));
 
-        jPanel36.setLayout(new java.awt.GridLayout());
+        jPanel36.setLayout(new java.awt.GridLayout(1, 0));
 
         javax.swing.GroupLayout jPanel34Layout = new javax.swing.GroupLayout(jPanel34);
         jPanel34.setLayout(jPanel34Layout);
@@ -493,13 +491,11 @@ public class GUI_NhapThuoc extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel22;
     private javax.swing.JPanel jPanel23;
-    private javax.swing.JPanel jPanel24;
     private javax.swing.JPanel jPanel25;
     private javax.swing.JPanel jPanel26;
     private javax.swing.JPanel jPanel27;
     private javax.swing.JPanel jPanel28;
     private javax.swing.JPanel jPanel29;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel30;
     private javax.swing.JPanel jPanel31;
     private javax.swing.JPanel jPanel32;
@@ -508,6 +504,8 @@ public class GUI_NhapThuoc extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel35;
     private javax.swing.JPanel jPanel36;
     private javax.swing.JPanel jPanel37;
+    private javax.swing.JPanel jPanel38;
+    private javax.swing.JPanel jPanel39;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;

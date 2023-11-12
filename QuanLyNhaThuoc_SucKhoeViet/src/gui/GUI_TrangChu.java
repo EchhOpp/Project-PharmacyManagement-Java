@@ -18,6 +18,8 @@ public class GUI_TrangChu extends javax.swing.JFrame {
 	private GUI_TaoHoaDon guiTaoHoaDon;
     private GUI_QuanLiKhachHang gui_QuanLiKhachHang;
     private GUI_TimKiemHoaDon gui_TimKiemHoaDon;
+    private GUI_TimKiemThuoc gui_TimKiemThuoc;
+    private GUI_DanhSachNhapThuoc gui_DanhSachNhapThuoc;
     /**
      * Creates new form GUI_TrangChu
      */
@@ -29,6 +31,8 @@ public class GUI_TrangChu extends javax.swing.JFrame {
         guiTaoHoaDon =  new GUI_TaoHoaDon();
         gui_QuanLiKhachHang = new GUI_QuanLiKhachHang();
         gui_TimKiemHoaDon = new GUI_TimKiemHoaDon();
+        gui_TimKiemThuoc = new GUI_TimKiemThuoc();
+        gui_DanhSachNhapThuoc = new GUI_DanhSachNhapThuoc();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
@@ -51,13 +55,10 @@ public class GUI_TrangChu extends javax.swing.JFrame {
         menuHD = new javax.swing.JMenu();
         menuTaoHD = new javax.swing.JMenuItem();
         menuXemDSHD = new javax.swing.JMenuItem();
-        menuSuaHD = new javax.swing.JMenuItem();
-        menuXoaHD = new javax.swing.JMenuItem();
         menuSP = new javax.swing.JMenu();
         MenuItemNhapThuoc = new javax.swing.JMenuItem();
-        menuTimKiemThuoc = new javax.swing.JMenuItem();
-        menuXemDSNhapThuoc = new javax.swing.JMenuItem();
-        menuXoaTTNhapThuoc = new javax.swing.JMenuItem();
+        menuDanhSachThuoc = new javax.swing.JMenuItem();
+        DanhSachNhapThuoc = new javax.swing.JMenuItem();
         menuKH = new javax.swing.JMenu();
         menuNV = new javax.swing.JMenu();
         jMenuItem12 = new javax.swing.JMenuItem();
@@ -147,19 +148,6 @@ public class GUI_TrangChu extends javax.swing.JFrame {
         });
         menuHD.add(menuXemDSHD);
 
-        menuSuaHD.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        menuSuaHD.setText("Sửa thông tin hóa đơn");
-        menuSuaHD.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuSuaHDActionPerformed(evt);
-            }
-        });
-        menuHD.add(menuSuaHD);
-
-        menuXoaHD.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        menuXoaHD.setText("Xóa thông tin hóa đơn");
-        menuHD.add(menuXoaHD);
-
         jMenuBar1.add(menuHD);
 
         menuSP.setForeground(new java.awt.Color(15, 145, 239));
@@ -176,32 +164,23 @@ public class GUI_TrangChu extends javax.swing.JFrame {
         });
         menuSP.add(MenuItemNhapThuoc);
 
-        menuTimKiemThuoc.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        menuTimKiemThuoc.setText("Tìm kiếm thuốc");
-        menuTimKiemThuoc.addActionListener(new java.awt.event.ActionListener() {
+        menuDanhSachThuoc.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        menuDanhSachThuoc.setText("Xem danh sách thuốc");
+        menuDanhSachThuoc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuTimKiemThuocActionPerformed(evt);
+                menuDanhSachThuocActionPerformed(evt);
             }
         });
-        menuSP.add(menuTimKiemThuoc);
+        menuSP.add(menuDanhSachThuoc);
 
-        menuXemDSNhapThuoc.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        menuXemDSNhapThuoc.setText("Xem danh sách nhập thuốc");
-        menuXemDSNhapThuoc.addActionListener(new java.awt.event.ActionListener() {
+        DanhSachNhapThuoc.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        DanhSachNhapThuoc.setText("Xem danh sách nhập thuốc");
+        DanhSachNhapThuoc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuXemDSNhapThuocActionPerformed(evt);
+                DanhSachNhapThuocActionPerformed(evt);
             }
         });
-        menuSP.add(menuXemDSNhapThuoc);
-
-        menuXoaTTNhapThuoc.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        menuXoaTTNhapThuoc.setText("Xóa thông tin nhập thuốc");
-        menuXoaTTNhapThuoc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuXoaTTNhapThuocActionPerformed(evt);
-            }
-        });
-        menuSP.add(menuXoaTTNhapThuoc);
+        menuSP.add(DanhSachNhapThuoc);
 
         jMenuBar1.add(menuSP);
 
@@ -329,21 +308,9 @@ public class GUI_TrangChu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_menuSPActionPerformed
 
-    private void menuTimKiemThuocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTimKiemThuocActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuTimKiemThuocActionPerformed
-
-    private void menuSuaHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSuaHDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuSuaHDActionPerformed
-
-    private void menuXemDSNhapThuocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuXemDSNhapThuocActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuXemDSNhapThuocActionPerformed
-
-    private void menuXoaTTNhapThuocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuXoaTTNhapThuocActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuXoaTTNhapThuocActionPerformed
+    private void menuDanhSachThuocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuDanhSachThuocActionPerformed
+    	this.thayDoiPanelChinh(gui_TimKiemThuoc, menuSP);
+    }//GEN-LAST:event_menuDanhSachThuocActionPerformed
 
     private void menuXemDSHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuXemDSHDActionPerformed
         this.thayDoiPanelChinh(gui_TimKiemHoaDon, menuHD);
@@ -353,12 +320,17 @@ public class GUI_TrangChu extends javax.swing.JFrame {
         this.thayDoiPanelChinh(gui_QuanLiKhachHang, menuKH);
     }//GEN-LAST:event_menuKHActionPerformed
 
+    private void DanhSachNhapThuocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DanhSachNhapThuocActionPerformed
+    	 this.thayDoiPanelChinh(gui_DanhSachNhapThuoc, menuSP);
+    }//GEN-LAST:event_DanhSachNhapThuocActionPerformed
+
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem DanhSachNhapThuoc;
     private javax.swing.JMenuItem MenuItemNhapThuoc;
     private javax.swing.JPanel PnlChuyenHuong;
     private javax.swing.JButton btnDangXuat;
@@ -378,19 +350,15 @@ public class GUI_TrangChu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem22;
     private javax.swing.JMenuItem jMenuItem23;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JMenuItem menuDanhSachThuoc;
     private javax.swing.JMenu menuHD;
     private javax.swing.JMenu menuKH;
     private javax.swing.JMenu menuNCC;
     private javax.swing.JMenu menuNV;
     private javax.swing.JMenu menuSP;
-    private javax.swing.JMenuItem menuSuaHD;
     private javax.swing.JMenu menuTK;
     private javax.swing.JMenu menuTT;
     private javax.swing.JMenuItem menuTaoHD;
-    private javax.swing.JMenuItem menuTimKiemThuoc;
     private javax.swing.JMenuItem menuXemDSHD;
-    private javax.swing.JMenuItem menuXemDSNhapThuoc;
-    private javax.swing.JMenuItem menuXoaHD;
-    private javax.swing.JMenuItem menuXoaTTNhapThuoc;
     // End of variables declaration//GEN-END:variables
 }
