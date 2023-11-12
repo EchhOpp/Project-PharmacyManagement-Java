@@ -15,6 +15,7 @@ import javax.swing.JMenuItem;
 public class GUI_TrangChu extends javax.swing.JFrame {
 	private GUI_NhapThuoc gui_NhapThuoc;
 	private GUI_BTN gui_BTN;
+	private GUI_TaoHoaDon guiTaoHoaDon;
     /**
      * Creates new form GUI_TrangChu
      */
@@ -23,6 +24,7 @@ public class GUI_TrangChu extends javax.swing.JFrame {
         gui_BTN = new GUI_BTN();
         this.PnlChuyenHuong.add(gui_BTN);
         gui_NhapThuoc = new GUI_NhapThuoc();
+        guiTaoHoaDon =  new GUI_TaoHoaDon();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
@@ -43,33 +45,60 @@ public class GUI_TrangChu extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         menuTT = new javax.swing.JMenu();
         menuHD = new javax.swing.JMenu();
+        menuTaoHD = new javax.swing.JMenuItem();
+        menuXemDSHD = new javax.swing.JMenuItem();
+        menuSuaHD = new javax.swing.JMenuItem();
+        menuXoaHD = new javax.swing.JMenuItem();
         menuSP = new javax.swing.JMenu();
         MenuItemNhapThuoc = new javax.swing.JMenuItem();
+        menuTimKiemThuoc = new javax.swing.JMenuItem();
+        menuXemDSNhapThuoc = new javax.swing.JMenuItem();
+        menuXoaTTNhapThuoc = new javax.swing.JMenuItem();
         menuKH = new javax.swing.JMenu();
+        jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
+        jMenuItem11 = new javax.swing.JMenuItem();
         menuNV = new javax.swing.JMenu();
+        jMenuItem12 = new javax.swing.JMenuItem();
+        jMenuItem13 = new javax.swing.JMenuItem();
+        jMenuItem14 = new javax.swing.JMenuItem();
+        jMenuItem15 = new javax.swing.JMenuItem();
         menuNCC = new javax.swing.JMenu();
+        jMenuItem16 = new javax.swing.JMenuItem();
+        jMenuItem17 = new javax.swing.JMenuItem();
+        jMenuItem18 = new javax.swing.JMenuItem();
+        jMenuItem19 = new javax.swing.JMenuItem();
         menuTK = new javax.swing.JMenu();
+        jMenuItem20 = new javax.swing.JMenuItem();
+        jMenuItem21 = new javax.swing.JMenuItem();
+        jMenuItem22 = new javax.swing.JMenuItem();
+        jMenuItem23 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        PnlChuyenHuong.setBackground(new java.awt.Color(255, 255, 255));
         PnlChuyenHuong.setLayout(new java.awt.BorderLayout());
         getContentPane().add(PnlChuyenHuong, java.awt.BorderLayout.CENTER);
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("")));
-        jPanel5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 10, 5));
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel5.setMinimumSize(new java.awt.Dimension(222, 52));
+        jPanel5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 10, 1));
 
         btnDangXuat.setBackground(new java.awt.Color(15, 145, 239));
         btnDangXuat.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnDangXuat.setForeground(new java.awt.Color(255, 255, 255));
         btnDangXuat.setText("Đăng xuất");
-        btnDangXuat.setPreferredSize(new java.awt.Dimension(160, 40));
+        btnDangXuat.setMargin(new java.awt.Insets(1, 14, 1, 14));
+        btnDangXuat.setPreferredSize(new java.awt.Dimension(120, 40));
         jPanel5.add(btnDangXuat);
 
         btnThoat.setBackground(new java.awt.Color(15, 145, 239));
         btnThoat.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnThoat.setForeground(new java.awt.Color(255, 255, 255));
         btnThoat.setText("Thoát");
-        btnThoat.setPreferredSize(new java.awt.Dimension(160, 40));
+        btnThoat.setMargin(new java.awt.Insets(1, 14, 1, 14));
+        btnThoat.setPreferredSize(new java.awt.Dimension(120, 40));
         btnThoat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThoatActionPerformed(evt);
@@ -99,6 +128,38 @@ public class GUI_TrangChu extends javax.swing.JFrame {
         menuHD.setText("Hóa đơn");
         menuHD.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         menuHD.setMargin(new java.awt.Insets(3, 10, 3, 10));
+
+        menuTaoHD.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        menuTaoHD.setText("Tạo hóa đơn");
+        menuTaoHD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuTaoHDActionPerformed(evt);
+            }
+        });
+        menuHD.add(menuTaoHD);
+
+        menuXemDSHD.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        menuXemDSHD.setText("Xem danh sách hóa đơn");
+        menuXemDSHD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuXemDSHDActionPerformed(evt);
+            }
+        });
+        menuHD.add(menuXemDSHD);
+
+        menuSuaHD.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        menuSuaHD.setText("Sửa thông tin hóa đơn");
+        menuSuaHD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuSuaHDActionPerformed(evt);
+            }
+        });
+        menuHD.add(menuSuaHD);
+
+        menuXoaHD.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        menuXoaHD.setText("Xóa thông tin hóa đơn");
+        menuHD.add(menuXoaHD);
+
         jMenuBar1.add(menuHD);
 
         menuSP.setForeground(new java.awt.Color(15, 145, 239));
@@ -106,6 +167,7 @@ public class GUI_TrangChu extends javax.swing.JFrame {
         menuSP.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         menuSP.setMargin(new java.awt.Insets(3, 10, 3, 10));
 
+        MenuItemNhapThuoc.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         MenuItemNhapThuoc.setText("Nhập thuốc");
         MenuItemNhapThuoc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,30 +176,109 @@ public class GUI_TrangChu extends javax.swing.JFrame {
         });
         menuSP.add(MenuItemNhapThuoc);
 
+        menuTimKiemThuoc.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        menuTimKiemThuoc.setText("Tìm kiếm thuốc");
+        menuTimKiemThuoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuTimKiemThuocActionPerformed(evt);
+            }
+        });
+        menuSP.add(menuTimKiemThuoc);
+
+        menuXemDSNhapThuoc.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        menuXemDSNhapThuoc.setText("Xem danh sách nhập thuốc");
+        menuXemDSNhapThuoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuXemDSNhapThuocActionPerformed(evt);
+            }
+        });
+        menuSP.add(menuXemDSNhapThuoc);
+
+        menuXoaTTNhapThuoc.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        menuXoaTTNhapThuoc.setText("Xóa thông tin nhập thuốc");
+        menuXoaTTNhapThuoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuXoaTTNhapThuocActionPerformed(evt);
+            }
+        });
+        menuSP.add(menuXoaTTNhapThuoc);
+
         jMenuBar1.add(menuSP);
 
         menuKH.setForeground(new java.awt.Color(15, 145, 239));
         menuKH.setText("Khách hàng");
         menuKH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         menuKH.setMargin(new java.awt.Insets(3, 10, 3, 10));
+
+        jMenuItem9.setText("jMenuItem9");
+        menuKH.add(jMenuItem9);
+
+        jMenuItem8.setText("jMenuItem8");
+        menuKH.add(jMenuItem8);
+
+        jMenuItem10.setText("jMenuItem10");
+        menuKH.add(jMenuItem10);
+
+        jMenuItem11.setText("jMenuItem11");
+        menuKH.add(jMenuItem11);
+
         jMenuBar1.add(menuKH);
 
         menuNV.setForeground(new java.awt.Color(15, 145, 239));
         menuNV.setText("Nhân viên");
         menuNV.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         menuNV.setMargin(new java.awt.Insets(3, 10, 3, 10));
+
+        jMenuItem12.setText("jMenuItem12");
+        menuNV.add(jMenuItem12);
+
+        jMenuItem13.setText("jMenuItem13");
+        menuNV.add(jMenuItem13);
+
+        jMenuItem14.setText("jMenuItem14");
+        menuNV.add(jMenuItem14);
+
+        jMenuItem15.setText("jMenuItem15");
+        menuNV.add(jMenuItem15);
+
         jMenuBar1.add(menuNV);
 
         menuNCC.setForeground(new java.awt.Color(15, 145, 239));
         menuNCC.setText("Nhà cung cấp");
         menuNCC.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         menuNCC.setMargin(new java.awt.Insets(3, 10, 3, 10));
+
+        jMenuItem16.setText("jMenuItem16");
+        menuNCC.add(jMenuItem16);
+
+        jMenuItem17.setText("jMenuItem17");
+        menuNCC.add(jMenuItem17);
+
+        jMenuItem18.setText("jMenuItem18");
+        menuNCC.add(jMenuItem18);
+
+        jMenuItem19.setText("jMenuItem19");
+        menuNCC.add(jMenuItem19);
+
         jMenuBar1.add(menuNCC);
 
         menuTK.setForeground(new java.awt.Color(15, 145, 239));
         menuTK.setText("Thống kê");
         menuTK.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         menuTK.setMargin(new java.awt.Insets(3, 10, 3, 10));
+
+        jMenuItem20.setText("jMenuItem20");
+        menuTK.add(jMenuItem20);
+
+        jMenuItem21.setText("jMenuItem21");
+        menuTK.add(jMenuItem21);
+
+        jMenuItem22.setText("jMenuItem22");
+        menuTK.add(jMenuItem22);
+
+        jMenuItem23.setText("jMenuItem23");
+        menuTK.add(jMenuItem23);
+
         jMenuBar1.add(menuTK);
 
         setJMenuBar(jMenuBar1);
@@ -145,7 +286,8 @@ public class GUI_TrangChu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-	private void clearSelectedMenu() {
+	public void clearSelectedMenu() {
+		menuTT.setSelected(false);
 		menuHD.setSelected(false);
 		menuSP.setSelected(false);
 		menuKH.setSelected(false);
@@ -166,6 +308,7 @@ public class GUI_TrangChu extends javax.swing.JFrame {
 		this.PnlChuyenHuong.revalidate();
 	}
 	
+	
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton22ActionPerformed
@@ -185,10 +328,35 @@ public class GUI_TrangChu extends javax.swing.JFrame {
     private void MenuItemNhapThuocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemNhapThuocActionPerformed
     	this.thayDoiPanelChinh(gui_NhapThuoc, menuSP);
     }//GEN-LAST:event_MenuItemNhapThuocActionPerformed
+    
+    private void menuTaoHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTaoHDActionPerformed
+    	this.thayDoiPanelChinh(guiTaoHoaDon, menuHD);
+    }//GEN-LAST:event_menuTaoHDActionPerformed
 
     private void menuSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSPActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_menuSPActionPerformed
+
+    private void menuTimKiemThuocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTimKiemThuocActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuTimKiemThuocActionPerformed
+
+    private void menuSuaHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSuaHDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuSuaHDActionPerformed
+
+    private void menuXemDSNhapThuocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuXemDSNhapThuocActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuXemDSNhapThuocActionPerformed
+
+    private void menuXoaTTNhapThuocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuXoaTTNhapThuocActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuXoaTTNhapThuocActionPerformed
+
+    private void menuXemDSHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuXemDSHDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuXemDSHDActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -201,13 +369,36 @@ public class GUI_TrangChu extends javax.swing.JFrame {
     private javax.swing.JButton btnThoat;
     private javax.swing.Box.Filler filler1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
+    private javax.swing.JMenuItem jMenuItem14;
+    private javax.swing.JMenuItem jMenuItem15;
+    private javax.swing.JMenuItem jMenuItem16;
+    private javax.swing.JMenuItem jMenuItem17;
+    private javax.swing.JMenuItem jMenuItem18;
+    private javax.swing.JMenuItem jMenuItem19;
+    private javax.swing.JMenuItem jMenuItem20;
+    private javax.swing.JMenuItem jMenuItem21;
+    private javax.swing.JMenuItem jMenuItem22;
+    private javax.swing.JMenuItem jMenuItem23;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JMenu menuHD;
     private javax.swing.JMenu menuKH;
     private javax.swing.JMenu menuNCC;
     private javax.swing.JMenu menuNV;
     private javax.swing.JMenu menuSP;
+    private javax.swing.JMenuItem menuSuaHD;
     private javax.swing.JMenu menuTK;
     private javax.swing.JMenu menuTT;
+    private javax.swing.JMenuItem menuTaoHD;
+    private javax.swing.JMenuItem menuTimKiemThuoc;
+    private javax.swing.JMenuItem menuXemDSHD;
+    private javax.swing.JMenuItem menuXemDSNhapThuoc;
+    private javax.swing.JMenuItem menuXoaHD;
+    private javax.swing.JMenuItem menuXoaTTNhapThuoc;
     // End of variables declaration//GEN-END:variables
 }

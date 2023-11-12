@@ -9,7 +9,6 @@ package gui;
  * @author NguyenThanhLuan
  */
 public class GUI_BTN extends javax.swing.JPanel {
-
     /**
      * Creates new form GUI_BTN
      */
@@ -75,6 +74,7 @@ public class GUI_BTN extends javax.swing.JPanel {
 
         pnlBTN.setLayout(new java.awt.BorderLayout());
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
@@ -85,6 +85,9 @@ public class GUI_BTN extends javax.swing.JPanel {
 
         pnlBTN.add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 8, 8, 8));
+        jPanel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.LINE_AXIS));
 
         jPanel3.setMaximumSize(new java.awt.Dimension(200, 500));
@@ -102,6 +105,8 @@ public class GUI_BTN extends javax.swing.JPanel {
         jPanel7.add(jLabel2, java.awt.BorderLayout.CENTER);
 
         jPanel3.add(jPanel7, java.awt.BorderLayout.NORTH);
+
+        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setText("Xin chào, Nguyễn Thành Luân");
 
@@ -126,9 +131,11 @@ public class GUI_BTN extends javax.swing.JPanel {
 
         jPanel2.add(jPanel3);
 
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 40, 10, 20));
         jPanel4.setLayout(new java.awt.BorderLayout());
 
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setMinimumSize(new java.awt.Dimension(294, 120));
         jPanel6.setPreferredSize(new java.awt.Dimension(670, 121));
 
@@ -139,6 +146,7 @@ public class GUI_BTN extends javax.swing.JPanel {
 
         jPanel4.add(jPanel6, java.awt.BorderLayout.NORTH);
 
+        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
         jPanel9.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 1, 40, 1));
         jPanel9.setLayout(new java.awt.GridLayout(6, 5, 10, 10));
 
@@ -306,7 +314,6 @@ public class GUI_BTN extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNhapThuocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhapThuocActionPerformed
-    	
     }//GEN-LAST:event_btnNhapThuocActionPerformed
 
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed

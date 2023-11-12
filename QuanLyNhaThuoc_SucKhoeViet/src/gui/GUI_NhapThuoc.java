@@ -33,7 +33,9 @@ public class GUI_NhapThuoc extends javax.swing.JPanel {
         jPanel6 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
+        jPanel24 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 32767));
         jTextField1 = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
@@ -44,10 +46,71 @@ public class GUI_NhapThuoc extends javax.swing.JPanel {
         jPanel13 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
+        jPanel14 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jPanel15 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jPanel16 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jTextField6 = new javax.swing.JTextField();
+        jPanel17 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jTextField7 = new javax.swing.JTextField();
         jPanel11 = new javax.swing.JPanel();
+        jPanel18 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        jTextField8 = new javax.swing.JTextField();
+        jPanel19 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        jTextField9 = new javax.swing.JTextField();
+        jPanel20 = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
+        jTextField10 = new javax.swing.JTextField();
+        jPanel21 = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        jTextField11 = new javax.swing.JTextField();
+        jPanel22 = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
+        jTextField12 = new javax.swing.JTextField();
+        jPanel23 = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        jTextField13 = new javax.swing.JTextField();
+        jPanel25 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
+        jPanel26 = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
+        filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 32767));
+        jPanel27 = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
+        jTextField5 = new javax.swing.JTextField();
+        jPanel28 = new javax.swing.JPanel();
+        jLabel18 = new javax.swing.JLabel();
+        jTextField14 = new javax.swing.JTextField();
+        jPanel29 = new javax.swing.JPanel();
+        jLabel19 = new javax.swing.JLabel();
+        jTextField15 = new javax.swing.JTextField();
+        jPanel30 = new javax.swing.JPanel();
+        jLabel20 = new javax.swing.JLabel();
+        jTextField16 = new javax.swing.JTextField();
+        jPanel32 = new javax.swing.JPanel();
+        jPanel33 = new javax.swing.JPanel();
+        jPanel35 = new javax.swing.JPanel();
+        jPanel36 = new javax.swing.JPanel();
+        jPanel34 = new javax.swing.JPanel();
+        jButton4 = new javax.swing.JButton();
+        jPanel31 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        jPanel37 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new java.awt.BorderLayout());
 
         jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.PAGE_AXIS));
@@ -56,83 +119,296 @@ public class GUI_NhapThuoc extends javax.swing.JPanel {
 
         jPanel7.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
-        jLabel1.setText("PHARMACY");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 204, 255));
+        jLabel1.setText(" ");
         jPanel7.add(jLabel1);
 
         jPanel3.add(jPanel7);
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 204, 255));
         jLabel2.setText("Nhập thuốc");
         jPanel6.add(jLabel2);
 
         jPanel3.add(jPanel6);
 
-        jPanel5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
+        jPanel5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 10));
 
+        jPanel24.setLayout(new javax.swing.BoxLayout(jPanel24, javax.swing.BoxLayout.LINE_AXIS));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
         jLabel3.setText("Ngày hiện tại");
-        jPanel5.add(jLabel3);
-        jPanel5.add(jTextField1);
+        jPanel24.add(jLabel3);
+        jPanel24.add(filler1);
+
+        jTextField1.setMinimumSize(new java.awt.Dimension(120, 22));
+        jTextField1.setPreferredSize(new java.awt.Dimension(120, 22));
+        jPanel24.add(jTextField1);
+
+        jPanel5.add(jPanel24);
 
         jPanel3.add(jPanel5);
 
         jPanel1.add(jPanel3);
 
+        jPanel4.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 8, 1, 8));
+        jPanel4.setMaximumSize(new java.awt.Dimension(33217, 300));
+        jPanel4.setPreferredSize(new java.awt.Dimension(862, 300));
         jPanel4.setLayout(new javax.swing.BoxLayout(jPanel4, javax.swing.BoxLayout.LINE_AXIS));
 
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder("Nhập thông tin thuốc"));
-        jPanel8.setLayout(new java.awt.GridLayout());
+        jPanel8.setLayout(new java.awt.GridLayout(1, 0, 20, 0));
 
-        jPanel10.setLayout(new java.awt.GridLayout(6, 1));
+        jPanel10.setLayout(new java.awt.GridLayout(7, 1, 0, 10));
 
         jPanel12.setLayout(new javax.swing.BoxLayout(jPanel12, javax.swing.BoxLayout.LINE_AXIS));
 
-        jLabel4.setText("jLabel4");
+        jLabel4.setText("   Mã phiếu:");
+        jLabel4.setPreferredSize(new java.awt.Dimension(110, 16));
         jPanel12.add(jLabel4);
-
-        jTextField2.setText("jTextField2");
         jPanel12.add(jTextField2);
 
         jPanel10.add(jPanel12);
 
         jPanel13.setLayout(new javax.swing.BoxLayout(jPanel13, javax.swing.BoxLayout.LINE_AXIS));
 
-        jLabel5.setText("jLabel4");
+        jLabel5.setText("   Tên thuốc:");
+        jLabel5.setPreferredSize(new java.awt.Dimension(110, 16));
         jPanel13.add(jLabel5);
-
-        jTextField3.setText("jTextField2");
         jPanel13.add(jTextField3);
 
         jPanel10.add(jPanel13);
 
+        jPanel14.setMinimumSize(new java.awt.Dimension(120, 22));
+        jPanel14.setLayout(new javax.swing.BoxLayout(jPanel14, javax.swing.BoxLayout.LINE_AXIS));
+
+        jLabel6.setText("   Ngày sản xuất:");
+        jLabel6.setPreferredSize(new java.awt.Dimension(110, 16));
+        jPanel14.add(jLabel6);
+        jPanel14.add(jDateChooser1);
+
+        jPanel10.add(jPanel14);
+
+        jPanel15.setLayout(new javax.swing.BoxLayout(jPanel15, javax.swing.BoxLayout.LINE_AXIS));
+
+        jLabel7.setText("   Loại thuốc:");
+        jLabel7.setPreferredSize(new java.awt.Dimension(110, 16));
+        jPanel15.add(jLabel7);
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel15.add(jComboBox1);
+
+        jPanel10.add(jPanel15);
+
+        jPanel16.setLayout(new javax.swing.BoxLayout(jPanel16, javax.swing.BoxLayout.LINE_AXIS));
+
+        jLabel8.setText("   Đơn giá mua:");
+        jLabel8.setPreferredSize(new java.awt.Dimension(110, 16));
+        jPanel16.add(jLabel8);
+        jPanel16.add(jTextField6);
+
+        jPanel10.add(jPanel16);
+
+        jPanel17.setLayout(new javax.swing.BoxLayout(jPanel17, javax.swing.BoxLayout.LINE_AXIS));
+
+        jLabel9.setText("   Số lượng nhập:");
+        jLabel9.setPreferredSize(new java.awt.Dimension(110, 16));
+        jPanel17.add(jLabel9);
+        jPanel17.add(jTextField7);
+
+        jPanel10.add(jPanel17);
+
         jPanel8.add(jPanel10);
 
-        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
-        jPanel11.setLayout(jPanel11Layout);
-        jPanel11Layout.setHorizontalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 232, Short.MAX_VALUE)
-        );
-        jPanel11Layout.setVerticalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 828, Short.MAX_VALUE)
-        );
+        jPanel11.setLayout(new java.awt.GridLayout(7, 1, 0, 10));
+
+        jPanel18.setLayout(new javax.swing.BoxLayout(jPanel18, javax.swing.BoxLayout.LINE_AXIS));
+
+        jLabel10.setText("Tìm mã thuốc: ");
+        jLabel10.setPreferredSize(new java.awt.Dimension(85, 16));
+        jPanel18.add(jLabel10);
+        jPanel18.add(jTextField8);
+
+        jPanel11.add(jPanel18);
+
+        jPanel19.setLayout(new javax.swing.BoxLayout(jPanel19, javax.swing.BoxLayout.LINE_AXIS));
+
+        jLabel11.setText("Ngày nhập:");
+        jLabel11.setPreferredSize(new java.awt.Dimension(85, 16));
+        jPanel19.add(jLabel11);
+        jPanel19.add(jTextField9);
+
+        jPanel11.add(jPanel19);
+
+        jPanel20.setLayout(new javax.swing.BoxLayout(jPanel20, javax.swing.BoxLayout.LINE_AXIS));
+
+        jLabel12.setText("Ngày hết hạn:");
+        jLabel12.setPreferredSize(new java.awt.Dimension(85, 16));
+        jPanel20.add(jLabel12);
+        jPanel20.add(jTextField10);
+
+        jPanel11.add(jPanel20);
+
+        jPanel21.setLayout(new javax.swing.BoxLayout(jPanel21, javax.swing.BoxLayout.LINE_AXIS));
+
+        jLabel13.setText("Đơn vị thuốc:");
+        jLabel13.setPreferredSize(new java.awt.Dimension(85, 16));
+        jPanel21.add(jLabel13);
+        jPanel21.add(jTextField11);
+
+        jPanel11.add(jPanel21);
+
+        jPanel22.setLayout(new javax.swing.BoxLayout(jPanel22, javax.swing.BoxLayout.LINE_AXIS));
+
+        jLabel14.setText("Xuất xứ:");
+        jLabel14.setPreferredSize(new java.awt.Dimension(85, 16));
+        jPanel22.add(jLabel14);
+        jPanel22.add(jTextField12);
+
+        jPanel11.add(jPanel22);
+
+        jPanel23.setLayout(new javax.swing.BoxLayout(jPanel23, javax.swing.BoxLayout.LINE_AXIS));
+
+        jLabel15.setText("Số lượng tồn: ");
+        jLabel15.setPreferredSize(new java.awt.Dimension(85, 16));
+        jPanel23.add(jLabel15);
+        jPanel23.add(jTextField13);
+
+        jPanel11.add(jPanel23);
+
+        jPanel25.setLayout(new java.awt.GridLayout(1, 0, 20, 0));
+
+        jButton1.setText("Thêm");
+        jPanel25.add(jButton1);
+
+        jButton2.setText("Xóa trắng");
+        jPanel25.add(jButton2);
+
+        jButton3.setText("Xóa");
+        jPanel25.add(jButton3);
+
+        jPanel11.add(jPanel25);
 
         jPanel8.add(jPanel11);
 
         jPanel4.add(jPanel8);
 
         jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder("Nhập nhà cung cấp"));
-        jPanel9.setMaximumSize(new java.awt.Dimension(450, 32767));
+        jPanel9.setMaximumSize(new java.awt.Dimension(480, 32767));
+        jPanel9.setMinimumSize(new java.awt.Dimension(480, 155));
+        jPanel9.setPreferredSize(new java.awt.Dimension(480, 300));
+        jPanel9.setLayout(new java.awt.GridLayout(7, 1, 0, 10));
 
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 379, Short.MAX_VALUE)
+        jPanel26.setLayout(new javax.swing.BoxLayout(jPanel26, javax.swing.BoxLayout.LINE_AXIS));
+
+        jLabel16.setText("   Mã nhà cung cấp: ");
+        jLabel16.setMaximumSize(new java.awt.Dimension(104, 16));
+        jLabel16.setPreferredSize(new java.awt.Dimension(120, 16));
+        jPanel26.add(jLabel16);
+        jPanel26.add(jTextField4);
+        jPanel26.add(filler3);
+
+        jPanel9.add(jPanel26);
+
+        jPanel27.setLayout(new javax.swing.BoxLayout(jPanel27, javax.swing.BoxLayout.LINE_AXIS));
+
+        jLabel17.setText("   Tên nhà cung cấp: ");
+        jLabel17.setMaximumSize(new java.awt.Dimension(104, 16));
+        jLabel17.setMinimumSize(new java.awt.Dimension(104, 16));
+        jLabel17.setPreferredSize(new java.awt.Dimension(120, 16));
+        jPanel27.add(jLabel17);
+
+        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField5ActionPerformed(evt);
+            }
+        });
+        jPanel27.add(jTextField5);
+
+        jPanel9.add(jPanel27);
+
+        jPanel28.setLayout(new javax.swing.BoxLayout(jPanel28, javax.swing.BoxLayout.LINE_AXIS));
+
+        jLabel18.setText("   Email:");
+        jLabel18.setMaximumSize(new java.awt.Dimension(104, 16));
+        jLabel18.setMinimumSize(new java.awt.Dimension(104, 16));
+        jLabel18.setPreferredSize(new java.awt.Dimension(120, 16));
+        jPanel28.add(jLabel18);
+        jPanel28.add(jTextField14);
+
+        jPanel9.add(jPanel28);
+
+        jPanel29.setLayout(new javax.swing.BoxLayout(jPanel29, javax.swing.BoxLayout.LINE_AXIS));
+
+        jLabel19.setText("   Số điện thoại:");
+        jLabel19.setMaximumSize(new java.awt.Dimension(104, 16));
+        jLabel19.setMinimumSize(new java.awt.Dimension(104, 16));
+        jLabel19.setPreferredSize(new java.awt.Dimension(120, 16));
+        jPanel29.add(jLabel19);
+
+        jTextField15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField15ActionPerformed(evt);
+            }
+        });
+        jPanel29.add(jTextField15);
+
+        jPanel9.add(jPanel29);
+
+        jPanel30.setLayout(new javax.swing.BoxLayout(jPanel30, javax.swing.BoxLayout.LINE_AXIS));
+
+        jLabel20.setText("   Địa chỉ: ");
+        jLabel20.setMinimumSize(new java.awt.Dimension(104, 16));
+        jLabel20.setPreferredSize(new java.awt.Dimension(120, 16));
+        jPanel30.add(jLabel20);
+        jPanel30.add(jTextField16);
+
+        jPanel9.add(jPanel30);
+
+        jPanel32.setLayout(new java.awt.GridLayout(1, 2));
+
+        javax.swing.GroupLayout jPanel33Layout = new javax.swing.GroupLayout(jPanel33);
+        jPanel33.setLayout(jPanel33Layout);
+        jPanel33Layout.setHorizontalGroup(
+            jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 235, Short.MAX_VALUE)
         );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 828, Short.MAX_VALUE)
+        jPanel33Layout.setVerticalGroup(
+            jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 30, Short.MAX_VALUE)
         );
+
+        jPanel32.add(jPanel33);
+
+        jPanel35.setLayout(new java.awt.GridLayout());
+
+        jPanel36.setLayout(new java.awt.GridLayout());
+
+        javax.swing.GroupLayout jPanel34Layout = new javax.swing.GroupLayout(jPanel34);
+        jPanel34.setLayout(jPanel34Layout);
+        jPanel34Layout.setHorizontalGroup(
+            jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 117, Short.MAX_VALUE)
+        );
+        jPanel34Layout.setVerticalGroup(
+            jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 30, Short.MAX_VALUE)
+        );
+
+        jPanel36.add(jPanel34);
+
+        jButton4.setText("Tìm");
+        jPanel36.add(jButton4);
+
+        jPanel35.add(jPanel36);
+
+        jPanel32.add(jPanel35);
+
+        jPanel9.add(jPanel32);
+
+        jPanel31.setLayout(new javax.swing.BoxLayout(jPanel31, javax.swing.BoxLayout.LINE_AXIS));
+        jPanel9.add(jPanel31);
 
         jPanel4.add(jPanel9);
 
@@ -140,42 +416,121 @@ public class GUI_NhapThuoc extends javax.swing.JPanel {
 
         add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 864, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        jPanel2.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 8, 10, 8));
+        jPanel2.setLayout(new java.awt.BorderLayout());
+
+        jPanel37.setBorder(javax.swing.BorderFactory.createTitledBorder("Danh sách nhập thuốc"));
+        jPanel37.setLayout(new java.awt.BorderLayout());
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "STT", "Mã phiếu", "Mã thuốc", "Tên thuốc", "Ngày nhập", "Ngày sản xuất", "Ngày hết hạn", "Loại thuốc", "Đơn vị thuốc", "Đơn giá mua", "Xuất xứ", "Số lượng nhập"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        jPanel37.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+
+        jPanel2.add(jPanel37, java.awt.BorderLayout.CENTER);
 
         add(jPanel2, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField5ActionPerformed
+
+    private void jTextField15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField15ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField15ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.Box.Filler filler1;
+    private javax.swing.Box.Filler filler3;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
+    private javax.swing.JPanel jPanel18;
+    private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel20;
+    private javax.swing.JPanel jPanel21;
+    private javax.swing.JPanel jPanel22;
+    private javax.swing.JPanel jPanel23;
+    private javax.swing.JPanel jPanel24;
+    private javax.swing.JPanel jPanel25;
+    private javax.swing.JPanel jPanel26;
+    private javax.swing.JPanel jPanel27;
+    private javax.swing.JPanel jPanel28;
+    private javax.swing.JPanel jPanel29;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel30;
+    private javax.swing.JPanel jPanel31;
+    private javax.swing.JPanel jPanel32;
+    private javax.swing.JPanel jPanel33;
+    private javax.swing.JPanel jPanel34;
+    private javax.swing.JPanel jPanel35;
+    private javax.swing.JPanel jPanel36;
+    private javax.swing.JPanel jPanel37;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField10;
+    private javax.swing.JTextField jTextField11;
+    private javax.swing.JTextField jTextField12;
+    private javax.swing.JTextField jTextField13;
+    private javax.swing.JTextField jTextField14;
+    private javax.swing.JTextField jTextField15;
+    private javax.swing.JTextField jTextField16;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
 }
