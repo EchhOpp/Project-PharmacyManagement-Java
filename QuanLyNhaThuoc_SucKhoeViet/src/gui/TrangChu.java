@@ -4,20 +4,39 @@
  */
 package gui;
 
+import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.JMenuItem;
 
 /**
  *
  * @author NguyenThanhLuan
  */
 public class TrangChu extends javax.swing.JFrame {
-
+	private GUI_NhapThuoc gui_NhapThuoc;
+	private GUI_BTN gui_BTN;
+	private GUI_TaoHoaDon guiTaoHoaDon;
+    private GUI_QuanLiKhachHang gui_QuanLiKhachHang;
+    private GUI_TimKiemHoaDon gui_TimKiemHoaDon;
+    private GUI_TimKiemThuoc gui_TimKiemThuoc;
+    private GUI_DanhSachNhapThuoc gui_DanhSachNhapThuoc;
+    private GUI_QuanLiNhaCungCap gui_QuanLiNhaCungCap;
+    private GUI_QuanLiThongKe gui_QuanLiThongKe;
     /**
-     * Creates new form TrangChu
+     * Creates new form GUI_TrangChu
      */
     public TrangChu() {
         initComponents();
+        gui_BTN = new GUI_BTN();
+        this.PnlChuyenHuong.add(gui_BTN);
+        gui_NhapThuoc = new GUI_NhapThuoc();
+        guiTaoHoaDon =  new GUI_TaoHoaDon();
+        gui_QuanLiKhachHang = new GUI_QuanLiKhachHang();
+        gui_TimKiemHoaDon = new GUI_TimKiemHoaDon();
+        gui_TimKiemThuoc = new GUI_TimKiemThuoc();
+        gui_DanhSachNhapThuoc = new GUI_DanhSachNhapThuoc();
+        gui_QuanLiNhaCungCap = new GUI_QuanLiNhaCungCap();
+        gui_QuanLiThongKe = new GUI_QuanLiThongKe();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
@@ -31,310 +50,60 @@ public class TrangChu extends javax.swing.JFrame {
     private void initComponents() {
 
         PnlChuyenHuong = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(20, 0), new java.awt.Dimension(20, 0), new java.awt.Dimension(20, 32767));
-        jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jPanel7 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jPanel8 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jPanel6 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jPanel9 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
-        jButton13 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
-        jButton15 = new javax.swing.JButton();
-        jButton16 = new javax.swing.JButton();
-        jButton17 = new javax.swing.JButton();
-        jButton18 = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
-        jButton19 = new javax.swing.JButton();
-        jButton20 = new javax.swing.JButton();
-        jButton21 = new javax.swing.JButton();
-        jButton22 = new javax.swing.JButton();
-        jLabel10 = new javax.swing.JLabel();
-        jButton23 = new javax.swing.JButton();
-        jButton24 = new javax.swing.JButton();
-        jButton25 = new javax.swing.JButton();
-        jButton26 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnDangXuat = new javax.swing.JButton();
+        btnThoat = new javax.swing.JButton();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(20, 0), new java.awt.Dimension(20, 0), new java.awt.Dimension(20, 32767));
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
-        jMenu6 = new javax.swing.JMenu();
-        jMenu7 = new javax.swing.JMenu();
+        menuTT = new javax.swing.JMenu();
+        menuHD = new javax.swing.JMenu();
+        menuTaoHD = new javax.swing.JMenuItem();
+        menuXemDSHD = new javax.swing.JMenuItem();
+        menuSP = new javax.swing.JMenu();
+        MenuItemNhapThuoc = new javax.swing.JMenuItem();
+        menuDanhSachThuoc = new javax.swing.JMenuItem();
+        DanhSachNhapThuoc = new javax.swing.JMenuItem();
+        menuKH = new javax.swing.JMenu();
+        menuNV = new javax.swing.JMenu();
+        jMenuItem12 = new javax.swing.JMenuItem();
+        jMenuItem13 = new javax.swing.JMenuItem();
+        jMenuItem14 = new javax.swing.JMenuItem();
+        jMenuItem15 = new javax.swing.JMenuItem();
+        menuNCC = new javax.swing.JMenu();
+        menuQuanLiNCC = new javax.swing.JMenuItem();
+        menuTK = new javax.swing.JMenu();
+        menuQuanLiTK = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 255, 255));
 
+        PnlChuyenHuong.setBackground(new java.awt.Color(255, 255, 255));
         PnlChuyenHuong.setLayout(new java.awt.BorderLayout());
-
-        jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 51, 102));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo/icon-pharmacy.png"))); // NOI18N
-        jLabel1.setText("Sức khỏe Việt");
-        jPanel1.add(jLabel1);
-        jPanel1.add(filler2);
-
-        PnlChuyenHuong.add(jPanel1, java.awt.BorderLayout.PAGE_START);
-
-        jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.LINE_AXIS));
-
-        jPanel3.setMaximumSize(new java.awt.Dimension(200, 500));
-        jPanel3.setMinimumSize(new java.awt.Dimension(200, 218));
-        jPanel3.setPreferredSize(new java.awt.Dimension(200, 372));
-        jPanel3.setLayout(new java.awt.BorderLayout());
-
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel7.setMaximumSize(new java.awt.Dimension(200, 200));
-        jPanel7.setMinimumSize(new java.awt.Dimension(200, 200));
-        jPanel7.setPreferredSize(new java.awt.Dimension(200, 200));
-        jPanel7.setLayout(new java.awt.BorderLayout());
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/nhanvien/pexels-cottonbro-studio-5867737 1.png"))); // NOI18N
-        jPanel7.add(jLabel2, java.awt.BorderLayout.CENTER);
-
-        jPanel3.add(jPanel7, java.awt.BorderLayout.NORTH);
-
-        jLabel3.setText("Xin chào, Nguyễn Thành Luân");
-
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3)
-                .addContainerGap(39, Short.MAX_VALUE))
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel3)
-                .addContainerGap(156, Short.MAX_VALUE))
-        );
-
-        jPanel3.add(jPanel8, java.awt.BorderLayout.CENTER);
-
-        jPanel2.add(jPanel3);
-
-        jPanel4.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 40, 10, 20));
-        jPanel4.setLayout(new java.awt.BorderLayout());
-
-        jPanel6.setMinimumSize(new java.awt.Dimension(294, 120));
-        jPanel6.setPreferredSize(new java.awt.Dimension(670, 121));
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(15, 102, 165));
-        jLabel4.setText("Danh sách các chức năng");
-        jPanel6.add(jLabel4);
-
-        jPanel4.add(jPanel6, java.awt.BorderLayout.NORTH);
-
-        jPanel9.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 1, 40, 1));
-        jPanel9.setLayout(new java.awt.GridLayout(6, 5, 10, 10));
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setText("Quản lí hóa đơn");
-        jPanel9.add(jLabel5);
-
-        jButton3.setBackground(new java.awt.Color(248, 250, 251));
-        jButton3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton3.setText("Tạo hóa đơn");
-        jPanel9.add(jButton3);
-
-        jButton4.setBackground(new java.awt.Color(248, 250, 251));
-        jButton4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton4.setText("Xem danh sách hóa đơn ");
-        jPanel9.add(jButton4);
-
-        jButton5.setBackground(new java.awt.Color(248, 250, 251));
-        jButton5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton5.setText("Sửa thông tin hóa đơn");
-        jPanel9.add(jButton5);
-
-        jButton6.setBackground(new java.awt.Color(248, 250, 251));
-        jButton6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton6.setText("Xóa thông tin hóa đơn");
-        jPanel9.add(jButton6);
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setText("Quản lí thuốc");
-        jPanel9.add(jLabel6);
-
-        jButton7.setBackground(new java.awt.Color(248, 250, 251));
-        jButton7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton7.setText("Nhập thuốc");
-        jPanel9.add(jButton7);
-
-        jButton8.setBackground(new java.awt.Color(248, 250, 251));
-        jButton8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton8.setText("Tìm kiếm thuốc");
-        jPanel9.add(jButton8);
-
-        jButton9.setBackground(new java.awt.Color(248, 250, 251));
-        jButton9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton9.setText("Xem danh sách nhập thuốc");
-        jPanel9.add(jButton9);
-
-        jButton10.setBackground(new java.awt.Color(248, 250, 251));
-        jButton10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton10.setText("Xóa thông tin thuốc");
-        jPanel9.add(jButton10);
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel7.setText("Quản lí khách hàng");
-        jPanel9.add(jLabel7);
-
-        jButton11.setBackground(new java.awt.Color(248, 250, 251));
-        jButton11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton11.setText("Thêm khách hàng");
-        jPanel9.add(jButton11);
-
-        jButton12.setBackground(new java.awt.Color(248, 250, 251));
-        jButton12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton12.setText("Xem danh sách khách hàng");
-        jPanel9.add(jButton12);
-
-        jButton13.setBackground(new java.awt.Color(248, 250, 251));
-        jButton13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton13.setText("Sửa thông tin khách hàng");
-        jPanel9.add(jButton13);
-
-        jButton14.setBackground(new java.awt.Color(248, 250, 251));
-        jButton14.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton14.setText("Xóa thông tin khách hàng");
-        jPanel9.add(jButton14);
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel8.setText("Quản lí nhà nhân viên");
-        jPanel9.add(jLabel8);
-
-        jButton15.setBackground(new java.awt.Color(248, 250, 251));
-        jButton15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton15.setText("Thêm nhân viên");
-        jPanel9.add(jButton15);
-
-        jButton16.setBackground(new java.awt.Color(248, 250, 251));
-        jButton16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton16.setText("Xem danh sách nhân viên");
-        jPanel9.add(jButton16);
-
-        jButton17.setBackground(new java.awt.Color(248, 250, 251));
-        jButton17.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton17.setText("Sửa thông tin nhân viên");
-        jPanel9.add(jButton17);
-
-        jButton18.setBackground(new java.awt.Color(248, 250, 251));
-        jButton18.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton18.setText("Xóa thông tin nhân viên");
-        jPanel9.add(jButton18);
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel9.setText("Quản lí nhà cung cấp");
-        jPanel9.add(jLabel9);
-
-        jButton19.setBackground(new java.awt.Color(248, 250, 251));
-        jButton19.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton19.setText("Thêm nhà cung cấp");
-        jPanel9.add(jButton19);
-
-        jButton20.setBackground(new java.awt.Color(248, 250, 251));
-        jButton20.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton20.setText("Xem danh sách nhà cung cấp");
-        jPanel9.add(jButton20);
-
-        jButton21.setBackground(new java.awt.Color(248, 250, 251));
-        jButton21.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton21.setText("Sửa thông tin nhà cung cấp");
-        jPanel9.add(jButton21);
-
-        jButton22.setBackground(new java.awt.Color(248, 250, 251));
-        jButton22.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton22.setText("Xóa thông tin nhà cung cấp ");
-        jButton22.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton22ActionPerformed(evt);
-            }
-        });
-        jPanel9.add(jButton22);
-
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel10.setText("Quản lí thống kê");
-        jPanel9.add(jLabel10);
-
-        jButton23.setBackground(new java.awt.Color(248, 250, 251));
-        jButton23.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton23.setText("Thống kê thuốc hết hạn");
-        jPanel9.add(jButton23);
-
-        jButton24.setBackground(new java.awt.Color(248, 250, 251));
-        jButton24.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton24.setText("Thống kê thuốc tồn kho");
-        jPanel9.add(jButton24);
-
-        jButton25.setBackground(new java.awt.Color(248, 250, 251));
-        jButton25.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton25.setText("Thống kê doanh số đã bán");
-        jPanel9.add(jButton25);
-
-        jButton26.setBackground(new java.awt.Color(248, 250, 251));
-        jButton26.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton26.setText("Thông kê số lượng khách hàng ");
-        jPanel9.add(jButton26);
-
-        jPanel4.add(jPanel9, java.awt.BorderLayout.CENTER);
-
-        jPanel2.add(jPanel4);
-
-        PnlChuyenHuong.add(jPanel2, java.awt.BorderLayout.CENTER);
-
         getContentPane().add(PnlChuyenHuong, java.awt.BorderLayout.CENTER);
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("")));
-        jPanel5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 10, 5));
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel5.setMinimumSize(new java.awt.Dimension(222, 52));
+        jPanel5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 10, 1));
 
-        jButton1.setBackground(new java.awt.Color(15, 145, 239));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo/icon-logout.png"))); // NOI18N
-        jButton1.setText("Đăng xuất");
-        jButton1.setPreferredSize(new java.awt.Dimension(160, 40));
-        jPanel5.add(jButton1);
+        btnDangXuat.setBackground(new java.awt.Color(15, 145, 239));
+        btnDangXuat.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnDangXuat.setForeground(new java.awt.Color(255, 255, 255));
+        btnDangXuat.setText("Đăng xuất");
+        btnDangXuat.setMargin(new java.awt.Insets(1, 14, 1, 14));
+        btnDangXuat.setPreferredSize(new java.awt.Dimension(120, 40));
+        jPanel5.add(btnDangXuat);
 
-        jButton2.setBackground(new java.awt.Color(15, 145, 239));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo/icon-thoat.png"))); // NOI18N
-        jButton2.setText("Thoát");
-        jButton2.setPreferredSize(new java.awt.Dimension(160, 40));
-        jPanel5.add(jButton2);
+        btnThoat.setBackground(new java.awt.Color(15, 145, 239));
+        btnThoat.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnThoat.setForeground(new java.awt.Color(255, 255, 255));
+        btnThoat.setText("Thoát");
+        btnThoat.setMargin(new java.awt.Insets(1, 14, 1, 14));
+        btnThoat.setPreferredSize(new java.awt.Dimension(120, 40));
+        btnThoat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThoatActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnThoat);
         jPanel5.add(filler1);
 
         getContentPane().add(jPanel5, java.awt.BorderLayout.SOUTH);
@@ -343,148 +112,252 @@ public class TrangChu extends javax.swing.JFrame {
         jMenuBar1.setMargin(new java.awt.Insets(0, 8, 0, 8));
         jMenuBar1.setPreferredSize(new java.awt.Dimension(70, 45));
 
-        jMenu1.setForeground(new java.awt.Color(15, 145, 239));
-        jMenu1.setText("Trang chủ");
-        jMenu1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jMenu1.setMargin(new java.awt.Insets(3, 10, 3, 10));
-        jMenuBar1.add(jMenu1);
+        menuTT.setForeground(new java.awt.Color(15, 145, 239));
+        menuTT.setText("Trang chủ");
+        menuTT.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        menuTT.setMargin(new java.awt.Insets(3, 10, 3, 10));
+        menuTT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuTTActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(menuTT);
 
-        jMenu2.setForeground(new java.awt.Color(15, 145, 239));
-        jMenu2.setText("Hóa đơn");
-        jMenu2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jMenu2.setMargin(new java.awt.Insets(3, 10, 3, 10));
-        jMenuBar1.add(jMenu2);
+        menuHD.setForeground(new java.awt.Color(15, 145, 239));
+        menuHD.setText("Hóa đơn");
+        menuHD.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        menuHD.setMargin(new java.awt.Insets(3, 10, 3, 10));
 
-        jMenu3.setForeground(new java.awt.Color(15, 145, 239));
-        jMenu3.setText("Sản phẩm");
-        jMenu3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jMenu3.setMargin(new java.awt.Insets(3, 10, 3, 10));
-        jMenuBar1.add(jMenu3);
+        menuTaoHD.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        menuTaoHD.setText("Tạo hóa đơn");
+        menuTaoHD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuTaoHDActionPerformed(evt);
+            }
+        });
+        menuHD.add(menuTaoHD);
 
-        jMenu4.setForeground(new java.awt.Color(15, 145, 239));
-        jMenu4.setText("Khách hàng");
-        jMenu4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jMenu4.setMargin(new java.awt.Insets(3, 10, 3, 10));
-        jMenuBar1.add(jMenu4);
+        menuXemDSHD.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        menuXemDSHD.setText("Xem danh sách hóa đơn");
+        menuXemDSHD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuXemDSHDActionPerformed(evt);
+            }
+        });
+        menuHD.add(menuXemDSHD);
 
-        jMenu5.setForeground(new java.awt.Color(15, 145, 239));
-        jMenu5.setText("Nhân viên");
-        jMenu5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jMenu5.setMargin(new java.awt.Insets(3, 10, 3, 10));
-        jMenuBar1.add(jMenu5);
+        jMenuBar1.add(menuHD);
 
-        jMenu6.setForeground(new java.awt.Color(15, 145, 239));
-        jMenu6.setText("Nhà cung cấp");
-        jMenu6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jMenu6.setMargin(new java.awt.Insets(3, 10, 3, 10));
-        jMenuBar1.add(jMenu6);
+        menuSP.setForeground(new java.awt.Color(15, 145, 239));
+        menuSP.setText("Sản phẩm");
+        menuSP.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        menuSP.setMargin(new java.awt.Insets(3, 10, 3, 10));
 
-        jMenu7.setForeground(new java.awt.Color(15, 145, 239));
-        jMenu7.setText("Thống kê");
-        jMenu7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jMenu7.setMargin(new java.awt.Insets(3, 10, 3, 10));
-        jMenuBar1.add(jMenu7);
+        MenuItemNhapThuoc.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        MenuItemNhapThuoc.setText("Nhập thuốc");
+        MenuItemNhapThuoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuItemNhapThuocActionPerformed(evt);
+            }
+        });
+        menuSP.add(MenuItemNhapThuoc);
+
+        menuDanhSachThuoc.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        menuDanhSachThuoc.setText("Xem danh sách thuốc");
+        menuDanhSachThuoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuDanhSachThuocActionPerformed(evt);
+            }
+        });
+        menuSP.add(menuDanhSachThuoc);
+
+        DanhSachNhapThuoc.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        DanhSachNhapThuoc.setText("Xem danh sách nhập thuốc");
+        DanhSachNhapThuoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DanhSachNhapThuocActionPerformed(evt);
+            }
+        });
+        menuSP.add(DanhSachNhapThuoc);
+
+        jMenuBar1.add(menuSP);
+
+        menuKH.setForeground(new java.awt.Color(15, 145, 239));
+        menuKH.setText("Khách hàng");
+        menuKH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        menuKH.setMargin(new java.awt.Insets(3, 10, 3, 10));
+        menuKH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuKHActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(menuKH);
+
+        menuNV.setForeground(new java.awt.Color(15, 145, 239));
+        menuNV.setText("Nhân viên");
+        menuNV.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        menuNV.setMargin(new java.awt.Insets(3, 10, 3, 10));
+
+        jMenuItem12.setText("jMenuItem12");
+        menuNV.add(jMenuItem12);
+
+        jMenuItem13.setText("jMenuItem13");
+        menuNV.add(jMenuItem13);
+
+        jMenuItem14.setText("jMenuItem14");
+        menuNV.add(jMenuItem14);
+
+        jMenuItem15.setText("jMenuItem15");
+        menuNV.add(jMenuItem15);
+
+        jMenuBar1.add(menuNV);
+
+        menuNCC.setForeground(new java.awt.Color(15, 145, 239));
+        menuNCC.setText("Nhà cung cấp");
+        menuNCC.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        menuNCC.setMargin(new java.awt.Insets(3, 10, 3, 10));
+
+        menuQuanLiNCC.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        menuQuanLiNCC.setText("Quản lí nhà cung cấp");
+        menuQuanLiNCC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuQuanLiNCCActionPerformed(evt);
+            }
+        });
+        menuNCC.add(menuQuanLiNCC);
+
+
+        jMenuBar1.add(menuNCC);
+
+        menuTK.setForeground(new java.awt.Color(15, 145, 239));
+        menuTK.setText("Thống kê");
+        menuTK.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        menuTK.setMargin(new java.awt.Insets(3, 10, 3, 10));
+
+        menuQuanLiTK.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        menuQuanLiTK.setText("Quản lí thống kê");
+        menuQuanLiTK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuQuanLiThongKeActionPerformed(evt);
+            }
+        });
+        menuTK.add(menuQuanLiTK);
+
+        jMenuBar1.add(menuTK);
 
         setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+	public void clearSelectedMenu() {
+		menuTT.setSelected(false);
+		menuHD.setSelected(false);
+		menuSP.setSelected(false);
+		menuKH.setSelected(false);
+		menuNV.setSelected(false);
+		menuNCC.setSelected(false);
+		menuTK.setSelected(false);
+	}
+    
+	public void thayDoiPanelChinh(JComponent component, JMenuItem menu) {
+		clearSelectedMenu();
+		menu.setSelected(true);
+		this.PnlChuyenHuong.removeAll();
+		this.PnlChuyenHuong.repaint();
+		this.PnlChuyenHuong.revalidate();
 
+		this.PnlChuyenHuong.add(component);
+		this.PnlChuyenHuong.repaint();
+		this.PnlChuyenHuong.revalidate();
+	}
+	
+	
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton22ActionPerformed
 
+    private void menuTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTTActionPerformed
+    	this.thayDoiPanelChinh(gui_BTN, menuTT);
+    }//GEN-LAST:event_menuTTActionPerformed
+
+    private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
+    	this.thayDoiPanelChinh(gui_BTN, menuTT);
+    }//GEN-LAST:event_btnThoatActionPerformed
+
+    private void btnNhapThuocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhapThuocActionPerformed
+    	this.thayDoiPanelChinh(gui_NhapThuoc, menuSP);
+    }//GEN-LAST:event_btnNhapThuocActionPerformed
+
+    private void MenuItemNhapThuocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemNhapThuocActionPerformed
+    	this.thayDoiPanelChinh(gui_NhapThuoc, menuSP);
+    }//GEN-LAST:event_MenuItemNhapThuocActionPerformed
+    
+    private void menuTaoHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTaoHDActionPerformed
+    	this.thayDoiPanelChinh(guiTaoHoaDon, menuHD);
+    }//GEN-LAST:event_menuTaoHDActionPerformed
+
+    private void menuSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuSPActionPerformed
+
+    private void menuDanhSachThuocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuDanhSachThuocActionPerformed
+    	this.thayDoiPanelChinh(gui_TimKiemThuoc, menuSP);
+    }//GEN-LAST:event_menuDanhSachThuocActionPerformed
+
+    private void menuXemDSHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuXemDSHDActionPerformed
+        this.thayDoiPanelChinh(gui_TimKiemHoaDon, menuHD);
+    }//GEN-LAST:event_menuXemDSHDActionPerformed
+
+    private void menuKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuKHActionPerformed
+        this.thayDoiPanelChinh(gui_QuanLiKhachHang, menuKH);
+    }//GEN-LAST:event_menuKHActionPerformed
+
+    private void DanhSachNhapThuocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DanhSachNhapThuocActionPerformed
+    	 this.thayDoiPanelChinh(gui_DanhSachNhapThuoc, menuSP);
+    }//GEN-LAST:event_DanhSachNhapThuocActionPerformed
+    private void menuQuanLiNCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DanhSachNhapThuocActionPerformed
+   	 this.thayDoiPanelChinh(gui_QuanLiNhaCungCap, menuNCC);
+   }//GEN-LAST:event_DanhSachNhapThuocActionPerformed
+    private void menuQuanLiThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DanhSachNhapThuocActionPerformed
+      	 this.thayDoiPanelChinh(gui_QuanLiThongKe, menuTK);
+      }//GEN-LAST:event_DanhSachNhapThuocActionPerformed
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TrangChu().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem DanhSachNhapThuoc;
+    private javax.swing.JMenuItem MenuItemNhapThuoc;
     private javax.swing.JPanel PnlChuyenHuong;
+    private javax.swing.JButton btnDangXuat;
+    private javax.swing.JButton btnThoat;
     private javax.swing.Box.Filler filler1;
-    private javax.swing.Box.Filler filler2;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton16;
-    private javax.swing.JButton jButton17;
-    private javax.swing.JButton jButton18;
-    private javax.swing.JButton jButton19;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton20;
-    private javax.swing.JButton jButton21;
-    private javax.swing.JButton jButton22;
-    private javax.swing.JButton jButton23;
-    private javax.swing.JButton jButton24;
-    private javax.swing.JButton jButton25;
-    private javax.swing.JButton jButton26;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
+    private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
+    private javax.swing.JMenuItem jMenuItem14;
+    private javax.swing.JMenuItem jMenuItem15;
+    private javax.swing.JMenuItem jMenuItem16;
+    private javax.swing.JMenuItem jMenuItem17;
+    private javax.swing.JMenuItem jMenuItem18;
+    private javax.swing.JMenuItem jMenuItem19;
+    private javax.swing.JMenuItem jMenuItem20;
+    private javax.swing.JMenuItem jMenuItem21;
+    private javax.swing.JMenuItem jMenuItem22;
+    private javax.swing.JMenuItem jMenuItem23;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
+    private javax.swing.JMenuItem menuDanhSachThuoc;
+    private javax.swing.JMenu menuHD;
+    private javax.swing.JMenu menuKH;
+    private javax.swing.JMenu menuNCC;
+    private javax.swing.JMenu menuNV;
+    private javax.swing.JMenu menuSP;
+    private javax.swing.JMenu menuTK;
+    private javax.swing.JMenu menuTT;
+    private javax.swing.JMenuItem menuTaoHD;
+    private javax.swing.JMenuItem menuXemDSHD;
+    private javax.swing.JMenuItem menuQuanLiNCC;
+    private javax.swing.JMenuItem menuQuanLiTK;
     // End of variables declaration//GEN-END:variables
 }
