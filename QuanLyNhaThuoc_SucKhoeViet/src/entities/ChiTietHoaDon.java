@@ -1,20 +1,12 @@
 package entities;
 
-import java.util.Objects;
-
 public class ChiTietHoaDon {
+	// Các thuộc tính
 	private Thuoc thuoc;
 	private int soLuong;
 	private float donGiaBan;
-	
-	
-	public ChiTietHoaDon(entities.Thuoc thuoc, int soLuong, float donGiaBan) {
-		super();
-		this.thuoc = thuoc;
-		this.soLuong = soLuong;
-		this.donGiaBan = donGiaBan;
-	}
 
+	// Các getter/setter
 	public Thuoc getThuoc() {
 		return thuoc;
 	}
@@ -39,9 +31,33 @@ public class ChiTietHoaDon {
 		this.donGiaBan = donGiaBan;
 	}
 
+	public ChiTietHoaDon(Thuoc thuoc) {
+		this(thuoc, 0, 0f);
+	}
+
+	// Các constructors
+	public ChiTietHoaDon() {
+		this(new Thuoc(), 0, 0f);
+	}
+
+	public ChiTietHoaDon(Thuoc thuoc, int soLuong, float donGiaBan) {
+		setThuoc(thuoc);
+		setSoLuong(soLuong);
+		setDonGiaBan(donGiaBan);
+	}
+
+	@Override
+	public String toString() {
+		return "OrderDetail [thuoc=" + thuoc + ", soLuong=" + soLuong + ", donGiaBan="
+				+ donGiaBan + "]";
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(donGiaBan, soLuong, thuoc);
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((thuoc == null) ? 0 : thuoc.hashCode());
+		return result;
 	}
 
 	@Override
@@ -53,14 +69,11 @@ public class ChiTietHoaDon {
 		if (getClass() != obj.getClass())
 			return false;
 		ChiTietHoaDon other = (ChiTietHoaDon) obj;
-		return Float.floatToIntBits(donGiaBan) == Float.floatToIntBits(other.donGiaBan) && soLuong == other.soLuong
-				&& Objects.equals(thuoc, other.thuoc);
+		if (thuoc == null) {
+			if (other.thuoc != null)
+				return false;
+		} else if (!thuoc.equals(other.thuoc))
+			return false;
+		return true;
 	}
-
-	@Override
-	public String toString() {
-		return "ChiTietHoaDon [thuoc=" + thuoc + ", soLuong=" + soLuong + ", donGiaBan=" + donGiaBan + "]";
-	}
-	
-	
 }

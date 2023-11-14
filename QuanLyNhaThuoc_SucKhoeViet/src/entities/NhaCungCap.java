@@ -1,6 +1,5 @@
 package entities;
 
-
 public class NhaCungCap {
 	// Các thuộc tính
 	private String maNCC;

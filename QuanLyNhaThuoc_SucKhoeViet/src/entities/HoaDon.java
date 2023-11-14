@@ -1,61 +1,138 @@
 package entities;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
-
 
 public class HoaDon {
-	private String maHoaDon;
+	// Các thuộc tính
+	private String maHD;
+	private KhachHang khachHang;
+	private NhanVien nhanVien;
 	private Date ngayLapHoaDon;
 	private String theBaoHiem;
 	private float mienGiam;
 	private List<ChiTietHoaDon> danhSachChiTietHoaDon;
-	
-	public HoaDon(String maHoaDon, Date ngayLapHoaDon, String theBaoHiem, float mienGiam,
-			List<ChiTietHoaDon> danhSachChiTietHoaDon) {
-		super();
-		this.maHoaDon = maHoaDon;
-		this.ngayLapHoaDon = ngayLapHoaDon;
-		this.theBaoHiem = theBaoHiem;
-		this.mienGiam = mienGiam;
-		this.danhSachChiTietHoaDon = danhSachChiTietHoaDon;
+
+	//Các getter/setter
+	public String getMaHD() {
+		return maHD;
 	}
-	
-	public String getMaHoaDon() {
-		return maHoaDon;
+
+	public void setMaHD(String maHD) {
+		this.maHD = maHD;
 	}
-	public void setMaHoaDon(String maHoaDon) {
-		this.maHoaDon = maHoaDon;
+
+	public KhachHang getKhachHang() {
+		return khachHang;
 	}
+
+	public void setKhachHang(KhachHang khachHang) {
+		this.khachHang = khachHang;
+	}
+
+	public NhanVien getNhanVien() {
+		return nhanVien;
+	}
+
+	public void setNhanVien(NhanVien nhanVien) {
+		this.nhanVien = nhanVien;
+	}
+
 	public Date getNgayLapHoaDon() {
 		return ngayLapHoaDon;
 	}
+
 	public void setNgayLapHoaDon(Date ngayLapHoaDon) {
 		this.ngayLapHoaDon = ngayLapHoaDon;
 	}
+
 	public String getTheBaoHiem() {
 		return theBaoHiem;
 	}
+
 	public void setTheBaoHiem(String theBaoHiem) {
 		this.theBaoHiem = theBaoHiem;
 	}
+
 	public float getMienGiam() {
 		return mienGiam;
 	}
+
 	public void setMienGiam(float mienGiam) {
 		this.mienGiam = mienGiam;
 	}
+
 	public List<ChiTietHoaDon> getDanhSachChiTietHoaDon() {
 		return danhSachChiTietHoaDon;
 	}
+
 	public void setDanhSachChiTietHoaDon(List<ChiTietHoaDon> danhSachChiTietHoaDon) {
 		this.danhSachChiTietHoaDon = danhSachChiTietHoaDon;
 	}
+
+	// Các constructors
+	public HoaDon() {
+		this("", new KhachHang(), new NhanVien(), new Date(), "", 0f);
+	}
+
+	public HoaDon(String maHD) {
+		this(maHD, new KhachHang(), new NhanVien(), new Date(), "", 0f);
+	}
+	
+	public HoaDon(String maHD, KhachHang khachHang, NhanVien nhanVien, Date ngayLapHoaDon, String theBaoHiem,
+			float mienGiam) {
+		setMaHD(maHD);
+		setKhachHang(khachHang);
+		setNhanVien(nhanVien);
+		setNgayLapHoaDon(ngayLapHoaDon);
+		setTheBaoHiem(theBaoHiem);
+		setMienGiam(mienGiam);
+		danhSachChiTietHoaDon = new ArrayList<ChiTietHoaDon>();
+	}
+	
+	public boolean themMotChiTietHoaDon(ChiTietHoaDon cthd) {
+		if (danhSachChiTietHoaDon.contains(cthd)) {
+			return false;
+		}
+		return danhSachChiTietHoaDon.add(cthd);
+	}
+	
+	public boolean xoaMotChiTietHoaDon(int index) {
+		if (index >= 0 && index < danhSachChiTietHoaDon.size()) {
+			danhSachChiTietHoaDon.remove(index);
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean capNhatSoLuongBan(String maThuoc, int soLuongBanMoi) {
+		for (ChiTietHoaDon cthd : danhSachChiTietHoaDon) {
+			if (cthd.getThuoc().getMaThuoc().equalsIgnoreCase(maThuoc)) {
+				cthd.setSoLuong(soLuongBanMoi);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public float tinhTongThanhTien() {
+		float tongThanhTien = 0;
+		for (ChiTietHoaDon cthd : danhSachChiTietHoaDon) {
+			float thanhTien = cthd.getDonGiaBan() * cthd.getSoLuong();
+			tongThanhTien += thanhTien;
+		}
+		return tongThanhTien;
+	}
+	
 	@Override
 	public int hashCode() {
-		return Objects.hash(danhSachChiTietHoaDon, maHoaDon, mienGiam, ngayLapHoaDon, theBaoHiem);
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((maHD == null) ? 0 : maHD.hashCode());
+		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -65,22 +142,18 @@ public class HoaDon {
 		if (getClass() != obj.getClass())
 			return false;
 		HoaDon other = (HoaDon) obj;
-		return Objects.equals(danhSachChiTietHoaDon, other.danhSachChiTietHoaDon)
-				&& Objects.equals(maHoaDon, other.maHoaDon)
-				&& Float.floatToIntBits(mienGiam) == Float.floatToIntBits(other.mienGiam)
-				&& Objects.equals(ngayLapHoaDon, other.ngayLapHoaDon) && Objects.equals(theBaoHiem, other.theBaoHiem);
+		if (maHD == null) {
+			if (other.maHD != null)
+				return false;
+		} else if (!maHD.equals(other.maHD))
+			return false;
+		return true;
 	}
+
 	@Override
 	public String toString() {
-		return "HoaDon [maHoaDon=" + maHoaDon + ", ngayLapHoaDon=" + ngayLapHoaDon + ", theBaoHiem=" + theBaoHiem
-				+ ", mienGiam=" + mienGiam + ", danhSachChiTietHoaDon=" + danhSachChiTietHoaDon + "]";
-	}
-	
-	// Add danh sách các chi tiết hóa đơn
-	public boolean themChiTietHoaDon(ChiTietHoaDon chiTietHoaDon) {
-		if(danhSachChiTietHoaDon.contains(chiTietHoaDon))
-			return false;
-		danhSachChiTietHoaDon.add(chiTietHoaDon);	
-		return true;
+		return "Order [maHD=" + maHD + ", khachHang=" + khachHang + ", nhanVien=" + nhanVien + ", ngayLapHoaDon="
+				+ ngayLapHoaDon + ", theBaoHiem=" + theBaoHiem + ", mienGiam=" + mienGiam + ", danhSachChiTietHoaDon=" + danhSachChiTietHoaDon
+				+ "]";
 	}
 }
