@@ -1,4 +1,4 @@
-package class_ConnectDB;
+package connectDB;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
