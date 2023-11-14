@@ -14,7 +14,7 @@ import javax.swing.JMenuItem;
  */
 public class GUI_TrangChu extends javax.swing.JFrame {
 	private GUI_NhapThuoc gui_NhapThuoc;
-	private GUI_BTN gui_BTN;
+	private GUI_TT gui_BTN;
 	private GUI_TaoHoaDon guiTaoHoaDon;
     private GUI_QuanLiKhachHang gui_quanLiKhachHang;
     private GUI_QuanLiNhanVien gui_quanLiNhanVien;
@@ -28,7 +28,7 @@ public class GUI_TrangChu extends javax.swing.JFrame {
      */
     public GUI_TrangChu() {
         initComponents();
-        gui_BTN = new GUI_BTN();
+        gui_BTN = new GUI_TT();
         this.PnlChuyenHuong.add(gui_BTN);
         gui_NhapThuoc = new GUI_NhapThuoc();
         guiTaoHoaDon =  new GUI_TaoHoaDon();
@@ -82,7 +82,8 @@ public class GUI_TrangChu extends javax.swing.JFrame {
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel5.setMinimumSize(new java.awt.Dimension(222, 52));
-        jPanel5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 10, 1));
+        jPanel5.setPreferredSize(new java.awt.Dimension(302, 52));
+        jPanel5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 10, 5));
 
         btnDangXuat.setBackground(new java.awt.Color(15, 145, 239));
         btnDangXuat.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -109,8 +110,9 @@ public class GUI_TrangChu extends javax.swing.JFrame {
         getContentPane().add(jPanel5, java.awt.BorderLayout.SOUTH);
 
         jMenuBar1.setBackground(new java.awt.Color(204, 255, 255));
+        jMenuBar1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jMenuBar1.setMargin(new java.awt.Insets(0, 8, 0, 8));
-        jMenuBar1.setPreferredSize(new java.awt.Dimension(70, 45));
+        jMenuBar1.setPreferredSize(new java.awt.Dimension(23941, 50));
 
         menuTT.setForeground(new java.awt.Color(15, 145, 239));
         menuTT.setText("Trang chủ");
