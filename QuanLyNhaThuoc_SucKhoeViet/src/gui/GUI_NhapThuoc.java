@@ -131,7 +131,7 @@ public class GUI_NhapThuoc extends javax.swing.JPanel {
 
 	private ArrayList<String> initCandidateNhaCungCap() {
 		NhaCungCap_DAO nhacungcap_dao = new NhaCungCap_DAO();
-		ArrayList<NhaCungCap> danhSachNhaCungCap = nhacungcap_dao.layTatCaNhaCungCap();
+		ArrayList<NhaCungCap> danhSachNhaCungCap = nhacungcap_dao.layTatCaNhaCungCap1();
 		ArrayList<String> dataSet = new ArrayList<String>();
 		for (NhaCungCap nhaCungCap : danhSachNhaCungCap) {
 			String element = nhaCungCap.getMaNCC() + " - " + nhaCungCap.getTenNCC();
@@ -181,7 +181,7 @@ public class GUI_NhapThuoc extends javax.swing.JPanel {
 
 	private void generateNhaCCByMaNCC(String maNhaCungCap) {
 		NhaCungCap_DAO nhacungcap_dao = new NhaCungCap_DAO();
-		ArrayList<NhaCungCap> ds = nhacungcap_dao.layTatCaNhaCungCap();
+		ArrayList<NhaCungCap> ds = nhacungcap_dao.layTatCaNhaCungCap1();
 		NhaCungCap nhaCungCap = new NhaCungCap(maNhaCungCap);
 		if (ds.contains(nhaCungCap)) {
 			nhaCungCap = ds.get(ds.indexOf(nhaCungCap));

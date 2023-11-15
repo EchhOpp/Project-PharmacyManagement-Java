@@ -38,6 +38,27 @@ public class NhaCungCap_DAO {
 		}
 		return dsncc;
 	}
+	
+	public ArrayList<NhaCungCap> layTatCaNhaCungCap1() {
+		try {
+			ArrayList<NhaCungCap> danhSachNhaCungCap = new ArrayList<NhaCungCap>();
+			PreparedStatement ps = ConnectDB.getConnection().prepareStatement("SELECT * FROM NhaCungCap");
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				NhaCungCap nhaCungCap = new NhaCungCap();
+				nhaCungCap.setMaNCC(rs.getString(1));
+				nhaCungCap.setTenNCC(rs.getString(2));
+				nhaCungCap.setEmail(rs.getString(3));
+				nhaCungCap.setSoDienThoai(rs.getString(4));
+				nhaCungCap.setDiaChi(rs.getString(5));
+				danhSachNhaCungCap.add(nhaCungCap);
+			}
+			return danhSachNhaCungCap;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
 	public boolean themNhaCungCap(NhaCungCap s) {
 		try {
 			PreparedStatement ps = ConnectDB.getConnection()

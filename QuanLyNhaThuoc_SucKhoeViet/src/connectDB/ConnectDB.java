@@ -14,9 +14,9 @@ public class ConnectDB {
 
 	public static void connect() {
 		try {
-			String url = "jdbc:sqlserver://localhost:1433;databasename=QuanLyQuayThuocSucKhoeViet";
+			String url = "jdbc:sqlserver://localhost:1433;databasename=QuanLyQuayThuocBenhVienTest";
 			String user = "sa";
-			String password = "123";
+			String password = "sapassword";
 			con = DriverManager.getConnection(url, user, password);
 		} catch (SQLException e) {
 			e.printStackTrace();
