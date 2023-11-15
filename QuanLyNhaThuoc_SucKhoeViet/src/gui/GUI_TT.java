@@ -4,16 +4,22 @@
  */
 package gui;
 
+import entities.NhanVien;
+
 /**
  *
  * @author NguyenThanhLuan
  */
 public class GUI_TT extends javax.swing.JPanel {
+	private NhanVien emp;
     /**
      * Creates new form GUI_BTN
+     * @param emp 
      */
-    public GUI_TT() {
+    public GUI_TT(NhanVien emp) {
         initComponents();
+        this.emp = emp;
+        XinChao.setText("Xin chào: "+emp.getHoTenNhanVien());
     }
 
     /**
@@ -34,7 +40,7 @@ public class GUI_TT extends javax.swing.JPanel {
         jPanel7 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        XinChao = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -79,7 +85,7 @@ public class GUI_TT extends javax.swing.JPanel {
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel3.setText("Xin chào, Nguyễn Thành Luân");
+        XinChao.setText("Xin chào, Nguyễn Thành Luân");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -87,14 +93,14 @@ public class GUI_TT extends javax.swing.JPanel {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3)
+                .addComponent(XinChao)
                 .addContainerGap(39, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(jLabel3)
+                .addComponent(XinChao)
                 .addContainerGap(263, Short.MAX_VALUE))
         );
 
@@ -133,10 +139,10 @@ public class GUI_TT extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel XinChao;
     private javax.swing.Box.Filler filler2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;

@@ -5,6 +5,8 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 
+import entities.NhanVien;
+
 public class MainTest {
 //	public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */
@@ -44,7 +46,10 @@ public class MainTest {
 			UIManager.setLookAndFeel(new FlatMacLightLaf());
 		} catch (UnsupportedLookAndFeelException e) {
 		}
-         GUI_TrangChu gui_Main = new GUI_TrangChu();
-         gui_Main.setVisible(true);
+//		GUI_TrangChu_QL gui_Main = new GUI_TrangChu_QL(nhanVien);
+//         gui_Main.setVisible(true);
+
+		GUI_Login gui_Login = new GUI_Login();
+		gui_Login.setVisible(true);
 	}
 }

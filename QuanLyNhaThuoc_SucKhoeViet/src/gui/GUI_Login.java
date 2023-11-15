@@ -4,17 +4,61 @@
  */
 package gui;
 
+import java.awt.Toolkit;
+import java.security.NoSuchAlgorithmException;
+
+import javax.swing.JOptionPane;
+
+import dao.NhanVien_DAO;
+import entities.NhanVien;
+import utilities.MyExtension;
+
 /**
  *
  * @author NguyenThanhLuan
  */
 public class GUI_Login extends javax.swing.JFrame {
-
+	private static NhanVien employee;
     /**
      * Creates new form GUI_Login
      */
+	public void dangNhap() {
+		try {
+			String username = txtUser.getText().trim();
+			String password = MyExtension.ConvertHashToString(txtPassword.getText().trim());
+			NhanVien_DAO nv_dao = new NhanVien_DAO();
+			employee = nv_dao.layNhanVien(username);
+			if (employee == null) {
+				Toolkit.getDefaultToolkit().beep();
+				JOptionPane.showMessageDialog(null, "Không tìm thấy nhân viên nào có mã vừa nhập");
+			} else {
+				if (password.equals(employee.getTaiKhoan().getMatKhau().trim())) {
+					txtPassword.setText("Không cho phép hiển thị");
+					if (employee.getTaiKhoan().getTrangThai().trim().equalsIgnoreCase("Tài khoản đang mở")) {
+						if (employee.getChucVu().trim().equalsIgnoreCase("Quản lý nhà thuốc")) {
+							GUI_TrangChu_QL ql = new GUI_TrangChu_QL(employee);
+							ql.setVisible(true);
+							setVisible(false);
+						}
+						else if (employee.getChucVu().trim().equalsIgnoreCase("Nhân Viên bán thuốc")) {
+							GUI_TrangChu_NV nv = new GUI_TrangChu_NV(employee);
+							nv.setVisible(true);
+							setVisible(false);
+						}
+					}
+				} else {
+					Toolkit.getDefaultToolkit().beep();
+					JOptionPane.showMessageDialog(txtPassword, "Mật khẩu bạn nhập chưa đúng", "Cảnh báo",
+							JOptionPane.WARNING_MESSAGE);
+				}
+			}
+		 }catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+	}
     public GUI_Login() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -38,23 +82,22 @@ public class GUI_Login extends javax.swing.JFrame {
         jPanel9 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtUser = new javax.swing.JTextField();
         jPanel10 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtPassword = new javax.swing.JPasswordField();
         jPanel6 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnLogin = new javax.swing.JButton();
+        btnCancel = new javax.swing.JButton();
         jPanel12 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.BorderLayout());
 
         jPanel13.setPreferredSize(new java.awt.Dimension(900, 1));
 
@@ -119,9 +162,9 @@ public class GUI_Login extends javax.swing.JFrame {
         jLabel5.setText("User name:");
         jPanel9.add(jLabel5);
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField1.setText("NguyenThanhLuan");
-        jPanel9.add(jTextField1);
+        txtUser.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtUser.setText("NV20200001");
+        jPanel9.add(txtUser);
 
         jPanel8.add(jPanel9);
 
@@ -133,9 +176,9 @@ public class GUI_Login extends javax.swing.JFrame {
         jLabel8.setText("Password:");
         jPanel10.add(jLabel8);
 
-        jPasswordField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPasswordField1.setText("123456789");
-        jPanel10.add(jPasswordField1);
+        txtPassword.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtPassword.setText("123456");
+        jPanel10.add(txtPassword);
 
         jPanel8.add(jPanel10);
 
@@ -157,26 +200,31 @@ public class GUI_Login extends javax.swing.JFrame {
         jPanel7.setPreferredSize(new java.awt.Dimension(405, 160));
         jPanel7.setLayout(new java.awt.GridLayout(2, 0));
 
-        jPanel11.setLayout(new java.awt.FlowLayout(1, 10, 5));
+        jPanel11.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 5));
 
-        jButton1.setBackground(new java.awt.Color(15, 145, 239));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Đăng nhập");
-        jButton1.setPreferredSize(new java.awt.Dimension(180, 45));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnLogin.setBackground(new java.awt.Color(15, 145, 239));
+        btnLogin.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnLogin.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogin.setText("Đăng nhập");
+        btnLogin.setPreferredSize(new java.awt.Dimension(180, 45));
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnLoginActionPerformed(evt);
             }
         });
-        jPanel11.add(jButton1);
+        jPanel11.add(btnLogin);
 
-        jButton2.setBackground(new java.awt.Color(15, 145, 239));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Thoát");
-        jButton2.setPreferredSize(new java.awt.Dimension(180, 45));
-        jPanel11.add(jButton2);
+        btnCancel.setBackground(new java.awt.Color(15, 145, 239));
+        btnCancel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnCancel.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancel.setText("Thoát");
+        btnCancel.setPreferredSize(new java.awt.Dimension(180, 45));
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
+        jPanel11.add(btnCancel);
 
         jPanel7.add(jPanel11);
 
@@ -197,9 +245,14 @@ public class GUI_Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        dangNhap();
+    }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+       System.exit(0);
+    }//GEN-LAST:event_btnCancelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -207,8 +260,8 @@ public class GUI_Login extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -231,7 +284,7 @@ public class GUI_Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,17 +4,47 @@
  */
 package gui;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
+import javax.swing.table.DefaultTableModel;
+
+import dao.Thuoc_DAO;
+import entities.Thuoc;
+
 /**
  *
  * @author NguyenThanhLuan
  */
 public class GUI_TimKiemThuoc extends javax.swing.JPanel {
-
+	private DefaultTableModel modelThuoc;
+	private Thuoc_DAO thuoc_DAO;
+	private ArrayList<Thuoc> thuocs;
     /**
      * Creates new form GUI_TimKiemThuoc
      */
+	private SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+	
+	private String layNgayHienTai() {
+		Date ngayHienTai = new Date();
+		return sdf.format(ngayHienTai);
+	}
+	
+	private void loadDuLieu() {
+		 tableThuoc.removeAll();
+		 tableThuoc.setRowSelectionAllowed(false);
+		 modelThuoc.setRowCount(0);
+	     thuocs = thuoc_DAO.layTatCaThuoc();
+	     int stt = 1;
+	     for(Thuoc thuoc : thuocs) {
+	    	 modelThuoc.addRow(new Object[] {stt++, thuoc.getMaThuoc(), thuoc.getTenThuoc(), thuoc.getLoaiThuoc(), thuoc.getDonViThuoc(), thuoc.getXuatXu(), thuoc.getSoLuongTon(), thuoc.getNhaCungCap().getMaNCC(), thuoc.getNhaCungCap().getTenNCC()});
+	     }
+	}
     public GUI_TimKiemThuoc() {
         initComponents();
+        thuoc_DAO = new Thuoc_DAO();
+        loadDuLieu();
     }
 
     /**
@@ -37,7 +67,7 @@ public class GUI_TimKiemThuoc extends javax.swing.JPanel {
         jPanel7 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 32767));
-        jTextField1 = new javax.swing.JTextField();
+        jTextField1 = new javax.swing.JTextField(layNgayHienTai());
         jPanel12 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         filler5 = new javax.swing.Box.Filler(new java.awt.Dimension(8, 0), new java.awt.Dimension(8, 0), new java.awt.Dimension(8, 32767));
@@ -59,7 +89,7 @@ public class GUI_TimKiemThuoc extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         jPanel34 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableThuoc = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         filler6 = new javax.swing.Box.Filler(new java.awt.Dimension(20, 0), new java.awt.Dimension(20, 0), new java.awt.Dimension(20, 32767));
@@ -156,15 +186,16 @@ public class GUI_TimKiemThuoc extends javax.swing.JPanel {
         jPanel34.setBorder(javax.swing.BorderFactory.createTitledBorder("Chi tiết hóa đơn"));
         jPanel34.setLayout(new java.awt.BorderLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableThuoc.setModel(modelThuoc =new DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "STT", "Mã thuốc", "Tên thuốc", "Loại thuốc", "Đơn vị thuốc", "Xuất xứ", "Nhà cung cấp", "Đơn giá", "Số lượng", "Thành tiền"
+                "STT", "Mã thuốc", "Tên thuốc", "Loại thuốc", "Đơn vị thuốc", "Xuất xứ", "Số lượng tồn",
+                "Mã nhà cung cấp", "Tên nhà cung cấp"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tableThuoc);
 
         jPanel34.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
@@ -218,9 +249,9 @@ public class GUI_TimKiemThuoc extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JTable tableThuoc;
     // End of variables declaration//GEN-END:variables
 }
