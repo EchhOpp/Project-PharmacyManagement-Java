@@ -7,6 +7,7 @@ package gui;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 import entities.NhanVien;
 
@@ -31,6 +32,7 @@ public class GUI_TrangChu_QL extends javax.swing.JFrame {
      */
     public GUI_TrangChu_QL(NhanVien nv) {
         initComponents();
+        btnThoat.setVisible(false);
         this.emp = nv;
         gui_BTN = new GUI_TT(this.emp);
         this.PnlChuyenHuong.add(gui_BTN);
@@ -79,6 +81,7 @@ public class GUI_TrangChu_QL extends javax.swing.JFrame {
         menuQuanLiTK = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
         PnlChuyenHuong.setBackground(new java.awt.Color(255, 255, 255));
         PnlChuyenHuong.setLayout(new java.awt.BorderLayout());
         getContentPane().add(PnlChuyenHuong, java.awt.BorderLayout.CENTER);
@@ -94,6 +97,11 @@ public class GUI_TrangChu_QL extends javax.swing.JFrame {
         btnDangXuat.setText("Đăng xuất");
         btnDangXuat.setMargin(new java.awt.Insets(1, 14, 1, 14));
         btnDangXuat.setPreferredSize(new java.awt.Dimension(120, 40));
+        btnDangXuat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDangXuatActionPerformed(evt);
+            }
+        });
         jPanel5.add(btnDangXuat);
 
         btnThoat.setBackground(new java.awt.Color(15, 145, 239));
@@ -121,6 +129,11 @@ public class GUI_TrangChu_QL extends javax.swing.JFrame {
         menuTT.setText("Trang chủ");
         menuTT.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         menuTT.setMargin(new java.awt.Insets(3, 10, 3, 10));
+        menuTT.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuTTMouseClicked(evt);
+            }
+        });
         menuTT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuTTActionPerformed(evt);
@@ -300,22 +313,27 @@ public class GUI_TrangChu_QL extends javax.swing.JFrame {
 
     private void menuTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTTActionPerformed
     	this.thayDoiPanelChinh(gui_BTN, menuTT);
+        btnThoat.setVisible(true);
     }//GEN-LAST:event_menuTTActionPerformed
 
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
     	this.thayDoiPanelChinh(gui_BTN, menuTT);
+        btnThoat.setVisible(false);
     }//GEN-LAST:event_btnThoatActionPerformed
 
     private void btnNhapThuocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhapThuocActionPerformed
     	this.thayDoiPanelChinh(gui_NhapThuoc, menuSP);
+        btnThoat.setVisible(true);
     }//GEN-LAST:event_btnNhapThuocActionPerformed
 
     private void MenuItemNhapThuocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemNhapThuocActionPerformed
     	this.thayDoiPanelChinh(gui_NhapThuoc, menuSP);
+        btnThoat.setVisible(true);
     }//GEN-LAST:event_MenuItemNhapThuocActionPerformed
     
     private void menuTaoHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTaoHDActionPerformed
     	this.thayDoiPanelChinh(guiTaoHoaDon, menuHD);
+        btnThoat.setVisible(true);
     }//GEN-LAST:event_menuTaoHDActionPerformed
 
     private void menuSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSPActionPerformed
@@ -324,10 +342,12 @@ public class GUI_TrangChu_QL extends javax.swing.JFrame {
 
     private void menuDanhSachThuocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuDanhSachThuocActionPerformed
     	this.thayDoiPanelChinh(gui_TimKiemThuoc, menuSP);
+        btnThoat.setVisible(true);
     }//GEN-LAST:event_menuDanhSachThuocActionPerformed
 
     private void menuXemDSHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuXemDSHDActionPerformed
         this.thayDoiPanelChinh(gui_TimKiemHoaDon, menuHD);
+        btnThoat.setVisible(true);
     }//GEN-LAST:event_menuXemDSHDActionPerformed
 
     private void menuKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuKHActionPerformed
@@ -336,18 +356,22 @@ public class GUI_TrangChu_QL extends javax.swing.JFrame {
      
     private void DanhSachNhapThuocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DanhSachNhapThuocActionPerformed
     	 this.thayDoiPanelChinh(gui_DanhSachNhapThuoc, menuSP);
+         btnThoat.setVisible(true);
     }//GEN-LAST:event_DanhSachNhapThuocActionPerformed
 
     private void menuNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNVActionPerformed
         this.thayDoiPanelChinh(gui_quanLiNhanVien, menuNV);
+        btnThoat.setVisible(true);
     }//GEN-LAST:event_menuNVActionPerformed
 
     private void qlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qlActionPerformed
       this.thayDoiPanelChinh(gui_quanLiKhachHang, menuKH);
+      btnThoat.setVisible(true);
     }//GEN-LAST:event_qlActionPerformed
 
     private void menuQuanLiNCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuQuanLiNCCActionPerformed
         this.thayDoiPanelChinh(gui_QuanLiNhaCungCap, menuNCC);
+        btnThoat.setVisible(true);
     }//GEN-LAST:event_menuQuanLiNCCActionPerformed
 
     private void menuTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTKActionPerformed
@@ -356,11 +380,26 @@ public class GUI_TrangChu_QL extends javax.swing.JFrame {
 
     private void menuQuanLiTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuQuanLiTKActionPerformed
          this.thayDoiPanelChinh(gui_QuanLiThongKe, menuTK);
+         btnThoat.setVisible(true);
     }//GEN-LAST:event_menuQuanLiTKActionPerformed
 
     private void MenuNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuNVActionPerformed
        this.thayDoiPanelChinh(gui_quanLiNhanVien, menuNV);
+       btnThoat.setVisible(true);
     }//GEN-LAST:event_MenuNVActionPerformed
+
+    private void menuTTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuTTMouseClicked
+       this.thayDoiPanelChinh(gui_BTN, menuTT);
+    }//GEN-LAST:event_menuTTMouseClicked
+
+    private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed
+    	int result = JOptionPane.showConfirmDialog(this, "Bạn có chắc chăn muốn đăng xuất hay không!", "Xác nhận", JOptionPane.YES_NO_OPTION);
+        if(result == JOptionPane.YES_OPTION) {
+        	this.setVisible(false);
+        	GUI_Login gui_Login = new GUI_Login();
+        	gui_Login.setVisible(true);
+        }
+    }//GEN-LAST:event_btnDangXuatActionPerformed
 
 
     /**

@@ -4,6 +4,10 @@
  */
 package gui;
 
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
 import entities.NhanVien;
 
 /**
@@ -12,6 +16,14 @@ import entities.NhanVien;
  */
 public class GUI_TT extends javax.swing.JPanel {
 	private NhanVien emp;
+	
+	private SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+	private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+	private String layNgayHienTai() {
+		Date ngayHienTai = new Date();
+		return sdf.format(ngayHienTai);
+	}
+	
     /**
      * Creates new form GUI_BTN
      * @param emp 
@@ -41,6 +53,7 @@ public class GUI_TT extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         XinChao = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField("Ngày hiện nay" + layNgayHienTai());
         jPanel4 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -85,7 +98,15 @@ public class GUI_TT extends javax.swing.JPanel {
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
 
+        XinChao.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        XinChao.setForeground(new java.awt.Color(0, 0, 153));
         XinChao.setText("Xin chào, Nguyễn Thành Luân");
+
+        jTextField1.setEditable(false);
+        jTextField1.setMaximumSize(new java.awt.Dimension(100, 2147483647));
+        jTextField1.setMinimumSize(new java.awt.Dimension(100, 22));
+        jTextField1.setOpaque(true);
+        jTextField1.setPreferredSize(new java.awt.Dimension(180, 35));
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -93,15 +114,19 @@ public class GUI_TT extends javax.swing.JPanel {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(XinChao)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(XinChao)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(XinChao)
-                .addContainerGap(263, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(190, Short.MAX_VALUE))
         );
 
         jPanel3.add(jPanel8, java.awt.BorderLayout.CENTER);
@@ -118,14 +143,15 @@ public class GUI_TT extends javax.swing.JPanel {
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(15, 102, 165));
-        jLabel4.setText("Danh sách các chức năng");
+        jLabel4.setText("Nhà thuốc Sức Khỏe Việt");
         jPanel6.add(jLabel4);
 
         jPanel4.add(jPanel6, java.awt.BorderLayout.NORTH);
 
+        jPanel5.setPreferredSize(new java.awt.Dimension(1500, 533));
         jPanel5.setLayout(new java.awt.BorderLayout());
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/background/backGroupChinh.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/background/thuoc-bg.png"))); // NOI18N
         jPanel5.add(jLabel5, java.awt.BorderLayout.CENTER);
 
         jPanel4.add(jPanel5, java.awt.BorderLayout.CENTER);
@@ -153,6 +179,7 @@ public class GUI_TT extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel pnlBTN;
     // End of variables declaration//GEN-END:variables
 }

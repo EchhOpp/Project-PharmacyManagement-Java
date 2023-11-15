@@ -4,17 +4,52 @@
  */
 package gui;
 
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Date;
+
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+import dao.ChiTietHoaDon_DAO;
+import dao.PhieuNhapThuoc_DAO;
+import entities.PhieuNhapThuoc;
+
 /**
  *
  * @author NguyenThanhLuan
  */
 public class GUI_DanhSachNhapThuoc extends javax.swing.JPanel {
-
+	private DefaultTableModel modelPhieuNhapThuoc;
+	private SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+	private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+	private PhieuNhapThuoc_DAO phieuNhapThuoc_DAO = new PhieuNhapThuoc_DAO();
+	ArrayList<PhieuNhapThuoc> phieuNhapThuocs;
+	
+	
+	private void loadDuLieu() {
+		tablePhieuNhapThuoc.removeAll();
+		tablePhieuNhapThuoc.setRowSelectionAllowed(false);
+	    modelPhieuNhapThuoc.setRowCount(0);
+	    int stt = 1;
+	    for(PhieuNhapThuoc pn : phieuNhapThuocs) {
+	    	modelPhieuNhapThuoc.addRow(new Object[] {stt++,pn.getMaPhieu(), pn.getThuoc().getMaThuoc(), pn.getThuoc().getTenThuoc(), pn.getNgayNhap(), pn.getNgaySanXuat(), pn.getNgayHetHan(), pn.getThuoc().getLoaiThuoc(), pn.getThuoc().getDonViThuoc(), pn.getDonGiaMua(),pn.getThuoc().getXuatXu(),pn.getSoLuongNhap()});
+	    }
+	}
+	
+	private String layNgayHienTai() {
+		Date ngayHienTai = new Date();
+		return sdf.format(ngayHienTai);
+	}
+	
     /**
      * Creates new form GUI_DanhSachNhapThuoc
      */
     public GUI_DanhSachNhapThuoc() {
         initComponents();
+    	phieuNhapThuocs = phieuNhapThuoc_DAO.layTatCaPhieuNhapThuoc();
+    	loadDuLieu();
     }
 
     /**
@@ -58,14 +93,8 @@ public class GUI_DanhSachNhapThuoc extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jPanel21 = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
         jPanel22 = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jPanel23 = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
         jPanel11 = new javax.swing.JPanel();
         jPanel17 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
@@ -73,7 +102,7 @@ public class GUI_DanhSachNhapThuoc extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         jPanel34 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablePhieuNhapThuoc = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         filler6 = new javax.swing.Box.Filler(new java.awt.Dimension(20, 0), new java.awt.Dimension(20, 0), new java.awt.Dimension(20, 32767));
@@ -85,7 +114,7 @@ public class GUI_DanhSachNhapThuoc extends javax.swing.JPanel {
         jPanel2.setPreferredSize(new java.awt.Dimension(444, 370));
         jPanel2.setLayout(new java.awt.BorderLayout());
 
-        jPanel4.setLayout(new java.awt.GridLayout());
+        jPanel4.setLayout(new java.awt.GridLayout(1, 0));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/nhanvien/pngegg.png"))); // NOI18N
         jPanel8.add(jLabel1);
@@ -192,34 +221,12 @@ public class GUI_DanhSachNhapThuoc extends javax.swing.JPanel {
         jPanel19.add(jPanel20);
 
         jPanel21.setLayout(new javax.swing.BoxLayout(jPanel21, javax.swing.BoxLayout.LINE_AXIS));
-
-        jLabel10.setText("Ngày hết hạn:");
-        jLabel10.setPreferredSize(new java.awt.Dimension(100, 16));
-        jPanel21.add(jLabel10);
-        jPanel21.add(jDateChooser2);
-
         jPanel19.add(jPanel21);
 
         jPanel22.setLayout(new javax.swing.BoxLayout(jPanel22, javax.swing.BoxLayout.LINE_AXIS));
-
-        jLabel11.setText("Loại thuốc:");
-        jLabel11.setPreferredSize(new java.awt.Dimension(100, 16));
-        jPanel22.add(jLabel11);
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel22.add(jComboBox1);
-
         jPanel19.add(jPanel22);
 
         jPanel23.setLayout(new javax.swing.BoxLayout(jPanel23, javax.swing.BoxLayout.LINE_AXIS));
-
-        jLabel12.setText("Xuất xứ:");
-        jLabel12.setPreferredSize(new java.awt.Dimension(100, 16));
-        jPanel23.add(jLabel12);
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel23.add(jComboBox2);
-
         jPanel19.add(jPanel23);
 
         jPanel11.setLayout(new java.awt.GridLayout(1, 0, 25, 0));
@@ -263,15 +270,13 @@ public class GUI_DanhSachNhapThuoc extends javax.swing.JPanel {
         jPanel34.setBorder(javax.swing.BorderFactory.createTitledBorder("Chi tiết hóa đơn"));
         jPanel34.setLayout(new java.awt.BorderLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablePhieuNhapThuoc.setModel(modelPhieuNhapThuoc = new DefaultTableModel(
             new Object [][] {
-
             },
-            new String [] {
-                "STT", "Mã thuốc", "Tên thuốc", "Loại thuốc", "Đơn vị thuốc", "Xuất xứ", "Nhà cung cấp", "Đơn giá", "Số lượng", "Thành tiền"
+            new String [] { "STT", "Mã phiếu", "Mã thuốc", "Tên thuốc", "Ngày nhập", "Ngày sản xuất", "Ngày hết hạn", "Loại thuốc", "Đơn vị thuốc", "Đơn giá mua", "Xuất xứ", "Số lượng nhập"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablePhieuNhapThuoc);
 
         jPanel34.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
@@ -310,14 +315,8 @@ public class GUI_DanhSachNhapThuoc extends javax.swing.JPanel {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -349,11 +348,11 @@ public class GUI_DanhSachNhapThuoc extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JTable tablePhieuNhapThuoc;
     // End of variables declaration//GEN-END:variables
 }

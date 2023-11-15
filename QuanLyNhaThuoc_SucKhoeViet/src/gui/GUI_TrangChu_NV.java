@@ -94,7 +94,7 @@ public class GUI_TrangChu_NV extends javax.swing.JFrame {
         btnThoat.setBackground(new java.awt.Color(15, 145, 239));
         btnThoat.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnThoat.setForeground(new java.awt.Color(255, 255, 255));
-        btnThoat.setText("Thoát");
+        btnThoat.setText("Trở về");
         btnThoat.setMargin(new java.awt.Insets(1, 14, 1, 14));
         btnThoat.setPreferredSize(new java.awt.Dimension(120, 40));
         btnThoat.addActionListener(new java.awt.event.ActionListener() {

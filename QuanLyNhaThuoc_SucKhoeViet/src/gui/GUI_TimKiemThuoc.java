@@ -19,8 +19,8 @@ import entities.Thuoc;
  */
 public class GUI_TimKiemThuoc extends javax.swing.JPanel {
 	private DefaultTableModel modelThuoc;
-	private Thuoc_DAO thuoc_DAO;
-	private ArrayList<Thuoc> thuocs;
+	private Thuoc_DAO thuoc_DAO = new Thuoc_DAO();
+	private ArrayList<Thuoc> thuocs = new ArrayList<Thuoc>();
     /**
      * Creates new form GUI_TimKiemThuoc
      */
@@ -41,9 +41,96 @@ public class GUI_TimKiemThuoc extends javax.swing.JPanel {
 	    	 modelThuoc.addRow(new Object[] {stt++, thuoc.getMaThuoc(), thuoc.getTenThuoc(), thuoc.getLoaiThuoc(), thuoc.getDonViThuoc(), thuoc.getXuatXu(), thuoc.getSoLuongTon(), thuoc.getNhaCungCap().getMaNCC(), thuoc.getNhaCungCap().getTenNCC()});
 	     }
 	}
+	
+	private void doDuLieuLenXuatXu() {
+	      ArrayList<String> list = new ArrayList<>();
+
+	        for (Thuoc thuoc : thuocs) {
+	            // Kiểm tra xem list có tồn tại chưa
+	            if (list == null) {
+	                list = new ArrayList<>();
+	            }
+	            // Kiểm tra xem xuatXu đã được thêm vào list chưa
+	            if (!list.contains(thuoc.getXuatXu())) {
+	                list.add(thuoc.getXuatXu());
+	            }
+	        }
+
+	        // Đổ dữ liệu từ list vào comboBox
+	        for (String xuatXu : list) {
+	            cbXuatXU.addItem(xuatXu);
+	        }
+	    }
+	
+	private ArrayList<Thuoc> timkiem() {
+		ArrayList<Thuoc> dsTimKiem = new ArrayList<Thuoc>();
+		String maThuoc = txtMaThuoc.getText();
+		String loai = cbLoaiThuoc.getSelectedItem().toString();
+		Object txtXuaXu = cbXuatXU.getSelectedItem();
+		String maNCC = txtNhaCungCap.getText();
+		if(maThuoc.length() > 0) {
+			for(Thuoc thuoc : thuocs) {
+				if(thuoc.getMaThuoc().contains(maThuoc) && thuoc.getLoaiThuoc().equals(loai))
+					dsTimKiem.add(thuoc);
+			}
+		}	
+		if(txtXuaXu != null) {
+			String xuatXu = txtXuaXu.toString();
+			for(Thuoc thuoc : thuocs) {
+				if(thuoc.getXuatXu().equals(xuatXu) && thuoc.getLoaiThuoc().equals(loai))
+					dsTimKiem.add(thuoc);
+			}
+			if(maThuoc.length() > 0) {
+				dsTimKiem.clear();
+				for(Thuoc thuoc : thuocs) {
+					if(thuoc.getXuatXu().equals(xuatXu) && thuoc.getLoaiThuoc().equals(loai) && thuoc.getMaThuoc().contains(maThuoc))
+						dsTimKiem.add(thuoc);
+				}
+			}
+		}
+		if(maNCC.length() > 0) {
+			for(Thuoc thuoc : thuocs) {
+				if(thuoc.getNhaCungCap().getMaNCC().contains(maNCC) && thuoc.getLoaiThuoc().equals(loai))
+					dsTimKiem.add(thuoc);
+			}
+			if(maThuoc.length() > 0) {
+				dsTimKiem.clear();
+				for(Thuoc thuoc : thuocs) {
+					if(thuoc.getNhaCungCap().getMaNCC().contains(maNCC) && thuoc.getLoaiThuoc().equals(loai) && thuoc.getMaThuoc().contains(maThuoc))
+						dsTimKiem.add(thuoc);
+				}
+			}
+			if(txtXuaXu != null) {
+				String xuatXu = txtXuaXu.toString();
+				dsTimKiem.clear();
+				for(Thuoc thuoc : thuocs) {
+					if(thuoc.getNhaCungCap().getMaNCC().contains(maNCC) && thuoc.getLoaiThuoc().equals(loai) && thuoc.getXuatXu().equals(xuatXu))
+						dsTimKiem.add(thuoc);
+				}
+			}
+			if(txtXuaXu != null && maThuoc.length() > 0) {
+					String xuatXu = txtXuaXu.toString();
+					dsTimKiem.clear();
+					for(Thuoc thuoc : thuocs) {
+						if(thuoc.getNhaCungCap().getMaNCC().contains(maNCC) && thuoc.getLoaiThuoc().equals(loai) && thuoc.getXuatXu().equals(xuatXu) && thuoc.getMaThuoc().contains(maThuoc))
+							dsTimKiem.add(thuoc);
+					}
+				}
+			}
+			if(txtXuaXu == null && maThuoc.length() < 0 && maNCC.length() <0) {
+				dsTimKiem.clear();
+				for(Thuoc thuoc : thuocs) {
+					if( thuoc.getLoaiThuoc().equals(loai))
+						dsTimKiem.add(thuoc);
+				}
+			}
+				
+		return dsTimKiem;
+	}
+	
     public GUI_TimKiemThuoc() {
         initComponents();
-        thuoc_DAO = new Thuoc_DAO();
+        thuocs = thuoc_DAO.layTatCaThuoc();
         loadDuLieu();
     }
 
@@ -71,27 +158,27 @@ public class GUI_TimKiemThuoc extends javax.swing.JPanel {
         jPanel12 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         filler5 = new javax.swing.Box.Filler(new java.awt.Dimension(8, 0), new java.awt.Dimension(8, 0), new java.awt.Dimension(8, 32767));
-        jTextField2 = new javax.swing.JTextField();
+        txtMaThuoc = new javax.swing.JTextField();
         filler4 = new javax.swing.Box.Filler(new java.awt.Dimension(40, 0), new java.awt.Dimension(40, 0), new java.awt.Dimension(40, 32767));
         jLabel5 = new javax.swing.JLabel();
         filler7 = new javax.swing.Box.Filler(new java.awt.Dimension(8, 0), new java.awt.Dimension(8, 0), new java.awt.Dimension(8, 32767));
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbLoaiThuoc = new javax.swing.JComboBox<>();
         filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(40, 0), new java.awt.Dimension(40, 0), new java.awt.Dimension(40, 32767));
         jLabel6 = new javax.swing.JLabel();
         filler8 = new javax.swing.Box.Filler(new java.awt.Dimension(8, 0), new java.awt.Dimension(8, 0), new java.awt.Dimension(8, 32767));
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cbXuatXU = new javax.swing.JComboBox<>();
         filler9 = new javax.swing.Box.Filler(new java.awt.Dimension(40, 0), new java.awt.Dimension(40, 0), new java.awt.Dimension(40, 32767));
         jLabel7 = new javax.swing.JLabel();
         filler10 = new javax.swing.Box.Filler(new java.awt.Dimension(8, 0), new java.awt.Dimension(8, 0), new java.awt.Dimension(8, 32767));
-        jTextField4 = new javax.swing.JTextField();
+        txtNhaCungCap = new javax.swing.JTextField();
         filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 32767));
-        jButton1 = new javax.swing.JButton();
+        btnTimKiem = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel34 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableThuoc = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
+        Reset = new javax.swing.JButton();
         filler6 = new javax.swing.Box.Filler(new java.awt.Dimension(20, 0), new java.awt.Dimension(20, 0), new java.awt.Dimension(20, 32767));
 
         setLayout(new java.awt.BorderLayout());
@@ -142,40 +229,54 @@ public class GUI_TimKiemThuoc extends javax.swing.JPanel {
         jLabel4.setText("Mã thuốc: ");
         jPanel12.add(jLabel4);
         jPanel12.add(filler5);
-        jPanel12.add(jTextField2);
+        jPanel12.add(txtMaThuoc);
         jPanel12.add(filler4);
 
         jLabel5.setText("Loại thuốc:");
         jPanel12.add(jLabel5);
         jPanel12.add(filler7);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.setMinimumSize(new java.awt.Dimension(220, 22));
-        jComboBox1.setPreferredSize(new java.awt.Dimension(220, 22));
-        jPanel12.add(jComboBox1);
+        cbLoaiThuoc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Thuốc kê đơn", "Thuốc không kê đơn", "Thực phẩm chức năng", "Chăm sóc sức khỏe" }));
+        cbLoaiThuoc.setMinimumSize(new java.awt.Dimension(220, 22));
+        cbLoaiThuoc.setPreferredSize(new java.awt.Dimension(220, 22));
+        jPanel12.add(cbLoaiThuoc);
         jPanel12.add(filler3);
 
         jLabel6.setText("Xuất xứ: ");
         jPanel12.add(jLabel6);
         jPanel12.add(filler8);
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox2.setMinimumSize(new java.awt.Dimension(220, 22));
-        jComboBox2.setPreferredSize(new java.awt.Dimension(220, 22));
-        jPanel12.add(jComboBox2);
+        cbXuatXU.setMinimumSize(new java.awt.Dimension(220, 22));
+        cbXuatXU.setPreferredSize(new java.awt.Dimension(220, 22));
+        cbXuatXU.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cbXuatXUMouseClicked(evt);
+            }
+        });
+        cbXuatXU.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbXuatXUActionPerformed(evt);
+            }
+        });
+        jPanel12.add(cbXuatXU);
         jPanel12.add(filler9);
 
         jLabel7.setText("Tên nhà cung cấp: ");
         jPanel12.add(jLabel7);
         jPanel12.add(filler10);
-        jPanel12.add(jTextField4);
+        jPanel12.add(txtNhaCungCap);
         jPanel12.add(filler2);
 
-        jButton1.setText("Tìm kiếm");
-        jButton1.setMaximumSize(new java.awt.Dimension(79, 30));
-        jButton1.setMinimumSize(new java.awt.Dimension(79, 30));
-        jButton1.setPreferredSize(new java.awt.Dimension(79, 30));
-        jPanel12.add(jButton1);
+        btnTimKiem.setText("Tìm kiếm");
+        btnTimKiem.setMaximumSize(new java.awt.Dimension(79, 35));
+        btnTimKiem.setMinimumSize(new java.awt.Dimension(79, 30));
+        btnTimKiem.setPreferredSize(new java.awt.Dimension(79, 35));
+        btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimKiemActionPerformed(evt);
+            }
+        });
+        jPanel12.add(btnTimKiem);
 
         jPanel2.add(jPanel12, java.awt.BorderLayout.CENTER);
 
@@ -201,8 +302,13 @@ public class GUI_TimKiemThuoc extends javax.swing.JPanel {
 
         jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
-        jButton2.setText("Xem chi tiết");
-        jPanel1.add(jButton2);
+        Reset.setText("Reset table");
+        Reset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ResetActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Reset);
         jPanel1.add(filler6);
 
         jPanel34.add(jPanel1, java.awt.BorderLayout.PAGE_END);
@@ -214,9 +320,41 @@ public class GUI_TimKiemThuoc extends javax.swing.JPanel {
         add(ALL, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cbXuatXUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbXuatXUActionPerformed
+        // TODO add your handling code here:
+        doDuLieuLenXuatXu();
+    }//GEN-LAST:event_cbXuatXUActionPerformed
+
+    private void cbXuatXUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbXuatXUMouseClicked
+        // TODO add your handling code here:
+        doDuLieuLenXuatXu();
+    }//GEN-LAST:event_cbXuatXUMouseClicked
+
+    private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
+        // TODO add your handling code here:
+    	 ArrayList<Thuoc> list = new ArrayList<Thuoc>();
+    	 tableThuoc.removeAll();
+         tableThuoc.setRowSelectionAllowed(false);
+         modelThuoc.setRowCount(0);
+         list = timkiem();
+         int stt = 1;
+	     for(Thuoc thuoc : list) {
+	    	 modelThuoc.addRow(new Object[] {stt++, thuoc.getMaThuoc(), thuoc.getTenThuoc(), thuoc.getLoaiThuoc(), thuoc.getDonViThuoc(), thuoc.getXuatXu(), thuoc.getSoLuongTon(), thuoc.getNhaCungCap().getMaNCC(), thuoc.getNhaCungCap().getTenNCC()});
+	     }
+    }//GEN-LAST:event_btnTimKiemActionPerformed
+
+    private void ResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetActionPerformed
+        // TODO add your handling code here:
+        loadDuLieu();
+    }//GEN-LAST:event_ResetActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ALL;
+    private javax.swing.JButton Reset;
+    private javax.swing.JButton btnTimKiem;
+    private javax.swing.JComboBox<String> cbLoaiThuoc;
+    private javax.swing.JComboBox<String> cbXuatXU;
     private javax.swing.Box.Filler filler1;
     private javax.swing.Box.Filler filler10;
     private javax.swing.Box.Filler filler2;
@@ -227,10 +365,6 @@ public class GUI_TimKiemThuoc extends javax.swing.JPanel {
     private javax.swing.Box.Filler filler7;
     private javax.swing.Box.Filler filler8;
     private javax.swing.Box.Filler filler9;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -250,8 +384,8 @@ public class GUI_TimKiemThuoc extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTable tableThuoc;
+    private javax.swing.JTextField txtMaThuoc;
+    private javax.swing.JTextField txtNhaCungCap;
     // End of variables declaration//GEN-END:variables
 }

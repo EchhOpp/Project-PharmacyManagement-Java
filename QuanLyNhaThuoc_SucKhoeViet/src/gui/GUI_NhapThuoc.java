@@ -48,6 +48,7 @@ public class GUI_NhapThuoc extends javax.swing.JPanel {
 	private NhaCungCap_DAO nhaCungCap_DAO = new NhaCungCap_DAO();
 	private PhieuNhapThuoc_DAO phieuNhapThuoc_DAO = new PhieuNhapThuoc_DAO();
 	private ArrayList<PhieuNhapThuoc> phieuNhapThuocs  = new ArrayList<PhieuNhapThuoc>();
+	private static float tongTien;
 	
 	private String layNgayHienTai() {
 		Date ngayHienTai = new Date();
@@ -217,6 +218,7 @@ public class GUI_NhapThuoc extends javax.swing.JPanel {
 		spinSoLuongNhap = new JSpinner(modelSoLuongNhap);
         initComponents();
         cbMaThuoc.setSelectedItem(phatSinhMaThuoc());;
+        txtMaThuoc.setText(phatSinhMaThuoc());
     }
     
     private void Huy() {
@@ -244,6 +246,39 @@ public class GUI_NhapThuoc extends javax.swing.JPanel {
 		cbMaNhaCungCap.setEditable(true);
 		cbMaNhaCungCap.setSelectedItem("");
 		cbLoaiThuoc.setSelectedIndex(1);
+    }
+    
+    private boolean kiemTraDuLieu() {
+		String donGiaMua = txtDonGiaMua.getText();
+		String donViThuoc = txtDonViThuoc.getText();
+		String xuatXu = txtXuatXu.getText();
+		int spin = (int) spinSoLuongNhap.getValue();
+		Object selectCBMa = cbMaNhaCungCap.getSelectedItem();
+		if(ngayHetHan.getDate() == null) {
+			java.util.Date utitngayHH = ngayHetHan.getDate();
+			java.sql.Date ngayHH = new java.sql.Date(utitngayHH.getTime());
+			JOptionPane.showMessageDialog(this, "Phải chọn ngày hết hạn");
+			return false;
+		}
+		if(ngaySanXuat.getDate() == null) {
+			java.util.Date utitngaySX = ngaySanXuat.getDate();
+			java.sql.Date ngaySX = new java.sql.Date(utitngaySX.getTime());
+			JOptionPane.showMessageDialog(this, "Phải chọn sản xuất");
+			return false;
+		}
+		if(ngaySanXuat.getDate().after(ngayHetHan.getDate())) {
+			JOptionPane.showMessageDialog(this, "Ngày hết hạn phải sau ngày hiện tại");
+			return false;
+		}
+		if(!(donGiaMua.length() > 0 && donGiaMua.matches("^\\d+$") && Float.valueOf(donGiaMua) > 0)) {
+			JOptionPane.showMessageDialog(this, "Đơn giá mua phải lớn hơn 0");
+			return false;
+		}
+		if(selectCBMa == null) {
+			JOptionPane.showMessageDialog(this, "Phải chọn nhà cung cấp");
+			return false;
+		}
+		return true;
     }
 
     /**
@@ -783,35 +818,44 @@ public class GUI_NhapThuoc extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
     
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-    	boolean themThuoc = false;
-		boolean themPhieuNhapThuoc = false;
-		
-		String maPhieu = txtMaPhieuNhap.getText();
-		String maThuoc = txtMaThuoc.getText();
-		String maNCC = cbMaNhaCungCap.getSelectedItem().toString();
-		String tenThuoc = txtTenThuoc.getText();
-		Date ngayNhap1 = new Date();
-		java.sql.Date ngayNhap = new java.sql.Date(ngayNhap1.getTime());
-		java.util.Date utitngaySX = ngaySanXuat.getDate();
-		java.util.Date utitngayHH = ngayHetHan.getDate();
-		java.sql.Date ngaySX = new java.sql.Date(utitngaySX.getTime());
-		java.sql.Date ngayHH = new java.sql.Date(utitngayHH.getTime());
-		float donGia = Float.valueOf(txtDonGiaMua.getText());
-		int soLuong = (int) spinSoLuongNhap.getValue();
-		String loaiThuoc = cbLoaiThuoc.getSelectedItem()+"";
-		String donVi= txtDonViThuoc.getText();
-		String xuatXu = txtXuatXu.getText();
-		NhaCungCap ncc = nhaCungCap_DAO.layNhaCungCap(maNCC);
-		Thuoc thuoc = new Thuoc(maThuoc, tenThuoc, loaiThuoc, loaiThuoc, xuatXu, soLuong, ncc);
-		PhieuNhapThuoc phieuNhapThuoc = new PhieuNhapThuoc(maPhieu, emp, thuoc, ngayNhap, ngaySX, ngayHH, donGia, soLuong);
-		phieuNhapThuocs.add(phieuNhapThuoc);
-		tablePhieuNhapThuoc.removeAll();
-		tablePhieuNhapThuoc.setRowSelectionAllowed(false);
-	    modelPhieuNhapThuoc.setRowCount(0);
-	    int stt = 1;
-	    for(PhieuNhapThuoc pn : phieuNhapThuocs) {
-	    	modelPhieuNhapThuoc.addRow(new Object[] {stt++,pn.getMaPhieu(), pn.getThuoc().getMaThuoc(), pn.getThuoc().getTenThuoc(), pn.getNgayNhap(), pn.getNgaySanXuat(), pn.getNgayHetHan(), pn.getThuoc().getLoaiThuoc(), pn.getThuoc().getDonViThuoc(), pn.getDonGiaMua(),pn.getThuoc().getXuatXu(),pn.getSoLuongNhap()});
-	    }
+    	if(kiemTraDuLieu()) {
+        	boolean themThuoc = false;
+    		boolean themPhieuNhapThuoc = false;
+    		
+    		String maPhieu = txtMaPhieuNhap.getText();
+    		String maThuoc = txtMaThuoc.getText();
+    		String maNCC = cbMaNhaCungCap.getSelectedItem().toString();
+    		String tenThuoc = txtTenThuoc.getText();
+    		Date ngayNhap1 = new Date();
+    		java.sql.Date ngayNhap = new java.sql.Date(ngayNhap1.getTime());
+    		java.util.Date utitngaySX = ngaySanXuat.getDate();
+    		java.util.Date utitngayHH = ngayHetHan.getDate();
+    		java.sql.Date ngaySX = new java.sql.Date(utitngaySX.getTime());
+    		java.sql.Date ngayHH = new java.sql.Date(utitngayHH.getTime());
+    		float donGia = Float.valueOf(txtDonGiaMua.getText());
+    		int soLuong = (int) spinSoLuongNhap.getValue();
+    		String loaiThuoc = cbLoaiThuoc.getSelectedItem()+"";
+    		String donVi= txtDonViThuoc.getText();
+    		String xuatXu = txtXuatXu.getText();
+    		NhaCungCap ncc = nhaCungCap_DAO.layNhaCungCap(maNCC);
+    		Thuoc thuoc = new Thuoc(maThuoc, tenThuoc, loaiThuoc, loaiThuoc, xuatXu, soLuong, ncc);
+    		PhieuNhapThuoc phieuNhapThuoc = new PhieuNhapThuoc(maPhieu, emp, thuoc, ngayNhap, ngaySX, ngayHH, donGia, soLuong);
+    		phieuNhapThuocs.add(phieuNhapThuoc);
+    		tablePhieuNhapThuoc.removeAll();
+    		tablePhieuNhapThuoc.setRowSelectionAllowed(false);
+    	    modelPhieuNhapThuoc.setRowCount(0);
+    	    txtMaThuoc.setText(phatSinhMaThuoc());
+    	    tongTien += donGia*soLuong;
+    	    txtTongTienNhapThuoc.setText(tongTien+"");
+    	    int stt = 1;
+    	    for(PhieuNhapThuoc pn : phieuNhapThuocs) {
+    	    	modelPhieuNhapThuoc.addRow(new Object[] {stt++,pn.getMaPhieu(), pn.getThuoc().getMaThuoc(), pn.getThuoc().getTenThuoc(), pn.getNgayNhap(), pn.getNgaySanXuat(), pn.getNgayHetHan(), pn.getThuoc().getLoaiThuoc(), pn.getThuoc().getDonViThuoc(), pn.getDonGiaMua(),pn.getThuoc().getXuatXu(),pn.getSoLuongNhap()});
+    	    }
+	    	txtMaThuoc.setText(phatSinhMaThuoc());
+    	}
+    	else {
+    		JOptionPane.showMessageDialog(this, "Lỗi nhập dữ liệu");
+    	}
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void cbMaNhaCungCapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMaNhaCungCapActionPerformed
@@ -998,9 +1042,9 @@ public class GUI_NhapThuoc extends javax.swing.JPanel {
         		if(kiemTraTrungMa(pn.getThuoc().getMaThuoc())) {
         			thuoc_DAO.capNhatSoLuongTonCuaThuoc(soLuongCapNhat(pn.getThuoc().getMaThuoc()), pn.getThuoc().getMaThuoc());
         		}
-        		else {
-        			thuoc_DAO.themThuoc(pn.getThuoc());
-        		}
+        		
+        		thuoc_DAO.themThuoc(pn.getThuoc());
+        	
     			phieuNhapThuoc_DAO.themPhieuNhapThuoc(pn, emp);
         	}
         	txtMaThuoc.setText(phatSinhMaThuoc());
@@ -1032,6 +1076,8 @@ public class GUI_NhapThuoc extends javax.swing.JPanel {
 		if(row != -1) {
 			int tb = JOptionPane.showConfirmDialog(this, "Bạn có muốn xóa", "Delete", JOptionPane.YES_NO_OPTION);
 			if(tb == JOptionPane.YES_OPTION) {
+				tongTien -= (phieuNhapThuocs.get(getIndex(tablePhieuNhapThuoc.getValueAt(row, 1)+"")).getDonGiaMua() *  phieuNhapThuocs.get(getIndex(tablePhieuNhapThuoc.getValueAt(row, 1)+"")).getSoLuongNhap());
+				txtTongTienNhapThuoc.setText(tongTien+"");
 				phieuNhapThuocs.remove(getIndex(tablePhieuNhapThuoc.getValueAt(row, 1)+""));
 				modelPhieuNhapThuoc.removeRow(row);
 			}
