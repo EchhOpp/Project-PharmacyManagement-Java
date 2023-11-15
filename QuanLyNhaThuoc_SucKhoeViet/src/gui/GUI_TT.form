@@ -163,7 +163,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                              <Component id="XinChao" min="-2" max="-2" attributes="0"/>
                               <EmptySpace pref="39" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -172,14 +172,14 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                              <Component id="XinChao" min="-2" max="-2" attributes="0"/>
                               <EmptySpace pref="263" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JLabel" name="jLabel3">
+                    <Component class="javax.swing.JLabel" name="XinChao">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Xin ch&#xe0;o, Nguy&#x1ec5;n Th&#xe0;nh Lu&#xe2;n"/>
                       </Properties>

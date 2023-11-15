@@ -8,11 +8,13 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JMenuItem;
 
+import entities.NhanVien;
+
 /**
  *
  * @author NguyenThanhLuan
  */
-public class GUI_TrangChu extends javax.swing.JFrame {
+public class GUI_TrangChu_NV extends javax.swing.JFrame {
 	private GUI_NhapThuoc gui_NhapThuoc;
 	private GUI_TT gui_BTN;
 	private GUI_TaoHoaDon guiTaoHoaDon;
@@ -23,15 +25,17 @@ public class GUI_TrangChu extends javax.swing.JFrame {
     private GUI_DanhSachNhapThuoc gui_DanhSachNhapThuoc;
     private GUI_QuanLiNhaCungCap gui_QuanLiNhaCungCap;
     private GUI_QuanLiThongKe gui_QuanLiThongKe;
+	private NhanVien emp;
     /**
      * Creates new form GUI_TrangChu
      */
-    public GUI_TrangChu() {
+    public GUI_TrangChu_NV(NhanVien nv) {
         initComponents();
-        gui_BTN = new GUI_TT();
+        emp = nv;
+        gui_BTN = new GUI_TT(emp);
         this.PnlChuyenHuong.add(gui_BTN);
         gui_NhapThuoc = new GUI_NhapThuoc();
-        guiTaoHoaDon =  new GUI_TaoHoaDon();
+        guiTaoHoaDon =  new GUI_TaoHoaDon(emp);
         gui_quanLiKhachHang = new GUI_QuanLiKhachHang();
         gui_quanLiNhanVien = new GUI_QuanLiNhanVien();
         gui_TimKiemHoaDon = new GUI_TimKiemHoaDon();
@@ -62,15 +66,9 @@ public class GUI_TrangChu extends javax.swing.JFrame {
         menuTaoHD = new javax.swing.JMenuItem();
         menuXemDSHD = new javax.swing.JMenuItem();
         menuSP = new javax.swing.JMenu();
-        MenuItemNhapThuoc = new javax.swing.JMenuItem();
         menuDanhSachThuoc = new javax.swing.JMenuItem();
-        DanhSachNhapThuoc = new javax.swing.JMenuItem();
         menuKH = new javax.swing.JMenu();
         ql = new javax.swing.JMenuItem();
-        menuNV = new javax.swing.JMenu();
-        MenuNV = new javax.swing.JMenuItem();
-        menuNCC = new javax.swing.JMenu();
-        menuQuanLiNCC = new javax.swing.JMenuItem();
         menuTK = new javax.swing.JMenu();
         menuQuanLiTK = new javax.swing.JMenuItem();
 
@@ -155,15 +153,6 @@ public class GUI_TrangChu extends javax.swing.JFrame {
         menuSP.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         menuSP.setMargin(new java.awt.Insets(3, 10, 3, 10));
 
-        MenuItemNhapThuoc.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        MenuItemNhapThuoc.setText("Nhập thuốc");
-        MenuItemNhapThuoc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuItemNhapThuocActionPerformed(evt);
-            }
-        });
-        menuSP.add(MenuItemNhapThuoc);
-
         menuDanhSachThuoc.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         menuDanhSachThuoc.setText("Xem danh sách thuốc");
         menuDanhSachThuoc.addActionListener(new java.awt.event.ActionListener() {
@@ -172,15 +161,6 @@ public class GUI_TrangChu extends javax.swing.JFrame {
             }
         });
         menuSP.add(menuDanhSachThuoc);
-
-        DanhSachNhapThuoc.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        DanhSachNhapThuoc.setText("Xem danh sách nhập thuốc");
-        DanhSachNhapThuoc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DanhSachNhapThuocActionPerformed(evt);
-            }
-        });
-        menuSP.add(DanhSachNhapThuoc);
 
         jMenuBar1.add(menuSP);
 
@@ -204,43 +184,6 @@ public class GUI_TrangChu extends javax.swing.JFrame {
         menuKH.add(ql);
 
         jMenuBar1.add(menuKH);
-
-        menuNV.setForeground(new java.awt.Color(15, 145, 239));
-        menuNV.setText("Nhân viên");
-        menuNV.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        menuNV.setMargin(new java.awt.Insets(3, 10, 3, 10));
-        menuNV.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuNVActionPerformed(evt);
-            }
-        });
-
-        MenuNV.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        MenuNV.setText("Thông Tin Nhân Viên");
-        MenuNV.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuNVActionPerformed(evt);
-            }
-        });
-        menuNV.add(MenuNV);
-
-        jMenuBar1.add(menuNV);
-
-        menuNCC.setForeground(new java.awt.Color(15, 145, 239));
-        menuNCC.setText("Nhà cung cấp");
-        menuNCC.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        menuNCC.setMargin(new java.awt.Insets(3, 10, 3, 10));
-
-        menuQuanLiNCC.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        menuQuanLiNCC.setText("Quản lí nhà cung cấp");
-        menuQuanLiNCC.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuQuanLiNCCActionPerformed(evt);
-            }
-        });
-        menuNCC.add(menuQuanLiNCC);
-
-        jMenuBar1.add(menuNCC);
 
         menuTK.setForeground(new java.awt.Color(15, 145, 239));
         menuTK.setText("Thống kê");
@@ -273,8 +216,6 @@ public class GUI_TrangChu extends javax.swing.JFrame {
 		menuHD.setSelected(false);
 		menuSP.setSelected(false);
 		menuKH.setSelected(false);
-		menuNV.setSelected(false);
-		menuNCC.setSelected(false);
 		menuTK.setSelected(false);
 	}
     
@@ -306,10 +247,6 @@ public class GUI_TrangChu extends javax.swing.JFrame {
     private void btnNhapThuocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhapThuocActionPerformed
     	this.thayDoiPanelChinh(gui_NhapThuoc, menuSP);
     }//GEN-LAST:event_btnNhapThuocActionPerformed
-
-    private void MenuItemNhapThuocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemNhapThuocActionPerformed
-    	this.thayDoiPanelChinh(gui_NhapThuoc, menuSP);
-    }//GEN-LAST:event_MenuItemNhapThuocActionPerformed
     
     private void menuTaoHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTaoHDActionPerformed
     	this.thayDoiPanelChinh(guiTaoHoaDon, menuHD);
@@ -331,21 +268,9 @@ public class GUI_TrangChu extends javax.swing.JFrame {
         
     }//GEN-LAST:event_menuKHActionPerformed
      
-    private void DanhSachNhapThuocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DanhSachNhapThuocActionPerformed
-    	 this.thayDoiPanelChinh(gui_DanhSachNhapThuoc, menuSP);
-    }//GEN-LAST:event_DanhSachNhapThuocActionPerformed
-
-    private void menuNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNVActionPerformed
-        this.thayDoiPanelChinh(gui_quanLiNhanVien, menuNV);
-    }//GEN-LAST:event_menuNVActionPerformed
-
     private void qlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qlActionPerformed
       this.thayDoiPanelChinh(gui_quanLiKhachHang, menuKH);
     }//GEN-LAST:event_qlActionPerformed
-
-    private void menuQuanLiNCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuQuanLiNCCActionPerformed
-        this.thayDoiPanelChinh(gui_QuanLiNhaCungCap, menuNCC);
-    }//GEN-LAST:event_menuQuanLiNCCActionPerformed
 
     private void menuTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTKActionPerformed
       
@@ -355,19 +280,12 @@ public class GUI_TrangChu extends javax.swing.JFrame {
          this.thayDoiPanelChinh(gui_QuanLiThongKe, menuTK);
     }//GEN-LAST:event_menuQuanLiTKActionPerformed
 
-    private void MenuNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuNVActionPerformed
-       this.thayDoiPanelChinh(gui_quanLiNhanVien, menuNV);
-    }//GEN-LAST:event_MenuNVActionPerformed
-
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem DanhSachNhapThuoc;
-    private javax.swing.JMenuItem MenuItemNhapThuoc;
-    private javax.swing.JMenuItem MenuNV;
     private javax.swing.JPanel PnlChuyenHuong;
     private javax.swing.JButton btnDangXuat;
     private javax.swing.JButton btnThoat;
@@ -377,9 +295,6 @@ public class GUI_TrangChu extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuDanhSachThuoc;
     private javax.swing.JMenu menuHD;
     private javax.swing.JMenu menuKH;
-    private javax.swing.JMenu menuNCC;
-    private javax.swing.JMenu menuNV;
-    private javax.swing.JMenuItem menuQuanLiNCC;
     private javax.swing.JMenuItem menuQuanLiTK;
     private javax.swing.JMenu menuSP;
     private javax.swing.JMenu menuTK;
