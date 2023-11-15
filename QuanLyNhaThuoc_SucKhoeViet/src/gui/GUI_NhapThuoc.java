@@ -15,9 +15,12 @@ import java.util.Date;
 
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EtchedBorder;
 import javax.swing.table.DefaultTableModel;
 
+import dao.ChiTietHoaDon_DAO;
 import dao.NhaCungCap_DAO;
 import dao.PhieuNhapThuoc_DAO;
 import dao.Thuoc_DAO;
@@ -41,45 +44,14 @@ public class GUI_NhapThuoc extends javax.swing.JPanel {
 	private boolean use_event_cbMaNhaCungCap = false;
 	private boolean use_phatSinhMaThuoc = false;
 	private boolean use_phatSinhMaNhaCungCap = false;
+	private Thuoc_DAO thuoc_DAO = new Thuoc_DAO();
+	private NhaCungCap_DAO nhaCungCap_DAO = new NhaCungCap_DAO();
+	private PhieuNhapThuoc_DAO phieuNhapThuoc_DAO = new PhieuNhapThuoc_DAO();
+	private ArrayList<PhieuNhapThuoc> phieuNhapThuocs  = new ArrayList<PhieuNhapThuoc>();
 	
 	private String layNgayHienTai() {
 		Date ngayHienTai = new Date();
 		return sdf.format(ngayHienTai);
-	}
-
-	private NhaCungCap taoNhaCungCap() {
-		String maNCC = cbMaNhaCungCap.getSelectedItem().toString().split("-")[0].trim();
-		String tenNCC = txtTenNhaCungCap.getText().trim();
-		String email = txtEmail.getText().trim();
-		String soDienThoai = txtSoDienThoai.getText().trim();
-		String diaChi = textAreaDiaChi.getText().trim();
-		return new NhaCungCap(maNCC, tenNCC, email, soDienThoai, diaChi);
-	}
-
-	private Thuoc taoThuoc() {
-		String maThuoc = cbMaThuoc.getSelectedItem().toString().split("-")[0].trim();
-		String tenThuoc = txtTenThuoc.getText().trim();
-		String loaiThuoc = cbLoaiThuoc.getSelectedItem().toString().trim();
-		String donViThuoc = txtDonViThuoc.getText().trim();
-		String xuatXu = txtXuatXu.getText().trim();
-		int soLuongTon = Integer.parseInt(txtSoLuongTon.getText().trim());
-		int soLuongNhap = Integer.parseInt(spinSoLuongNhap.getValue().toString().trim());
-		return new Thuoc(maThuoc, tenThuoc, loaiThuoc, donViThuoc, xuatXu, soLuongNhap + soLuongTon, taoNhaCungCap());
-	}
-
-	private PhieuNhapThuoc taoPhieuNhapThuoc() {
-		String maPhieu = txtMaPhieuNhap.getText().trim();
-		Date ngayNhap = new Date();
-		java.util.Date ngaySX = ngaySanXuat.getDate();
-		java.sql.Date ngaySXSQL = new java.sql.Date(ngaySX.getTime());
-		java.util.Date ngayHH = ngayHetHan.getDate();
-		java.sql.Date ngayHHSQL = new java.sql.Date(ngayHH.getTime());
-		Date ngaySanXuat = ngaySXSQL;
-		Date ngayHetHan = ngayHHSQL;
-		String soTienNhap = txtDonGiaMua.getText().trim();
-		float donGiaMua = Float.parseFloat(loaiBoDinhDangTien(soTienNhap));
-		int soLuongNhap = Integer.parseInt(spinSoLuongNhap.getValue().toString().trim());
-		return new PhieuNhapThuoc(maPhieu, emp, taoThuoc(), ngayNhap, ngaySanXuat, ngayHetHan, donGiaMua, soLuongNhap);
 	}
 
 	private String phatSinhMaPhieuNhapThuoc() {
@@ -100,25 +72,28 @@ public class GUI_NhapThuoc extends javax.swing.JPanel {
 		}
 	}
 
-	private void phatSinhMaThuoc() {
-		use_phatSinhMaThuoc = true;
-		Thuoc_DAO thuoc_dao = new Thuoc_DAO();
-		String maThuoc_lastest = thuoc_dao.layMaThuocCuoiCung().trim();
-		String maThuoc = "TH";
+	private String phatSinhMaThuoc() {
+	    use_phatSinhMaThuoc = true;
 
-		if (maThuoc_lastest != null) {
-			String stt_string_lastest = maThuoc_lastest.substring(2, maThuoc_lastest.length());
-			int stt_int_lastest = Integer.parseInt(stt_string_lastest);
-			String stt_current = String.valueOf(stt_int_lastest + 1);
-			for (int i = 0; i < (10 - stt_current.length()); i++) {
-				maThuoc += "0";
-			}
-			maThuoc += stt_current;
-			cbMaThuoc.setSelectedItem(maThuoc);
-		} else {
-			maThuoc += "0000000001";
-			cbMaThuoc.setSelectedItem(maThuoc);
-		}
+	    Thuoc_DAO thuoc_dao = new Thuoc_DAO();
+	    String maThuoc_lastest = thuoc_dao.layMaThuocCuoiCung().trim();
+	    String maThuoc = "TH";
+	    
+	    if (maThuoc_lastest != null) {
+	        String stt_string_lastest = maThuoc_lastest.substring(2, maThuoc_lastest.length());
+	        int stt_int_lastest = Integer.parseInt(stt_string_lastest);
+	        String stt_current = String.valueOf(stt_int_lastest + 1);
+	        
+	        for (int i = 0; i < (10 - stt_current.length()); i++) {
+	            maThuoc += "0";
+	        }
+	        
+	        maThuoc += stt_current;
+	    } else {
+	        maThuoc += "0000000001";
+	    }
+
+	    return maThuoc;
 	}
 
 	private void phatSinhMaNhaCungCap() {
@@ -201,7 +176,6 @@ public class GUI_NhapThuoc extends javax.swing.JPanel {
 			txtEmail.setText(nhaCungCap.getEmail().trim());
 			txtSoDienThoai.setText(nhaCungCap.getSoDienThoai().trim());
 			textAreaDiaChi.setText(nhaCungCap.getDiaChi().trim());
-//			btnLuuNhaCungCap.setEnabled(false);
 		}
 	}
 
@@ -215,7 +189,6 @@ public class GUI_NhapThuoc extends javax.swing.JPanel {
 			txtEmail.setText(nhaCungCap.getEmail().trim());
 			txtSoDienThoai.setText(nhaCungCap.getSoDienThoai().trim());
 			textAreaDiaChi.setText(nhaCungCap.getDiaChi().trim());
-//			btnLuuNhaCungCap.setEnabled(false);
 		}
 	}
 
@@ -229,158 +202,48 @@ public class GUI_NhapThuoc extends javax.swing.JPanel {
 		}
 		return soTien;
 	}
-
-	private boolean validData() {
-		try {
-			String maThuoc = cbMaThuoc.getSelectedItem().toString().trim();
-			if (maThuoc.equalsIgnoreCase("")) {
-				Toolkit.getDefaultToolkit().beep();
-				JOptionPane.showMessageDialog(cbMaThuoc, "Bạn phải nhập mã thuốc", "Cảnh báo",
-						JOptionPane.WARNING_MESSAGE);
-				cbMaThuoc.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, Color.RED));
-				cbMaThuoc.requestFocus();
-				return false;
-			} else {
-				cbMaThuoc.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-			}
-		} catch (NullPointerException e) {
-			Toolkit.getDefaultToolkit().beep();
-			JOptionPane.showMessageDialog(cbMaThuoc, "Bạn phải nhập mã thuốc", "Cảnh báo", JOptionPane.WARNING_MESSAGE);
-			cbMaThuoc.setBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.RED, null));
-			cbMaThuoc.requestFocus();
-			return false;
-		}
-
-		if (btnGenerateMaThuoc.isEnabled()) {
-			Toolkit.getDefaultToolkit().beep();
-			JOptionPane.showMessageDialog(btnGenerateMaThuoc, "Bạn chưa xác nhận mã thuốc", "Cảnh báo",
-					JOptionPane.WARNING_MESSAGE);
-			btnGenerateMaThuoc.setBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.RED, null));
-			btnGenerateMaThuoc.requestFocus();
-			return false;
-		} else {
-			btnGenerateMaThuoc.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		}
-
-		String tenThuoc = txtTenThuoc.getText().trim();
-		if (tenThuoc.equalsIgnoreCase("")) {
-			Toolkit.getDefaultToolkit().beep();
-			JOptionPane.showMessageDialog(txtTenThuoc, "Bạn phải nhập tên thuốc", "Cảnh báo",
-					JOptionPane.WARNING_MESSAGE);
-			txtTenThuoc.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, Color.RED));
-			txtTenThuoc.requestFocus();
-			return false;
-		} else {
-			txtTenThuoc.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		}
-
-		java.util.Date ngaySXUtil = ngaySanXuat.getDate();
-		java.sql.Date ngaySVSQL = new java.sql.Date(ngaySXUtil.getTime());
-		java.util.Date ngayHHUtil = ngayHetHan.getDate();
-		java.sql.Date ngayHHSQL = new java.sql.Date(ngayHHUtil.getTime());
-		if (ngaySanXuat.getDate() == null) {
-			Toolkit.getDefaultToolkit().beep();
-			JOptionPane.showMessageDialog(this, "Bạn phải chọn ngày sản xuất", "Cảnh báo",
-					JOptionPane.WARNING_MESSAGE);
-			return false;
-		} 
-		if (ngayHetHan.getDate() == null) {
-			Toolkit.getDefaultToolkit().beep();
-			JOptionPane.showMessageDialog(this, "Bạn phải chọn ngày hết hạn", "Cảnh báo",
-					JOptionPane.WARNING_MESSAGE);
-			return false;
-		}
-		return true;
+	
+	private void kiemtraDuLieu() {
+		String tenThuoc = txtTenNhaCungCap.getText();
+		
 	}
-//	
-//	private void fillForm(int row) {
-//		if (row != -1) {
-//			String maPhieuNhapThuoc = String.valueOf(tablePhieuNhapThuoc.getValueAt(row, 0));
-//			PhieuNhapThuoc_DAO pnt_dao = new PhieuNhapThuoc_DAO();
-//			PhieuNhapThuoc phieuNhapThuoc = pnt_dao.layPhieuNhapThuoc(maPhieuNhapThuoc);
-//			Thuoc_DAO thuoc_dao = new Thuoc_DAO();
-//			Thuoc thuoc = thuoc_dao.layThuoc(phieuNhapThuoc.getThuoc().getMaThuoc());
-//			NhaCungCap nhaCungCap = thuoc.getNhaCungCap();
-//			cbMaThuoc.setSelectedItem(thuoc.getMaThuoc());
-//			txtTenThuoc.setText(thuoc.getTenThuoc());
-//			txtNgayNhap.setText(sdf.format(phieuNhapThuoc.getNgayNhap()));
-//			model_ngaysanxuat.setValue(phieuNhapThuoc.getNgaySanXuat());
-//			model_ngayhethan.setValue(phieuNhapThuoc.getNgayHetHan());
-//			cbLoaiThuoc.setSelectedItem(thuoc.getLoaiThuoc());
-//			txtDonViThuoc.setText(thuoc.getDonViThuoc());
-//			txtDonGiaMua.setText(fmt.format(phieuNhapThuoc.getDonGiaMua()));
-//			txtXuatXu.setText(thuoc.getXuatXu());
-//			spinSoLuongNhap.setValue(phieuNhapThuoc.getSoLuongNhap());
-//			txtSoLuongTon.setText(String.valueOf(thuoc.getSoLuongTon()));
-//			cbMaNhaCungCap.setSelectedItem(nhaCungCap.getMaNCC());
-//			txtTenNhaCungCap.setText(nhaCungCap.getTenNCC());
-//			txtEmail.setText(nhaCungCap.getEmail());
-//			txtSoDienThoai.setText(nhaCungCap.getSoDienThoai());
-//			textAreaDiaChi.setText(nhaCungCap.getDiaChi());
-//		}
-//	}
 
-//	private void xoaTrang() {
-//		use_event_cbMaThuoc = false;
-//		use_event_cbMaNhaCungCap = false;
-//		txtMaPhieuNhap.setText(phatSinhMaPhieuNhapThuoc());
-//		cbMaThuoc.setEditable(true);
-//		cbMaThuoc.setSelectedItem("");
-//		lblMaThuoc.setText("Tìm mã thuốc:");
-//		btnGenerateMaThuoc.setEnabled(true);
-//		cbMaNhaCungCap.setEditable(true);
-//		cbMaNhaCungCap.setSelectedItem("");
-//		lblMaNhaCungCap.setText("Tìm mã nhà cung cấp:");
-//		btnGenerateMaThuoc.setEnabled(true);
-//		txtTenThuoc.setEditable(false);
-//		txtTenThuoc.setText("");
-//		datePickerNgaySanXuat.getJFormattedTextField().setText("");
-//		datePickerNgayHetHan.getJFormattedTextField().setText("");
-//		cbLoaiThuoc.setSelectedIndex(-1);
-//		txtDonViThuoc.setEditable(false);
-//		txtDonViThuoc.setText("");
-//		txtDonGiaMua.setEditable(false);
-//		txtDonGiaMua.setText("");
-//		txtXuatXu.setEditable(false);
-//		txtXuatXu.setText("");
-//		spinSoLuongNhap.setValue(1);
-//		txtSoLuongTon.setText("0");
-//		txtTenNhaCungCap.setEditable(false);
-//		txtTenNhaCungCap.setText("");
-//		txtEmail.setEditable(false);
-//		txtEmail.setText("");
-//		txtSoDienThoai.setEditable(false);
-//		txtSoDienThoai.setText("");
-//		textAreaDiaChi.setEditable(false);
-//		textAreaDiaChi.setText("");
-//		btnGenerateMaNCC.setEnabled(true);
-//		btnLuuNhaCungCap.setEnabled(false);
-//		btnThem.setEnabled(true);
-//		tablePhieuNhapThuoc.clearSelection();
-//		cbMaThuoc.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-//		btnGenerateMaThuoc.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-//		txtTenThuoc.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-//		datePickerNgaySanXuat.getJFormattedTextField().setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-//		datePickerNgayHetHan.getJFormattedTextField().setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-//		cbLoaiThuoc.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-//		txtDonViThuoc.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-//		txtDonGiaMua.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-//		txtXuatXu.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-//		cbMaNhaCungCap.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-//		btnGenerateMaNCC.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-//		txtTenNhaCungCap.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-//		txtEmail.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-//		txtSoDienThoai.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-//		textAreaDiaChi.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-//		cbMaThuoc.requestFocus();
-//	}
-//	
     /**
      * Creates new form GUI_NhapThuoc
      */
     public GUI_NhapThuoc(NhanVien nv) {
     	this.emp = nv;
+    	SpinnerNumberModel modelSoLuongNhap = new SpinnerNumberModel(1, 1, 1, 0);
+		spinSoLuongNhap = new JSpinner(modelSoLuongNhap);
         initComponents();
+        cbMaThuoc.setSelectedItem(phatSinhMaThuoc());;
+    }
+    
+    private void Huy() {
+    	if(!btnGenerateMaThuoc.isEnabled()) {
+    		cbLoaiThuoc.addItem("Thuốc kê đơn");
+    		cbLoaiThuoc.addItem("Thuốc không kê đơn");
+    		cbLoaiThuoc.addItem("Thực phẩm chức năng");
+    		cbLoaiThuoc.addItem("Thực phẩm chăm sóc sức khỏe");
+    	}
+    	txtTenThuoc.setText("");
+		ngayHetHan.setDate(null);
+		ngaySanXuat.setDate(null);
+		txtDonGiaMua.setText("");
+		txtDonViThuoc.setText("");
+		txtXuatXu.setText("");
+		spinSoLuongNhap.setValue(1);
+		txtTenNhaCungCap.setText("");
+		txtEmail.setText("");
+		txtSoDienThoai.setText("");
+		textAreaDiaChi.setText("");
+		btnGenerateMaNCC.setEnabled(true);
+		btnGenerateMaThuoc.setEnabled(true);
+		cbMaThuoc.setEditable(true);
+		cbMaThuoc.setSelectedItem("");
+		cbMaNhaCungCap.setEditable(true);
+		cbMaNhaCungCap.setSelectedItem("");
+		cbLoaiThuoc.setSelectedIndex(1);
     }
 
     /**
@@ -409,6 +272,9 @@ public class GUI_NhapThuoc extends javax.swing.JPanel {
         jPanel12 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         txtMaPhieuNhap = new javax.swing.JTextField(phatSinhMaPhieuNhapThuoc());
+        jPanel40 = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
+        txtMaThuoc = new javax.swing.JTextField(phatSinhMaThuoc());
         jPanel13 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         txtTenThuoc = new javax.swing.JTextField();
@@ -416,8 +282,8 @@ public class GUI_NhapThuoc extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         ngaySanXuat = new com.toedter.calendar.JDateChooser();
         jPanel15 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        cbLoaiThuoc = new javax.swing.JComboBox<>();
+        jLabel12 = new javax.swing.JLabel();
+        ngayHetHan = new com.toedter.calendar.JDateChooser();
         jPanel16 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         txtDonGiaMua = new javax.swing.JTextField();
@@ -434,8 +300,8 @@ public class GUI_NhapThuoc extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         txtNgayNhap = new javax.swing.JTextField(layNgayHienTai());
         jPanel20 = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
-        ngayHetHan = new com.toedter.calendar.JDateChooser();
+        jLabel7 = new javax.swing.JLabel();
+        cbLoaiThuoc = new javax.swing.JComboBox<>();
         jPanel21 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         txtDonViThuoc = new javax.swing.JTextField();
@@ -449,7 +315,7 @@ public class GUI_NhapThuoc extends javax.swing.JPanel {
         btnThem = new javax.swing.JButton();
         btnXoaTrang = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnLuu = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
         jPanel26 = new javax.swing.JPanel();
         lblMaNhaCungCap = new javax.swing.JLabel();
@@ -501,7 +367,7 @@ public class GUI_NhapThuoc extends javax.swing.JPanel {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(15, 102, 165));
-        jLabel2.setText("TÌM KIẾM HÓA ĐƠN");
+        jLabel2.setText("NHẬP THUỐC");
         jPanel6.add(jLabel2);
 
         jPanel38.add(jPanel6);
@@ -542,17 +408,31 @@ public class GUI_NhapThuoc extends javax.swing.JPanel {
         jPanel12.add(jLabel4);
 
         txtMaPhieuNhap.setEditable(false);
+        txtMaPhieuNhap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMaPhieuNhapActionPerformed(evt);
+            }
+        });
         jPanel12.add(txtMaPhieuNhap);
 
         jPanel10.add(jPanel12);
+
+        jPanel40.setLayout(new javax.swing.BoxLayout(jPanel40, javax.swing.BoxLayout.LINE_AXIS));
+
+        jLabel16.setText("   Mã thuốc :");
+        jLabel16.setPreferredSize(new java.awt.Dimension(110, 16));
+        jPanel40.add(jLabel16);
+
+        txtMaThuoc.setEditable(false);
+        jPanel40.add(txtMaThuoc);
+
+        jPanel10.add(jPanel40);
 
         jPanel13.setLayout(new javax.swing.BoxLayout(jPanel13, javax.swing.BoxLayout.LINE_AXIS));
 
         jLabel5.setText("   Tên thuốc:");
         jLabel5.setPreferredSize(new java.awt.Dimension(110, 16));
         jPanel13.add(jLabel5);
-
-        txtTenThuoc.setEditable(false);
         jPanel13.add(txtTenThuoc);
 
         jPanel10.add(jPanel13);
@@ -569,11 +449,10 @@ public class GUI_NhapThuoc extends javax.swing.JPanel {
 
         jPanel15.setLayout(new javax.swing.BoxLayout(jPanel15, javax.swing.BoxLayout.LINE_AXIS));
 
-        jLabel7.setText("   Loại thuốc:");
-        jLabel7.setPreferredSize(new java.awt.Dimension(110, 16));
-        jPanel15.add(jLabel7);
-
-        jPanel15.add(cbLoaiThuoc);
+        jLabel12.setText("   Ngày hết hạn:");
+        jLabel12.setPreferredSize(new java.awt.Dimension(110, 16));
+        jPanel15.add(jLabel12);
+        jPanel15.add(ngayHetHan);
 
         jPanel10.add(jPanel15);
 
@@ -582,8 +461,6 @@ public class GUI_NhapThuoc extends javax.swing.JPanel {
         jLabel8.setText("   Đơn giá mua:");
         jLabel8.setPreferredSize(new java.awt.Dimension(110, 16));
         jPanel16.add(jLabel8);
-
-        txtDonGiaMua.setEditable(false);
         jPanel16.add(txtDonGiaMua);
 
         jPanel10.add(jPanel16);
@@ -646,10 +523,12 @@ public class GUI_NhapThuoc extends javax.swing.JPanel {
 
         jPanel20.setLayout(new javax.swing.BoxLayout(jPanel20, javax.swing.BoxLayout.LINE_AXIS));
 
-        jLabel12.setText("Ngày hết hạn:");
-        jLabel12.setPreferredSize(new java.awt.Dimension(85, 16));
-        jPanel20.add(jLabel12);
-        jPanel20.add(ngayHetHan);
+        jLabel7.setText(" Loại thuốc:");
+        jLabel7.setPreferredSize(new java.awt.Dimension(85, 16));
+        jPanel20.add(jLabel7);
+
+        cbLoaiThuoc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Thuốc kê đơn", "Thuốc không kê đơn", "Thực phẩm chức năng" }));
+        jPanel20.add(cbLoaiThuoc);
 
         jPanel11.add(jPanel20);
 
@@ -658,8 +537,6 @@ public class GUI_NhapThuoc extends javax.swing.JPanel {
         jLabel13.setText("Đơn vị thuốc:");
         jLabel13.setPreferredSize(new java.awt.Dimension(85, 16));
         jPanel21.add(jLabel13);
-
-        txtDonViThuoc.setEditable(false);
         jPanel21.add(txtDonViThuoc);
 
         jPanel11.add(jPanel21);
@@ -669,8 +546,6 @@ public class GUI_NhapThuoc extends javax.swing.JPanel {
         jLabel14.setText("Xuất xứ:");
         jLabel14.setPreferredSize(new java.awt.Dimension(85, 16));
         jPanel22.add(jLabel14);
-
-        txtXuatXu.setEditable(false);
         jPanel22.add(txtXuatXu);
 
         jPanel11.add(jPanel22);
@@ -697,13 +572,28 @@ public class GUI_NhapThuoc extends javax.swing.JPanel {
         jPanel25.add(btnThem);
 
         btnXoaTrang.setText("Xóa trắng");
+        btnXoaTrang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaTrangActionPerformed(evt);
+            }
+        });
         jPanel25.add(btnXoaTrang);
 
         btnXoa.setText("Xóa");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
         jPanel25.add(btnXoa);
 
-        jButton1.setText("Lưu");
-        jPanel25.add(jButton1);
+        btnLuu.setText("Lưu");
+        btnLuu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLuuActionPerformed(evt);
+            }
+        });
+        jPanel25.add(btnLuu);
 
         jPanel11.add(jPanel25);
 
@@ -739,6 +629,11 @@ public class GUI_NhapThuoc extends javax.swing.JPanel {
         btnGenerateMaNCC.setMaximumSize(new java.awt.Dimension(72, 35));
         btnGenerateMaNCC.setMinimumSize(new java.awt.Dimension(72, 35));
         btnGenerateMaNCC.setPreferredSize(new java.awt.Dimension(72, 35));
+        btnGenerateMaNCC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerateMaNCCActionPerformed(evt);
+            }
+        });
         jPanel26.add(btnGenerateMaNCC);
 
         jPanel9.add(jPanel26);
@@ -886,145 +781,38 @@ public class GUI_NhapThuoc extends javax.swing.JPanel {
 
         add(jPanel2, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        	boolean themThuoc = false;
-			boolean themNCC = false;
-			boolean themPhieuNhapThuoc = false;
-
-			if (validData() && !btnGenerateMaThuoc.isEnabled() && !btnGenerateMaNCC.isEnabled()) {
-				NhaCungCap_DAO ncc_dao = new NhaCungCap_DAO();
-				if (use_phatSinhMaNhaCungCap) {
-					if (ncc_dao.themNhaCungCap(taoNhaCungCap())) {
-						themNCC = true;
-					} else {
-						Toolkit.getDefaultToolkit().beep();
-						JOptionPane.showMessageDialog(null, "Lỗi khi thêm nhà cung cấp vào CSDL",
-									"Lỗi kết nối CSDL", JOptionPane.ERROR_MESSAGE);
-					}
-					} else {
-						// Nhà cung cấp đã được thêm thành công trước đó
-						themNCC = true;
-					}
-
-					Thuoc_DAO thuoc_dao = new Thuoc_DAO();
-					if (use_phatSinhMaThuoc) {
-						if (thuoc_dao.themThuoc(taoThuoc())) {
-							themThuoc = true;
-						} else {
-							Toolkit.getDefaultToolkit().beep();
-							JOptionPane.showMessageDialog(null, "Lỗi khi thêm thuốc vào CSDL", "Lỗi kết nối CSDL",
-									JOptionPane.ERROR_MESSAGE);
-						}
-					} else {
-						Thuoc thuoc = taoThuoc();
-						if (thuoc_dao.capNhatSoLuongTonCuaThuoc(thuoc.getSoLuongTon(), thuoc.getMaThuoc())) {
-							themThuoc = true;
-						} else {
-							Toolkit.getDefaultToolkit().beep();
-							JOptionPane.showMessageDialog(null, "Lỗi khi cập nhật số lượng tồn của thuốc",
-									"Lỗi kết nối CSDL", JOptionPane.ERROR_MESSAGE);
-						}
-					}
-					PhieuNhapThuoc phieuNhapThuoc = taoPhieuNhapThuoc();
-					PhieuNhapThuoc_DAO phieunhapthuoc_dao = new PhieuNhapThuoc_DAO();
-					if (phieunhapthuoc_dao.themPhieuNhapThuoc(phieuNhapThuoc, emp)) {
-						themPhieuNhapThuoc = true;
-					} else {
-						Toolkit.getDefaultToolkit().beep();
-						JOptionPane.showMessageDialog(null, "Lỗi khi thêm phiếu nhập thuốc vào CSDL",
-								"Lỗi kết nối CSDL", JOptionPane.ERROR_MESSAGE);
-					}
-
-					if (themThuoc && themNCC && themPhieuNhapThuoc) {
-						modelPhieuNhapThuoc.addRow(new Object[] { phieuNhapThuoc.getMaPhieu(),
-								phieuNhapThuoc.getThuoc().getMaThuoc(), phieuNhapThuoc.getThuoc().getTenThuoc(),
-								sdf.format(phieuNhapThuoc.getNgayNhap()), sdf.format(phieuNhapThuoc.getNgaySanXuat()),
-								sdf.format(phieuNhapThuoc.getNgayHetHan()), phieuNhapThuoc.getThuoc().getLoaiThuoc(),
-								phieuNhapThuoc.getThuoc().getDonViThuoc(), phieuNhapThuoc.getDonGiaMua(),
-								phieuNhapThuoc.getThuoc().getXuatXu(), phieuNhapThuoc.getSoLuongNhap() });
-						btnThem.setEnabled(false);
-						btnXoa.setEnabled(true);
-						float tongTienNhapThuoc = phieuNhapThuoc.getDonGiaMua() * phieuNhapThuoc.getSoLuongNhap();
-						txtTongTienNhapThuoc.setText(fmt.format(tongTienNhapThuoc));
-						JOptionPane.showMessageDialog(null, "Thêm phiếu nhập thuốc thành công");
-					} else {
-					Toolkit.getDefaultToolkit().beep();
-					JOptionPane.showMessageDialog(null, "Thêm phiếu nhập thuốc không thành công", "Error",
-								JOptionPane.ERROR_MESSAGE);
-			}
-		}
+    	boolean themThuoc = false;
+		boolean themPhieuNhapThuoc = false;
+		
+		String maPhieu = txtMaPhieuNhap.getText();
+		String maThuoc = txtMaThuoc.getText();
+		String maNCC = cbMaNhaCungCap.getSelectedItem().toString();
+		String tenThuoc = txtTenThuoc.getText();
+		Date ngayNhap1 = new Date();
+		java.sql.Date ngayNhap = new java.sql.Date(ngayNhap1.getTime());
+		java.util.Date utitngaySX = ngaySanXuat.getDate();
+		java.util.Date utitngayHH = ngayHetHan.getDate();
+		java.sql.Date ngaySX = new java.sql.Date(utitngaySX.getTime());
+		java.sql.Date ngayHH = new java.sql.Date(utitngayHH.getTime());
+		float donGia = Float.valueOf(txtDonGiaMua.getText());
+		int soLuong = (int) spinSoLuongNhap.getValue();
+		String loaiThuoc = cbLoaiThuoc.getSelectedItem()+"";
+		String donVi= txtDonViThuoc.getText();
+		String xuatXu = txtXuatXu.getText();
+		NhaCungCap ncc = nhaCungCap_DAO.layNhaCungCap(maNCC);
+		Thuoc thuoc = new Thuoc(maThuoc, tenThuoc, loaiThuoc, loaiThuoc, xuatXu, soLuong, ncc);
+		PhieuNhapThuoc phieuNhapThuoc = new PhieuNhapThuoc(maPhieu, emp, thuoc, ngayNhap, ngaySX, ngayHH, donGia, soLuong);
+		phieuNhapThuocs.add(phieuNhapThuoc);
+		tablePhieuNhapThuoc.removeAll();
+		tablePhieuNhapThuoc.setRowSelectionAllowed(false);
+	    modelPhieuNhapThuoc.setRowCount(0);
+	    int stt = 1;
+	    for(PhieuNhapThuoc pn : phieuNhapThuocs) {
+	    	modelPhieuNhapThuoc.addRow(new Object[] {stt++,pn.getMaPhieu(), pn.getThuoc().getMaThuoc(), pn.getThuoc().getTenThuoc(), pn.getNgayNhap(), pn.getNgaySanXuat(), pn.getNgayHetHan(), pn.getThuoc().getLoaiThuoc(), pn.getThuoc().getDonViThuoc(), pn.getDonGiaMua(),pn.getThuoc().getXuatXu(),pn.getSoLuongNhap()});
+	    }
     }//GEN-LAST:event_btnThemActionPerformed
-
-    private void btnGenerateMaThuocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateMaThuocActionPerformed
-       	if (use_event_cbMaThuoc) {
-					String tuHienTai = cbMaThuoc.getSelectedItem().toString().trim();
-					int row_count = cbMaThuoc.getItemCount();
-					if (!tuHienTai.equalsIgnoreCase("")) {
-						String[] tachTuHienTai = tuHienTai.split("-");
-						String maThuoc = tachTuHienTai[0].trim();
-						if (row_count > 0) {
-							if (row_count == 1) {
-								generateThuocByMaThuoc(maThuoc);
-							}
-							cbMaThuoc.setSelectedItem(maThuoc);
-							cbMaThuoc.setEditable(false);
-							lblMaThuoc.setText("Mã thuốc:");
-						} else {
-							phatSinhMaThuoc();
-							cbMaThuoc.setEditable(false);
-						}
-					} else {
-						Toolkit.getDefaultToolkit().beep();
-						JOptionPane.showMessageDialog(cbMaThuoc, "Bạn phải nhập mã thuốc", "Cảnh báo",
-								JOptionPane.WARNING_MESSAGE);
-					}
-					btnGenerateMaThuoc.setEnabled(false);
-					btnGenerateMaThuoc.setBorder(BorderFactory.createEmptyBorder());
-					cbMaThuoc.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-				} else {
-					cbMaThuoc.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, Color.RED));
-					cbMaThuoc.requestFocus();
-					Toolkit.getDefaultToolkit().beep();
-					JOptionPane.showMessageDialog(cbMaThuoc,
-							"Vui lòng nhấn Enter trong khung nhập liệu \"Tìm mã thuốc\" trước khi nhấn nút này",
-							"Cảnh báo", JOptionPane.WARNING_MESSAGE);
-				}
-	}//GEN-LAST:event_btnGenerateMaThuocActionPerformed
-
-    private void cbMaThuocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMaThuocActionPerformed
-        // TODO add your handling code here:
-    			use_event_cbMaThuoc = true;
-				ArrayList<String> cacPhanTuHienCo = initCandidateThuoc();
-				int soPhanTuHienCo = cacPhanTuHienCo.size();
-				String tuHienTai = cbMaThuoc.getSelectedItem().toString().trim();
-				if (soPhanTuHienCo > 0) {
-					if (tuHienTai.equalsIgnoreCase("")) {
-						cbMaThuoc.removeAllItems();
-						for (int i = 0; i < soPhanTuHienCo; i++) {
-							cbMaThuoc.addItem(cacPhanTuHienCo.get(i));
-						}
-						cbMaThuoc.setSelectedItem("");
-						cbMaThuoc.showPopup();
-					} else {
-						ArrayList<String> cacUngVien = searchCandidate(tuHienTai, cacPhanTuHienCo);
-						int soUngVien = cacUngVien.size();
-						if (soUngVien > 0) {
-							cbMaThuoc.removeAllItems();
-							for (int i = 0; i < soUngVien; i++) {
-								cbMaThuoc.addItem(cacUngVien.get(i));
-							}
-							cbMaThuoc.setSelectedItem(tuHienTai);
-							cbMaThuoc.showPopup();
-						} else if (soUngVien == 0) {
-							cbMaThuoc.removeAllItems();
-							phatSinhMaThuoc();
-						}
-					}
-				} else {
-					phatSinhMaThuoc();
-				}
-    }//GEN-LAST:event_cbMaThuocActionPerformed
 
     private void cbMaNhaCungCapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMaNhaCungCapActionPerformed
         // TODO add your handling code here:
@@ -1060,10 +848,201 @@ public class GUI_NhapThuoc extends javax.swing.JPanel {
 		}
     }//GEN-LAST:event_cbMaNhaCungCapActionPerformed
 
+    private void btnGenerateMaThuocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateMaThuocActionPerformed
+        if (use_event_cbMaThuoc) {
+            String tuHienTai = cbMaThuoc.getSelectedItem().toString().trim();
+            int row_count = cbMaThuoc.getItemCount();
+            if (!tuHienTai.equalsIgnoreCase("")) {
+                String[] tachTuHienTai = tuHienTai.split("-");
+                String maThuoc = tachTuHienTai[0].trim();
+                if (row_count > 0) {
+                    if (row_count == 1) {
+                        generateThuocByMaThuoc(maThuoc);
+                    }
+                    cbMaThuoc.setSelectedItem(maThuoc);
+                    cbMaThuoc.setEditable(false);
+                    lblMaThuoc.setText("Mã thuốc:");
+                    txtMaThuoc.setText(maThuoc);
+                } else {
+                    phatSinhMaThuoc();
+                    cbMaThuoc.setEditable(false);
+                }
+            } else {
+                Toolkit.getDefaultToolkit().beep();
+                JOptionPane.showMessageDialog(cbMaThuoc, "Bạn phải nhập mã thuốc", "Cảnh báo",
+                    JOptionPane.WARNING_MESSAGE);
+            }
+            btnGenerateMaThuoc.setEnabled(false);
+            btnGenerateMaThuoc.setBorder(BorderFactory.createEmptyBorder());
+            cbMaThuoc.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+        } else {
+            cbMaThuoc.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, Color.RED));
+            cbMaThuoc.requestFocus();
+            Toolkit.getDefaultToolkit().beep();
+            JOptionPane.showMessageDialog(cbMaThuoc,
+                "Vui lòng nhấn Enter trong khung nhập liệu \"Tìm mã thuốc\" trước khi nhấn nút này",
+                "Cảnh báo", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnGenerateMaThuocActionPerformed
+
+    private void cbMaThuocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMaThuocActionPerformed
+        // TODO add your handling code here:
+        use_event_cbMaThuoc = true;
+        ArrayList<String> cacPhanTuHienCo = initCandidateThuoc();
+        int soPhanTuHienCo = cacPhanTuHienCo.size();
+        String tuHienTai = cbMaThuoc.getSelectedItem().toString().trim();
+        if (soPhanTuHienCo > 0) {
+            if (tuHienTai.equalsIgnoreCase("")) {
+                cbMaThuoc.removeAllItems();
+                for (int i = 0; i < soPhanTuHienCo; i++) {
+                    cbMaThuoc.addItem(cacPhanTuHienCo.get(i));
+                }
+                cbMaThuoc.setSelectedItem("");
+                cbMaThuoc.showPopup();
+            } else {
+                ArrayList<String> cacUngVien = searchCandidate(tuHienTai, cacPhanTuHienCo);
+                int soUngVien = cacUngVien.size();
+                if (soUngVien > 0) {
+                    cbMaThuoc.removeAllItems();
+                    for (int i = 0; i < soUngVien; i++) {
+                        cbMaThuoc.addItem(cacUngVien.get(i));
+                    }
+                    cbMaThuoc.setSelectedItem(tuHienTai);
+                    cbMaThuoc.showPopup();
+                } else if (soUngVien == 0) {
+                    cbMaThuoc.removeAllItems();
+                    phatSinhMaThuoc();
+                }
+            }
+        } else {
+            phatSinhMaThuoc();
+        }
+    }//GEN-LAST:event_cbMaThuocActionPerformed
+
+    private void txtMaPhieuNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaPhieuNhapActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMaPhieuNhapActionPerformed
+
+    private void btnGenerateMaNCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateMaNCCActionPerformed
+        // TODO add your handling code here:
+    	if (use_event_cbMaNhaCungCap) {
+			String tuHienTai = cbMaNhaCungCap.getSelectedItem().toString().trim();
+			int row_count = cbMaNhaCungCap.getItemCount();
+			if (!tuHienTai.equalsIgnoreCase("")) {
+				String[] tachTuHienTai = tuHienTai.split("-");
+				String maNhaCungCap = tachTuHienTai[0].trim();
+				if (row_count > 0) {
+					if (row_count == 1) {
+						generateNhaCCByMaNCC(maNhaCungCap);
+					}
+					cbMaNhaCungCap.setSelectedItem(maNhaCungCap);
+					cbMaNhaCungCap.setEditable(false);
+					lblMaNhaCungCap.setText("Mã nhà cung cấp:");
+				} else {
+					phatSinhMaNhaCungCap();
+					cbMaNhaCungCap.setEditable(false);
+					lblMaNhaCungCap.setText("Mã nhà cung cấp:");
+					txtTenNhaCungCap.setEditable(true);
+					txtEmail.setEditable(true);
+					txtSoDienThoai.setEditable(true);
+					textAreaDiaChi.setEditable(true);
+				}
+			} else {
+				Toolkit.getDefaultToolkit().beep();
+				JOptionPane.showMessageDialog(cbMaNhaCungCap, "Bạn phải nhập mã nhà cung cấp", "Cảnh báo",
+						JOptionPane.WARNING_MESSAGE);
+			}
+			btnGenerateMaNCC.setEnabled(false);
+			btnGenerateMaNCC.setBorder(BorderFactory.createEmptyBorder());
+			cbMaNhaCungCap.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		} else {
+			cbMaNhaCungCap.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, Color.RED));
+			cbMaNhaCungCap.requestFocus();
+			Toolkit.getDefaultToolkit().beep();
+			JOptionPane.showMessageDialog(cbMaNhaCungCap,
+					"Vui lòng nhấn Enter trong khung nhập liệu \"Tìm mã nhà cung cấp\" trước khi nhấn nút này",
+					"Cảnh báo", JOptionPane.WARNING_MESSAGE);
+		}
+    }//GEN-LAST:event_btnGenerateMaNCCActionPerformed
+    private boolean kiemTraTrungMa(String maPhieu) {
+    	ArrayList<Thuoc> list = new ArrayList<Thuoc>();
+    	list = thuoc_DAO.layTatCaThuoc();
+    	for(PhieuNhapThuoc pn : phieuNhapThuocs) {
+    		for(Thuoc thuoc : list) {
+    			if(thuoc.getMaThuoc().equals(maPhieu))
+    				return true;
+    		}
+    	}
+    	return false;
+    }
+    
+    private int soLuongCapNhat(String maPhieu) {
+    	ArrayList<Thuoc> list = new ArrayList<Thuoc>();
+    	list = thuoc_DAO.layTatCaThuoc();
+    	for(PhieuNhapThuoc pn : phieuNhapThuocs) {
+    		for(Thuoc thuoc : list) {
+    			if(thuoc.getMaThuoc().equals(maPhieu))
+    				return thuoc.getSoLuongTon() + pn.getSoLuongNhap();
+    		}
+    	}
+    	return 0;
+    }
+    
+    private void btnLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuActionPerformed
+        // TODO add your handling code here:
+    	boolean capNhat = false;
+    	ArrayList<Thuoc> list = new ArrayList<Thuoc>();
+    	list = thuoc_DAO.layTatCaThuoc();
+    	if(phieuNhapThuocs.size() > 0) {
+        	for(PhieuNhapThuoc pn : phieuNhapThuocs) {
+        		if(kiemTraTrungMa(pn.getThuoc().getMaThuoc())) {
+        			thuoc_DAO.capNhatSoLuongTonCuaThuoc(soLuongCapNhat(pn.getThuoc().getMaThuoc()), pn.getThuoc().getMaThuoc());
+        		}
+        		else {
+        			thuoc_DAO.themThuoc(pn.getThuoc());
+        		}
+    			phieuNhapThuoc_DAO.themPhieuNhapThuoc(pn, emp);
+        	}
+        	txtMaThuoc.setText(phatSinhMaThuoc());
+        	txtMaPhieuNhap.setText(phatSinhMaPhieuNhapThuoc());
+        	JOptionPane.showMessageDialog(this, "Lưu thành công");
+    	}
+    	else {
+    		JOptionPane.showMessageDialog(this, "Chưa nhập danh sách thuốc");
+    	}
+    }//GEN-LAST:event_btnLuuActionPerformed
+
+    private void btnXoaTrangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaTrangActionPerformed
+        // TODO add your handling code here:
+    	Huy();
+    }//GEN-LAST:event_btnXoaTrangActionPerformed
+
+	public int getIndex(String ma) {
+		int index = -1;
+		for(int i = 0; i < phieuNhapThuocs.size(); i++ ) {
+			if(phieuNhapThuocs.get(i).getMaPhieu().equals(ma)) 
+				index = i;
+		}
+		return index;
+	}
+	
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        // TODO add your handling code here:
+    	int row = tablePhieuNhapThuoc.getSelectedRow();
+		if(row != -1) {
+			int tb = JOptionPane.showConfirmDialog(this, "Bạn có muốn xóa", "Delete", JOptionPane.YES_NO_OPTION);
+			if(tb == JOptionPane.YES_OPTION) {
+				phieuNhapThuocs.remove(getIndex(tablePhieuNhapThuoc.getValueAt(row, 1)+""));
+				modelPhieuNhapThuoc.removeRow(row);
+			}
+		}
+    }//GEN-LAST:event_btnXoaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGenerateMaNCC;
     private javax.swing.JButton btnGenerateMaThuoc;
+    private javax.swing.JButton btnLuu;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnXoa;
     private javax.swing.JButton btnXoaTrang;
@@ -1074,13 +1053,13 @@ public class GUI_NhapThuoc extends javax.swing.JPanel {
     private javax.swing.Box.Filler filler2;
     private javax.swing.Box.Filler filler3;
     private javax.swing.Box.Filler filler4;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
@@ -1128,6 +1107,7 @@ public class GUI_NhapThuoc extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel38;
     private javax.swing.JPanel jPanel39;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel40;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
@@ -1146,6 +1126,7 @@ public class GUI_NhapThuoc extends javax.swing.JPanel {
     private javax.swing.JTextField txtDonViThuoc;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtMaPhieuNhap;
+    private javax.swing.JTextField txtMaThuoc;
     private javax.swing.JTextField txtNgayHienTai;
     private javax.swing.JTextField txtNgayNhap;
     private javax.swing.JTextField txtSoDienThoai;

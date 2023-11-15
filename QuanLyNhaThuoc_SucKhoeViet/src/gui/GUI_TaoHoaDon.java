@@ -931,45 +931,7 @@ public class GUI_TaoHoaDon extends javax.swing.JPanel{
 
         add(ALL, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
-	
-    private void cbMaThuocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMaThuocActionPerformed
-    	use_event_cbMaThuoc = true;
-		ArrayList<String> cacPhanTuHienCo = initCandidateThuoc(danhSachThuoc);
-		int soPhanTuHienCo = cacPhanTuHienCo.size();
-		String tuHienTai = cbMaThuoc.getSelectedItem().toString().trim();
-		if (soPhanTuHienCo > 0) {
-			if (tuHienTai.equalsIgnoreCase("")) {
-				cbMaThuoc.removeAllItems();
-				for (int i = 0; i < soPhanTuHienCo; i++) {
-					cbMaThuoc.addItem(cacPhanTuHienCo.get(i));
-				}
-				cbMaThuoc.setSelectedItem("");
-				cbMaThuoc.showPopup();
-			} else {
-				ArrayList<String> cacUngVien = searchCandidate(tuHienTai, cacPhanTuHienCo);
-				int soUngVien = cacUngVien.size();
-				if (soUngVien > 0) {
-					cbMaThuoc.removeAllItems();
-					for (int i = 0; i < soUngVien; i++) {
-						cbMaThuoc.addItem(cacUngVien.get(i));
-					}
-					cbMaThuoc.setSelectedItem(tuHienTai);
-					cbMaThuoc.showPopup();
-				} else if (soUngVien == 0) {
-					cbMaThuoc.removeAllItems();
-					Toolkit.getDefaultToolkit().beep();
-					JOptionPane.showMessageDialog(cbMaThuoc, "Không tìm thấy mã thuốc nào phù hợp", "Thông báo",
-							JOptionPane.INFORMATION_MESSAGE);
-				}
-			}
-		} else {
-			Toolkit.getDefaultToolkit().beep();
-			JOptionPane.showMessageDialog(cbMaThuoc, "Không tìm thấy mã thuốc nào trong CSDL", "Thông báo",
-					JOptionPane.INFORMATION_MESSAGE);
-		}
-	}
-//GEN-LAST:event_cbMaThuocActionPerformed
-	
+		
 	
 	
     
@@ -978,40 +940,6 @@ public class GUI_TaoHoaDon extends javax.swing.JPanel{
        		int row = tableChiTietHoaDon.getSelectedRow();
        		fillForm(row);
     }//GEN-LAST:event_tableChiTietHoaDonMouseClicked
-
-    private void btnGenerateMaThuocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateMaThuocActionPerformed
-        // TODO add your handling code here:
-    	if (use_event_cbMaThuoc) {
-			String tuHienTai = cbMaThuoc.getSelectedItem().toString().trim();
-			int row_count = cbMaThuoc.getItemCount();
-			if (!tuHienTai.equalsIgnoreCase("")) {
-				String[] tachTuHienTai = tuHienTai.split("-");
-				String maThuoc = tachTuHienTai[0].trim();
-				if (row_count > 0) {
-					if (row_count == 1) {
-						generateThuocByMaThuoc(maThuoc, danhSachThuoc);
-					}
-					cbMaThuoc.setSelectedItem(maThuoc);
-					cbMaThuoc.setEditable(false);
-					lblMaThuoc.setText("Mã thuốc:");
-				} else {
-					Toolkit.getDefaultToolkit().beep();
-					JOptionPane.showMessageDialog(cbMaThuoc, "Không tìm thấy mã thuốc nào", "Thông báo",
-							JOptionPane.INFORMATION_MESSAGE);
-				}
-			} else {
-				Toolkit.getDefaultToolkit().beep();
-				JOptionPane.showMessageDialog(cbMaThuoc, "Bạn phải nhập mã thuốc", "Cảnh báo",
-						JOptionPane.WARNING_MESSAGE);
-			}
-			btnGenerateMaThuoc.setEnabled(false);
-		} else {
-			Toolkit.getDefaultToolkit().beep();
-			JOptionPane.showMessageDialog(cbMaThuoc,
-					"Vui lòng nhấn Enter trong khung nhập liệu \"Tìm mã thuốc\" trước khi nhấn nút này",
-					"Cảnh báo", JOptionPane.WARNING_MESSAGE);
-		}
-	}//GEN-LAST:event_btnGenerateMaThuocActionPerformed
 
     private void cbMaKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMaKhachHangActionPerformed
         // TODO add your handling code here:
@@ -1327,6 +1255,77 @@ public class GUI_TaoHoaDon extends javax.swing.JPanel{
         }
         btnLuu.setEnabled(true);
     }//GEN-LAST:event_btnBatDauHoaDonMoiActionPerformed
+
+    private void cbMaThuocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMaThuocActionPerformed
+        use_event_cbMaThuoc = true;
+        ArrayList<String> cacPhanTuHienCo = initCandidateThuoc(danhSachThuoc);
+        int soPhanTuHienCo = cacPhanTuHienCo.size();
+        String tuHienTai = cbMaThuoc.getSelectedItem().toString().trim();
+        if (soPhanTuHienCo > 0) {
+            if (tuHienTai.equalsIgnoreCase("")) {
+                cbMaThuoc.removeAllItems();
+                for (int i = 0; i < soPhanTuHienCo; i++) {
+                    cbMaThuoc.addItem(cacPhanTuHienCo.get(i));
+                }
+                cbMaThuoc.setSelectedItem("");
+                cbMaThuoc.showPopup();
+            } else {
+                ArrayList<String> cacUngVien = searchCandidate(tuHienTai, cacPhanTuHienCo);
+                int soUngVien = cacUngVien.size();
+                if (soUngVien > 0) {
+                    cbMaThuoc.removeAllItems();
+                    for (int i = 0; i < soUngVien; i++) {
+                        cbMaThuoc.addItem(cacUngVien.get(i));
+                    }
+                    cbMaThuoc.setSelectedItem(tuHienTai);
+                    cbMaThuoc.showPopup();
+                } else if (soUngVien == 0) {
+                    cbMaThuoc.removeAllItems();
+                    Toolkit.getDefaultToolkit().beep();
+                    JOptionPane.showMessageDialog(cbMaThuoc, "Không tìm thấy mã thuốc nào phù hợp", "Thông báo",
+                        JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        } else {
+            Toolkit.getDefaultToolkit().beep();
+            JOptionPane.showMessageDialog(cbMaThuoc, "Không tìm thấy mã thuốc nào trong CSDL", "Thông báo",
+                JOptionPane.INFORMATION_MESSAGE);
+        }
+        }//GEN-LAST:event_cbMaThuocActionPerformed
+
+    private void btnGenerateMaThuocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateMaThuocActionPerformed
+        // TODO add your handling code here:
+        if (use_event_cbMaThuoc) {
+            String tuHienTai = cbMaThuoc.getSelectedItem().toString().trim();
+            int row_count = cbMaThuoc.getItemCount();
+            if (!tuHienTai.equalsIgnoreCase("")) {
+                String[] tachTuHienTai = tuHienTai.split("-");
+                String maThuoc = tachTuHienTai[0].trim();
+                if (row_count > 0) {
+                    if (row_count == 1) {
+                        generateThuocByMaThuoc(maThuoc, danhSachThuoc);
+                    }
+                    cbMaThuoc.setSelectedItem(maThuoc);
+                    cbMaThuoc.setEditable(false);
+                    lblMaThuoc.setText("Mã thuốc:");
+                } else {
+                    Toolkit.getDefaultToolkit().beep();
+                    JOptionPane.showMessageDialog(cbMaThuoc, "Không tìm thấy mã thuốc nào", "Thông báo",
+                        JOptionPane.INFORMATION_MESSAGE);
+                }
+            } else {
+                Toolkit.getDefaultToolkit().beep();
+                JOptionPane.showMessageDialog(cbMaThuoc, "Bạn phải nhập mã thuốc", "Cảnh báo",
+                    JOptionPane.WARNING_MESSAGE);
+            }
+            btnGenerateMaThuoc.setEnabled(false);
+        } else {
+            Toolkit.getDefaultToolkit().beep();
+            JOptionPane.showMessageDialog(cbMaThuoc,
+                "Vui lòng nhấn Enter trong khung nhập liệu \"Tìm mã thuốc\" trước khi nhấn nút này",
+                "Cảnh báo", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnGenerateMaThuocActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ALL;
