@@ -70,3 +70,4 @@ local.properties
 # End of https://www.toptal.com/developers/gitignore/api/eclipse
 /QuanLyNhaThuoc_SucKhoeViet/nbproject/private/
 /QuanLyNhaThuoc_SucKhoeViet/build/
+/QuanLyNhaThuoc_SucKhoeViet/dist/

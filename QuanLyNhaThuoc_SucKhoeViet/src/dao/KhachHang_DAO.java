@@ -111,21 +111,20 @@ public class KhachHang_DAO {
 		}
 	}
 
-	public boolean capNhatThongTinKhachHang(KhachHang khachHang, String maKHCu) {
+	public boolean capNhatThongTinKhachHang(KhachHang khachHang) {
 		try {
 			PreparedStatement ps = ConnectDB.getConnection().prepareStatement(
-					"UPDATE KhachHang SET MaKH = ?, HoTenKhachHang = ?, NgaySinh = ?, NgayDangKy = ?, MaTheBaoHiem = ?, GioiTinh = ?, SoCMND = ?, Email = ?, SoDienThoai = ?, DiaChi = ? WHERE MaKH = ?");
-			ps.setString(1, khachHang.getMaKH());
-			ps.setString(2, khachHang.getHoTenKhachHang());
-			ps.setDate(3, new Date(khachHang.getNgaySinh().getTime()));
-			ps.setDate(4, new Date(khachHang.getNgayDangKy().getTime()));
-			ps.setString(5, khachHang.getMaTheBaoHiem());
-			ps.setString(6, khachHang.getGioiTinh());
-			ps.setString(7, khachHang.getSoCMND());
-			ps.setString(8, khachHang.getEmail());
-			ps.setString(9, khachHang.getSoDienThoai());
-			ps.setString(10, khachHang.getDiaChi());
-			ps.setString(11, maKHCu);
+					"UPDATE KhachHang SET HoTenKhachHang = ?, NgaySinh = ?, NgayDangKy = ?, MaTheBaoHiem = ?, GioiTinh = ?, SoCMND = ?, Email = ?, SoDienThoai = ?, DiaChi = ? WHERE MaKH = ?");
+			ps.setString(1, khachHang.getHoTenKhachHang());
+			ps.setDate(2, new Date(khachHang.getNgaySinh().getTime()));
+			ps.setDate(3, new Date(khachHang.getNgayDangKy().getTime()));
+			ps.setString(4, khachHang.getMaTheBaoHiem());
+			ps.setString(5, khachHang.getGioiTinh());
+			ps.setString(6, khachHang.getSoCMND());
+			ps.setString(7, khachHang.getEmail());
+			ps.setString(8, khachHang.getSoDienThoai());
+			ps.setString(9, khachHang.getDiaChi());
+			ps.setString(10, khachHang.getMaKH());
 			return ps.executeUpdate() > 0;
 		} catch (Exception e1) {
 			return false;
