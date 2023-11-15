@@ -31,10 +31,10 @@ public class GUI_TrangChu_NV extends javax.swing.JFrame {
      */
     public GUI_TrangChu_NV(NhanVien nv) {
         initComponents();
-        emp = nv;
+        this.emp = nv;
         gui_BTN = new GUI_TT(emp);
         this.PnlChuyenHuong.add(gui_BTN);
-        gui_NhapThuoc = new GUI_NhapThuoc();
+        gui_NhapThuoc = new GUI_NhapThuoc(emp);
         guiTaoHoaDon =  new GUI_TaoHoaDon(emp);
         gui_quanLiKhachHang = new GUI_QuanLiKhachHang();
         gui_quanLiNhanVien = new GUI_QuanLiNhanVien();

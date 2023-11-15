@@ -45,11 +45,6 @@ public class GUI_Login extends javax.swing.JFrame {
 							nv.setVisible(true);
 							setVisible(false);
 						}
-					} else {
-						Toolkit.getDefaultToolkit().beep();
-						JOptionPane.showMessageDialog(null,
-								"Tài khoản của bạn hiện đang bị khóa. Vui lòng liên hệ quản lý để mở lại",
-								"Tài khoản bị khóa", JOptionPane.ERROR_MESSAGE);
 					}
 				} else {
 					Toolkit.getDefaultToolkit().beep();

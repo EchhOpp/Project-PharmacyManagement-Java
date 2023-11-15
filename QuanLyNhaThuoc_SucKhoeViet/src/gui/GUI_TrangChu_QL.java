@@ -31,11 +31,11 @@ public class GUI_TrangChu_QL extends javax.swing.JFrame {
      */
     public GUI_TrangChu_QL(NhanVien nv) {
         initComponents();
-        emp = nv;
-        gui_BTN = new GUI_TT(emp);
+        this.emp = nv;
+        gui_BTN = new GUI_TT(this.emp);
         this.PnlChuyenHuong.add(gui_BTN);
-        gui_NhapThuoc = new GUI_NhapThuoc();
-        guiTaoHoaDon =  new GUI_TaoHoaDon(emp);
+        gui_NhapThuoc = new GUI_NhapThuoc(this.emp);
+        guiTaoHoaDon =  new GUI_TaoHoaDon(this.emp);
         gui_quanLiKhachHang = new GUI_QuanLiKhachHang();
         gui_quanLiNhanVien = new GUI_QuanLiNhanVien();
         gui_TimKiemHoaDon = new GUI_TimKiemHoaDon();
@@ -43,7 +43,6 @@ public class GUI_TrangChu_QL extends javax.swing.JFrame {
         gui_DanhSachNhapThuoc = new GUI_DanhSachNhapThuoc();
         gui_QuanLiNhaCungCap = new GUI_QuanLiNhaCungCap();
         gui_QuanLiThongKe = new GUI_QuanLiThongKe();
-        
         setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 

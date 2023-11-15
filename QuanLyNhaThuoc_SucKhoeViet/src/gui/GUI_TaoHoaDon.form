@@ -319,9 +319,6 @@
                                   <Properties>
                                     <Property name="editable" type="boolean" value="false"/>
                                   </Properties>
-                                  <Events>
-                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtLoaiThuocActionPerformed"/>
-                                  </Events>
                                 </Component>
                               </SubComponents>
                             </Container>
@@ -453,9 +450,6 @@
                                   <Properties>
                                     <Property name="editable" type="boolean" value="false"/>
                                   </Properties>
-                                  <Events>
-                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTenNhaCungCapActionPerformed"/>
-                                  </Events>
                                 </Component>
                               </SubComponents>
                             </Container>
@@ -982,9 +976,6 @@
                               <Dimension value="[100, 30]"/>
                             </Property>
                           </Properties>
-                          <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTongTienConLaiActionPerformed"/>
-                          </Events>
                         </Component>
                         <Component class="javax.swing.Box$Filler" name="filler8">
                           <Properties>

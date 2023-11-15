@@ -26,7 +26,6 @@ import entities.NhaCungCap;
 import entities.NhanVien;
 import entities.Thuoc;
 
-
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
@@ -38,36 +37,29 @@ import javax.swing.table.DefaultTableModel;
 
 import com.formdev.flatlaf.json.ParseException;
 
-
-
-
-
-
 /**
  *
  * @author NguyenThanhLuan
  */
 public class GUI_TaoHoaDon extends javax.swing.JPanel{
-	private Connection con;
+	private NhanVien emp;
+	private DefaultTableModel modelChiTietHoaDon;
 	private SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 	private DecimalFormat fmt = new DecimalFormat("###,###");
+	private boolean use_event_cbMaThuoc = false;
+	private boolean use_event_cbMaKhachHang = false;
+	private boolean use_event_spinner = false;
+	
+	private final float mienGiam = 0.7f;
+	
 	private HoaDon hoaDon;
 	private Thuoc_DAO thuoc_dao = new Thuoc_DAO();
 	private ArrayList<Thuoc> danhSachThuoc = thuoc_dao.layTatCaThuocTonKho();
 	private KhachHang_DAO khachhang_dao = new KhachHang_DAO();
-	private HoaDon_DAO hoaDon_DAO = new HoaDon_DAO();
 	private ArrayList<KhachHang> danhSachKhachHang = khachhang_dao.layTatCaKhachHang();
-    private DefaultTableModel modelChiTietHoaDon;
-    private final float mienGiam = 0.7f;
-	private boolean use_event_cbMaThuoc = false;
-	private boolean use_event_cbMaKhachHang = false;
-	private boolean use_event_spinner = false;
-	private NhanVien emp;
 	
-	
-
 	private KhachHang taoKhachHang() {
-		String maKH = cbMaKhachHang.getSelectedItem().toString().split("-")[0].trim();
+		String maKH = cbMaKhachHang.getSelectedItem().toString().trim();
 		KhachHang kh = new KhachHang(maKH);
 		return danhSachKhachHang.get(danhSachKhachHang.indexOf(kh));
 	}
@@ -86,7 +78,7 @@ public class GUI_TaoHoaDon extends javax.swing.JPanel{
 	}
 
 	private HoaDon taoHoaDon(NhanVien emp) {
-		String maHD = txtMaHoaDon.getText().split("-")[0].trim();
+		String maHD = txtMaHoaDon.getText().trim();
 		KhachHang kh = taoKhachHang();
 		Date ngayLapHoaDon = new Date();
 		String theBaoHiem = "Không";
@@ -357,9 +349,9 @@ public class GUI_TaoHoaDon extends javax.swing.JPanel{
     	this.emp = nhanVien;
 		SpinnerNumberModel modelSoLuongBan = new SpinnerNumberModel(1, 1, 1, 0);
 		spinSoLuongBan = new JSpinner(modelSoLuongBan);
-		spinSoLuongBan.setEditor(new JSpinner.DefaultEditor(spinSoLuongBan));
 		hoaDon = new HoaDon(phatSinhMaHoaDon(), new KhachHang(), emp, new Date(), "", mienGiam);
         initComponents();
+        txtMaHoaDon.setText(phatSinhMaHoaDon());
 		ButtonGroup group = new ButtonGroup();
 		group.add(radKhong);
 		group.add(radCo);
@@ -588,11 +580,6 @@ public class GUI_TaoHoaDon extends javax.swing.JPanel{
         jPanel18.add(jLabel7);
 
         txtLoaiThuoc.setEditable(false);
-        txtLoaiThuoc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtLoaiThuocActionPerformed(evt);
-            }
-        });
         jPanel18.add(txtLoaiThuoc);
 
         jPanel13.add(jPanel18);
@@ -666,11 +653,6 @@ public class GUI_TaoHoaDon extends javax.swing.JPanel{
         jPanel25.add(jLabel13);
 
         txtTenNhaCungCap.setEditable(false);
-        txtTenNhaCungCap.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTenNhaCungCapActionPerformed(evt);
-            }
-        });
         jPanel25.add(txtTenNhaCungCap);
 
         jPanel14.add(jPanel25);
@@ -890,11 +872,6 @@ public class GUI_TaoHoaDon extends javax.swing.JPanel{
 
         txtTongTienConLai.setMinimumSize(new java.awt.Dimension(100, 22));
         txtTongTienConLai.setPreferredSize(new java.awt.Dimension(100, 30));
-        txtTongTienConLai.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTongTienConLaiActionPerformed(evt);
-            }
-        });
         jPanel35.add(txtTongTienConLai);
         jPanel35.add(filler8);
 
@@ -954,24 +931,6 @@ public class GUI_TaoHoaDon extends javax.swing.JPanel{
 
         add(ALL, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtLoaiThuocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLoaiThuocActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtLoaiThuocActionPerformed
-
-    private void txtTenNhaCungCapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenNhaCungCapActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTenNhaCungCapActionPerformed
-
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton12ActionPerformed
-
-    private void btnXoaTrangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaTrangActionPerformed
-       xoaTrang();
-    }//GEN-LAST:event_btnXoaTrangActionPerformed
-    
-    // trả về 1 mảng các danh sách
 	
     private void cbMaThuocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMaThuocActionPerformed
     	use_event_cbMaThuoc = true;
@@ -1010,8 +969,18 @@ public class GUI_TaoHoaDon extends javax.swing.JPanel{
 		}
 	}
 //GEN-LAST:event_cbMaThuocActionPerformed
+	
+	
+	
+    
+	   
+    private void tableChiTietHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableChiTietHoaDonMouseClicked
+       		int row = tableChiTietHoaDon.getSelectedRow();
+       		fillForm(row);
+    }//GEN-LAST:event_tableChiTietHoaDonMouseClicked
 
     private void btnGenerateMaThuocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateMaThuocActionPerformed
+        // TODO add your handling code here:
     	if (use_event_cbMaThuoc) {
 			String tuHienTai = cbMaThuoc.getSelectedItem().toString().trim();
 			int row_count = cbMaThuoc.getItemCount();
@@ -1043,11 +1012,56 @@ public class GUI_TaoHoaDon extends javax.swing.JPanel{
 					"Cảnh báo", JOptionPane.WARNING_MESSAGE);
 		}
 	}//GEN-LAST:event_btnGenerateMaThuocActionPerformed
-	
-	
-	
+
+    private void cbMaKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMaKhachHangActionPerformed
+        // TODO add your handling code here:
+    	use_event_cbMaKhachHang = true;
+		ArrayList<String> cacPhanTuHienCo = initCandidateKhachHang(danhSachKhachHang);
+		int soPhanTuHienCo = cacPhanTuHienCo.size();
+		String tuHienTai = cbMaKhachHang.getSelectedItem().toString().trim();
+		if (soPhanTuHienCo > 0) {
+			if (tuHienTai.equalsIgnoreCase("")) {
+				cbMaKhachHang.removeAllItems();
+				for (int i = 0; i < soPhanTuHienCo; i++) {
+					cbMaKhachHang.addItem(cacPhanTuHienCo.get(i));
+				}
+				cbMaKhachHang.setSelectedItem("");
+				cbMaKhachHang.showPopup();
+			} else {
+				ArrayList<String> cacUngVien = searchCandidate(tuHienTai, cacPhanTuHienCo);
+				int soUngVien = cacUngVien.size();
+				if (soUngVien > 0) {
+					cbMaKhachHang.removeAllItems();
+					for (int i = 0; i < soUngVien; i++) {
+						cbMaKhachHang.addItem(cacUngVien.get(i));
+					}
+					cbMaKhachHang.setSelectedItem(tuHienTai);
+					cbMaKhachHang.showPopup();
+				} else if (soUngVien == 0) {
+					cbMaKhachHang.removeAllItems();
+					Toolkit.getDefaultToolkit().beep();
+					int confirm = JOptionPane.showConfirmDialog(cbMaKhachHang,
+							"Không tìm thấy mã khách hàng này trong CSDL. Bạn có muốn thêm khách hàng này vào CSDL hay không?",
+							"Thông báo", JOptionPane.YES_NO_OPTION);
+					if (confirm == JOptionPane.YES_NO_OPTION) {
+					} else {
+						Toolkit.getDefaultToolkit().beep();
+						JOptionPane.showMessageDialog(cbMaKhachHang,
+								"Bạn không thể tiếp tục hóa đơn khi chưa thêm khách hàng vào CSDL",
+								"Lỗi không thiếu thông tin khách hàng", JOptionPane.ERROR_MESSAGE);
+						setVisible(false);
+					}
+				}
+			}
+		} else {
+			Toolkit.getDefaultToolkit().beep();
+			JOptionPane.showMessageDialog(cbMaKhachHang, "Không tìm thấy mã khách hàng nào trong CSDL",
+					"Thông báo", JOptionPane.INFORMATION_MESSAGE);
+		}
+	}//GEN-LAST:event_cbMaKhachHangActionPerformed
 
     private void btnGenerateMaKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateMaKHActionPerformed
+        // TODO add your handling code here:
     	if (use_event_cbMaKhachHang) {
 			String tuHienTai = cbMaKhachHang.getSelectedItem().toString().trim();
 			int row_count = cbMaKhachHang.getItemCount();
@@ -1078,53 +1092,10 @@ public class GUI_TaoHoaDon extends javax.swing.JPanel{
 					"Vui lòng nhấn Enter trong khung nhập liệu \"Tìm mã khách hàng\" trước khi nhấn nút này",
 					"Cảnh báo", JOptionPane.WARNING_MESSAGE);
 		}
-	}//GEN-LAST:event_btnGenerateMaKHActionPerformed
-
-    private void cbMaKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMaKhachHangActionPerformed
-    			use_event_cbMaKhachHang = true;
-				ArrayList<String> cacPhanTuHienCo = initCandidateKhachHang(danhSachKhachHang);
-				int soPhanTuHienCo = cacPhanTuHienCo.size();
-				String tuHienTai = cbMaKhachHang.getSelectedItem().toString().trim();
-				if (soPhanTuHienCo > 0) {
-					if (tuHienTai.equalsIgnoreCase("")) {
-						cbMaKhachHang.removeAllItems();
-						for (int i = 0; i < soPhanTuHienCo; i++) {
-							cbMaKhachHang.addItem(cacPhanTuHienCo.get(i));
-						}
-						cbMaKhachHang.setSelectedItem("");
-						cbMaKhachHang.showPopup();
-					} else {
-						ArrayList<String> cacUngVien = searchCandidate(tuHienTai, cacPhanTuHienCo);
-						int soUngVien = cacUngVien.size();
-						if (soUngVien > 0) {
-							cbMaKhachHang.removeAllItems();
-							for (int i = 0; i < soUngVien; i++) {
-								cbMaKhachHang.addItem(cacUngVien.get(i));
-							}
-							cbMaKhachHang.setSelectedItem(tuHienTai);
-							cbMaKhachHang.showPopup();
-						} else if (soUngVien == 0) {
-							cbMaKhachHang.removeAllItems();
-							Toolkit.getDefaultToolkit().beep();
-							int confirm = JOptionPane.showConfirmDialog(cbMaKhachHang,
-									"Không tìm thấy mã khách hàng này trong CSDL. Bạn có muốn thêm khách hàng này vào CSDL hay không?",
-									"Thông báo", JOptionPane.YES_NO_OPTION);
-							if (confirm == JOptionPane.YES_NO_OPTION) {
-//								ThemKhacHang_GUI themKhacHang = new ThemKhacHang_GUI(emp);
-//								themKhacHang.setVisible(true);
-//								setVisible(false);
-							} else {
-								Toolkit.getDefaultToolkit().beep();
-								JOptionPane.showMessageDialog(cbMaKhachHang,
-										"Bạn không thể tiếp tục hóa đơn khi chưa thêm khách hàng vào CSDL",
-										"Lỗi không thiếu thông tin khách hàng", JOptionPane.ERROR_MESSAGE);
-								setVisible(false);
-							}
-						}
-					} }
-	}//GEN-LAST:event_cbMaKhachHangActionPerformed
+    }//GEN-LAST:event_btnGenerateMaKHActionPerformed
 
     private void radCoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radCoActionPerformed
+        // TODO add your handling code here:
     	if (use_event_cbMaKhachHang) {
 			String tuHienTai = cbMaKhachHang.getSelectedItem().toString().trim();
 			int row_count = cbMaKhachHang.getItemCount();
@@ -1142,124 +1113,123 @@ public class GUI_TaoHoaDon extends javax.swing.JPanel{
 								"Khách hàng hiện tại chưa nhập mã thẻ bảo hiểm. Bạn có muốn cập nhật lại thông tin khách hàng này hay không?",
 								"Thông báo", JOptionPane.YES_NO_OPTION);
 						if (confirm == JOptionPane.YES_OPTION) {
-//							SuaThongTinKhacHang_GUI suaThongTinKhacHang = new SuaThongTinKhacHang_GUI(khachHang,
-//									emp, getTitle());
-//							suaThongTinKhacHang.setVisible(true);
 						}
 					}
 				}
 			}
 		}
-	}
-//GEN-LAST:event_radCoActionPerformed
+    }//GEN-LAST:event_radCoActionPerformed
 
-    private void btnBatDauHoaDonMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatDauHoaDonMoiActionPerformed
-    }//GEN-LAST:event_btnBatDauHoaDonMoiActionPerformed
-    
-	
-    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+    private void btnXoaTrangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaTrangActionPerformed
         // TODO add your handling code here:
-        int row = tableChiTietHoaDon.getSelectedRow();
-				if (row != -1) {
-					Toolkit.getDefaultToolkit().beep();
-					int confirm = JOptionPane.showConfirmDialog(null,
-							"Bạn có chắc chắn muốn xóa dòng sản phẩm này hay không?", "Chú ý",
-							JOptionPane.YES_NO_OPTION);
-					if (confirm == JOptionPane.YES_OPTION) {
-						if (hoaDon.xoaMotChiTietHoaDon(row)) {
-							tableChiTietHoaDon.clearSelection();
-							capNhatDuLieuTrenBang();
-							xoaTrang();
-							Toolkit.getDefaultToolkit().beep();
-							JOptionPane.showMessageDialog(null, "Đã xóa mục thành công", "Thông báo",
-									JOptionPane.INFORMATION_MESSAGE);
-						}
-					}
-				} else {
-					Toolkit.getDefaultToolkit().beep();
-					JOptionPane.showMessageDialog(null, "Bạn cần chọn mục cần xóa", "Cảnh báo",
-							JOptionPane.WARNING_MESSAGE);
-				}
-			}//GEN-LAST:event_btnXoaActionPerformed
+		xoaTrang();
+    }//GEN-LAST:event_btnXoaTrangActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) throws java.text.ParseException {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
-        try {
-					spinSoLuongBan.commitEdit();
-					if (use_event_spinner) {
-						String maThuoc = cbMaThuoc.getSelectedItem().toString().trim();
-						Thuoc_DAO thuoc_dao = new Thuoc_DAO();
-						int soLuongTon = thuoc_dao.laySoLuongTonCuaThuoc(maThuoc);
-						Toolkit.getDefaultToolkit().beep();
-						int confirm = JOptionPane.showConfirmDialog(null, "Bạn có muốn mua toàn bộ " + soLuongTon + " sản phẩm " + txtTenThuoc.getText() + " hay không?", "Xác nhận", JOptionPane.YES_NO_OPTION);
-						if (confirm == JOptionPane.YES_OPTION) {
-							if (validDataAdd()) {
-								ChiTietHoaDon cthd = taoChiTietHoaDon();
-								if (!hoaDon.themMotChiTietHoaDon(cthd)) {
-									Toolkit.getDefaultToolkit().beep();
-									JOptionPane.showMessageDialog(null, "Bị trùng mã thuốc", "Cảnh báo",
-											JOptionPane.WARNING_MESSAGE);
-								} else {
-									capNhatDuLieuTrenBang();
-									txtTongTienThanhToan.setText(fmt.format(hoaDon.tinhTongThanhTien()));
-									txtMienGiam.setText(fmt.format(tinhMienGiam()));
-								}
-								btnThem.setEnabled(false);
-							}
-						}
-					} else {
-						if (validDataAdd()) {
-							ChiTietHoaDon cthd = taoChiTietHoaDon();
-							if (!hoaDon.themMotChiTietHoaDon(cthd)) {
-								Toolkit.getDefaultToolkit().beep();
-								JOptionPane.showMessageDialog(null, "Bị trùng mã thuốc", "Cảnh báo",
-										JOptionPane.WARNING_MESSAGE);
-							} else {
-								capNhatDuLieuTrenBang();
-								txtTongTienThanhToan.setText(fmt.format(hoaDon.tinhTongThanhTien()));
-								txtMienGiam.setText(fmt.format(tinhMienGiam()));
-							}
+    	try {
+			spinSoLuongBan.commitEdit();
+			if (use_event_spinner) {
+				String maThuoc = cbMaThuoc.getSelectedItem().toString().trim();
+				Thuoc_DAO thuoc_dao = new Thuoc_DAO();
+				int soLuongTon = thuoc_dao.laySoLuongTonCuaThuoc(maThuoc);
+				Toolkit.getDefaultToolkit().beep();
+				int confirm = JOptionPane.showConfirmDialog(null, "Bạn có muốn mua toàn bộ " + soLuongTon + " sản phẩm " + txtTenThuoc.getText() + " hay không?", "Xác nhận", JOptionPane.YES_NO_OPTION);
+				if (confirm == JOptionPane.YES_OPTION) {
+					if (validDataAdd()) {
+						ChiTietHoaDon cthd = taoChiTietHoaDon();
+						if (!hoaDon.themMotChiTietHoaDon(cthd)) {
+							Toolkit.getDefaultToolkit().beep();
+							JOptionPane.showMessageDialog(null, "Bị trùng mã thuốc", "Cảnh báo",
+									JOptionPane.WARNING_MESSAGE);
+						} else {
+							capNhatDuLieuTrenBang();
+							txtTongTienThanhToan.setText(fmt.format(hoaDon.tinhTongThanhTien()));
+							txtMienGiam.setText(fmt.format(tinhMienGiam()));
 						}
 						btnThem.setEnabled(false);
 					}
-				} catch (ParseException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
 				}
-			}//GEN-LAST:event_btnThemActionPerformed
+			} else {
+				if (validDataAdd()) {
+					ChiTietHoaDon cthd = taoChiTietHoaDon();
+					if (!hoaDon.themMotChiTietHoaDon(cthd)) {
+						Toolkit.getDefaultToolkit().beep();
+						JOptionPane.showMessageDialog(null, "Bị trùng mã thuốc", "Cảnh báo",
+								JOptionPane.WARNING_MESSAGE);
+					} else {
+						capNhatDuLieuTrenBang();
+						txtTongTienThanhToan.setText(fmt.format(hoaDon.tinhTongThanhTien()));
+						txtMienGiam.setText(fmt.format(tinhMienGiam()));
+					}
+				}
+				btnThem.setEnabled(false);
+			}
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+    }//GEN-LAST:event_btnThemActionPerformed
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        // TODO add your handling code here:
+    	int row = tableChiTietHoaDon.getSelectedRow();
+		if (row != -1) {
+			Toolkit.getDefaultToolkit().beep();
+			int confirm = JOptionPane.showConfirmDialog(null,
+					"Bạn có chắc chắn muốn xóa dòng sản phẩm này hay không?", "Chú ý",
+					JOptionPane.YES_NO_OPTION);
+			if (confirm == JOptionPane.YES_OPTION) {
+				if (hoaDon.xoaMotChiTietHoaDon(row)) {
+					tableChiTietHoaDon.clearSelection();
+					capNhatDuLieuTrenBang();
+					xoaTrang();
+					Toolkit.getDefaultToolkit().beep();
+					JOptionPane.showMessageDialog(null, "Đã xóa mục thành công", "Thông báo",
+							JOptionPane.INFORMATION_MESSAGE);
+				}
+			}
+		} else {
+			Toolkit.getDefaultToolkit().beep();
+			JOptionPane.showMessageDialog(null, "Bạn cần chọn mục cần xóa", "Cảnh báo",
+					JOptionPane.WARNING_MESSAGE);
+		}
+    }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnCapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatActionPerformed
-        int row = tableChiTietHoaDon.getSelectedRow();
-				if (row != -1) {
-					Toolkit.getDefaultToolkit().beep();
-					int confirm = JOptionPane.showConfirmDialog(null,
-							"Bạn có chắc chắn muốn cập nhật số lượng bán không?", "Chú ý", JOptionPane.YES_NO_OPTION);
-					if (confirm == JOptionPane.YES_OPTION) {
-						String maThuoc = cbMaThuoc.getSelectedItem().toString().split("-")[0].trim();
-						int soLuongBanMoi = Integer.parseInt(spinSoLuongBan.getValue().toString().trim());
-						if (hoaDon.capNhatSoLuongBan(maThuoc, soLuongBanMoi)) {
-							tableChiTietHoaDon.clearSelection();
-							capNhatDuLieuTrenBang();
-							xoaTrang();
-						} else {
-							Toolkit.getDefaultToolkit().beep();
-							JOptionPane.showMessageDialog(null, "Không thành công");
-						}
-					}
+        // TODO add your handling code here:
+    	int row = tableChiTietHoaDon.getSelectedRow();
+		if (row != -1) {
+			Toolkit.getDefaultToolkit().beep();
+			int confirm = JOptionPane.showConfirmDialog(null,
+					"Bạn có chắc chắn muốn cập nhật số lượng bán không?", "Chú ý", JOptionPane.YES_NO_OPTION);
+			if (confirm == JOptionPane.YES_OPTION) {
+				String maThuoc = cbMaThuoc.getSelectedItem().toString().split("-")[0].trim();
+				int soLuongBanMoi = Integer.parseInt(spinSoLuongBan.getValue().toString().trim());
+				if (hoaDon.capNhatSoLuongBan(maThuoc, soLuongBanMoi)) {
+					tableChiTietHoaDon.clearSelection();
+					capNhatDuLieuTrenBang();
+					xoaTrang();
 				} else {
 					Toolkit.getDefaultToolkit().beep();
-					JOptionPane.showMessageDialog(null, "Bạn cần chọn mục cần sửa số lượng bán", "Cảnh báo",
-							JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Không thành công");
 				}
-			}//GEN-LAST:event_btnCapNhatActionPerformed
+			}
+		} else {
+			Toolkit.getDefaultToolkit().beep();
+			JOptionPane.showMessageDialog(null, "Bạn cần chọn mục cần sửa số lượng bán", "Cảnh báo",
+					JOptionPane.WARNING_MESSAGE);
+		}
+    }//GEN-LAST:event_btnCapNhatActionPerformed
+
     private void btnLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuActionPerformed
+        // TODO add your handling code here:
     	boolean themHoaDon = false;
 		int count_row = 0;
 
 		txtTongTienThanhToan.setText(fmt.format(hoaDon.tinhTongThanhTien()));
 		txtMienGiam.setText(fmt.format(tinhMienGiam()));
 		txtTongTienConLai.setText(fmt.format(tinhTongTienConLai()));
-		
 
 		if (validDataSave()) {
 			HoaDon_DAO hoadon_dao = new HoaDon_DAO();
@@ -1297,6 +1267,7 @@ public class GUI_TaoHoaDon extends javax.swing.JPanel{
 						"Xác nhận in hóa đơn", JOptionPane.YES_NO_OPTION,
 						JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
 				}
+
 				btnLuu.setEnabled(false);
 			} else {
 				Toolkit.getDefaultToolkit().beep();
@@ -1304,18 +1275,58 @@ public class GUI_TaoHoaDon extends javax.swing.JPanel{
 						JOptionPane.ERROR_MESSAGE);
 			}
 		}
-	}//GEN-LAST:event_btnLuuActionPerformed
-   
-    private void tableChiTietHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableChiTietHoaDonMouseClicked
-       		int row = tableChiTietHoaDon.getSelectedRow();
-       		fillForm(row);
-    }//GEN-LAST:event_tableChiTietHoaDonMouseClicked
+    }//GEN-LAST:event_btnLuuActionPerformed
 
-    private void txtTongTienConLaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTongTienConLaiActionPerformed
-       String soTienKhachDua = txtTongTienConLai.getText().trim();
-	float float_SoTienKhachDua = Float.parseFloat(loaiBoDinhDangTien(soTienKhachDua));
-	txtTongTienConLai.setText(fmt.format(float_SoTienKhachDua));
-    }//GEN-LAST:event_txtTongTienConLaiActionPerformed
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here:
+		String tongTienThanhToan = txtTongTienThanhToan.getText().trim();
+		String mienGiam = txtMienGiam.getText().trim();
+		String tongTienConLai = txtTongTienConLai.getText().trim();
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void btnBatDauHoaDonMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatDauHoaDonMoiActionPerformed
+        // TODO add your handling code here:
+        if(!btnLuu.isEnabled()) {
+        	txtMaHoaDon.setText(phatSinhMaHoaDon());
+           	tableChiTietHoaDon.removeAll();
+        	tableChiTietHoaDon.setRowSelectionAllowed(false);
+        	modelChiTietHoaDon.setRowCount(0);
+        	use_event_cbMaThuoc = false;
+    		use_event_cbMaKhachHang = false;
+    		use_event_spinner = false;
+    		cbMaThuoc.setEditable(true);
+    		cbMaThuoc.setSelectedItem("");
+    		cbMaKhachHang.setEditable(true);
+    		cbMaKhachHang.setSelectedItem("");
+    		lblMaThuoc.setText("Tìm mã thuốc:");
+    		lblMaKhachHang.setText("Tìm mã khách hàng: ");
+    		btnGenerateMaThuoc.setEnabled(true);
+    		btnGenerateMaKH.setEnabled(true);
+    		txtTenThuoc.setText("");
+    		SpinnerNumberModel modelSoLuongBan = new SpinnerNumberModel(1, 1, 1, 0);
+    		spinSoLuongBan.setModel(modelSoLuongBan);
+    		spinSoLuongBan.setEditor(new JSpinner.DefaultEditor(spinSoLuongBan));
+    		txtDonGiaBan.setText("");
+    		txtLoaiThuoc.setText("");
+    		txtDonViThuoc.setText("");
+    		txtXuatXu.setText("");
+    		txtTenNhaCungCap.setText("");
+    		txtTenKhachHang.setText("");
+    		radCo.setSelected(false);
+    		radKhong.setSelected(true);
+    		txtEmail.setText("");
+    		txtSoDienThoai.setText("");
+    		textAreaDiaChi.setText("");
+    		tableChiTietHoaDon.clearSelection();
+    		btnThem.setEnabled(true);
+    		cbMaThuoc.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+    		btnGenerateMaThuoc.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+    		cbMaKhachHang.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+    		btnGenerateMaKH.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+    		cbMaThuoc.requestFocus();
+        }
+        btnLuu.setEnabled(true);
+    }//GEN-LAST:event_btnBatDauHoaDonMoiActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ALL;

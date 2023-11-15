@@ -10,6 +10,7 @@ import entities.HoaDon;
 import entities.KhachHang;
 import entities.NhanVien;
 
+
 public class HoaDon_DAO {
 	public boolean themHoaDon(HoaDon hd, KhachHang kh) {
 		try {

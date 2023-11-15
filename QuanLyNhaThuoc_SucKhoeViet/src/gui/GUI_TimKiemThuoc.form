@@ -128,6 +128,9 @@
                               <Dimension value="[180, 22]"/>
                             </Property>
                           </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTextField(layNgayHienTai())"/>
+                          </AuxValues>
                         </Component>
                       </SubComponents>
                     </Container>
@@ -400,21 +403,10 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTable" name="jTable1">
+                    <Component class="javax.swing.JTable" name="tableThuoc">
                       <Properties>
-                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="10" rowCount="0">
-                            <Column editable="true" title="STT" type="java.lang.Object"/>
-                            <Column editable="true" title="M&#xe3; thu&#x1ed1;c" type="java.lang.Object"/>
-                            <Column editable="true" title="T&#xea;n thu&#x1ed1;c" type="java.lang.Object"/>
-                            <Column editable="true" title="Lo&#x1ea1;i thu&#x1ed1;c" type="java.lang.Object"/>
-                            <Column editable="true" title="&#x110;&#x1a1;n v&#x1ecb; thu&#x1ed1;c" type="java.lang.Object"/>
-                            <Column editable="true" title="Xu&#x1ea5;t x&#x1ee9;" type="java.lang.Object"/>
-                            <Column editable="true" title="Nh&#xe0; cung c&#x1ea5;p" type="java.lang.Object"/>
-                            <Column editable="true" title="&#x110;&#x1a1;n gi&#xe1;" type="java.lang.Object"/>
-                            <Column editable="true" title="S&#x1ed1; l&#x1b0;&#x1ee3;ng" type="java.lang.Object"/>
-                            <Column editable="true" title="Th&#xe0;nh ti&#x1ec1;n" type="java.lang.Object"/>
-                          </Table>
+                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="modelThuoc =new DefaultTableModel(&#xa;    new Object [][] {&#xa;&#xa;    },&#xa;    new String [] {&#xa;        &quot;STT&quot;, &quot;M&#xe3; thu&#x1ed1;c&quot;, &quot;T&#xea;n thu&#x1ed1;c&quot;, &quot;Lo&#x1ea1;i thu&#x1ed1;c&quot;, &quot;&#x110;&#x1a1;n v&#x1ecb; thu&#x1ed1;c&quot;, &quot;Xu&#x1ea5;t x&#x1ee9;&quot;, &quot;S&#x1ed1; l&#x1b0;&#x1ee3;ng t&#x1ed3;n&quot;,&#xa;&#x9;&#x9;&#x9;&#x9;&quot;M&#xe3; nh&#xe0; cung c&#x1ea5;p&quot;, &quot;T&#xea;n nh&#xe0; cung c&#x1ea5;p&quot;&#xa;    }&#xa;)" type="code"/>
                         </Property>
                         <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                           <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
