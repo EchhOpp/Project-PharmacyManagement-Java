@@ -1,8 +1,7 @@
 # QuanLyNhaThuoc-SucKhoeViet-Java
 ## About this project
 This project for education.
-## General information
-- Lecturer: Mr. .
+## General information .
 - Students:
     1. Nguyễn Thành Luân (Leader) - Student code: 21123021.
     2. Phạm Hữu Phúc - Student code: 21032381
